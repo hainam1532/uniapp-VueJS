@@ -1,0 +1,26 @@
+{
+  "pages": [
+    {
+      "path": "pages/homePage/homePage",
+      "style": {
+		 "navigationStyle": "custom"
+	   }
+    },
+    {
+      "path": "pages/index/index",
+      "style": {
+       "navigationStyle": "custom"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#007aff",
+    "backgroundColor": "#f8f8f8"
+  },
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "#007aff",
+    "backgroundColor": "#ffffff"
+  }
+}
