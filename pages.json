@@ -11,6 +11,12 @@
       "style": {
        "navigationStyle": "custom"
       }
+    },
+    {
+      "path": "pages/iqcReport/reportDevice",
+      "style": {
+       "navigationStyle": "custom"
+      }
     }
   ],
   "globalStyle": {

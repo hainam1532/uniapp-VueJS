@@ -25,6 +25,8 @@
   },
   "dependencies": {
     "@fontsource/bebas-neue": "^5.1.0",
+    "element-ui": "^2.15.14",
+    "element-ui-2.4.6": "^2.4.6",
     "vue-router": "^4.0.13"
   }
 }

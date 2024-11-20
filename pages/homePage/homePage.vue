@@ -1,31 +1,31 @@
 <template>
-	<div class="min-h-screen bg-white flex flex-col relative">
+	<view class="min-h-screen bg-white flex flex-col relative">
 		<!-- Circle -->
 		<view class="quarter-circle"></view>
 		<!-- Logo Section -->
-		<div class="flex flex-col items-center flex-grow justify-center">
-		  <img :src="logo" alt="Beer Cafe Logo" class="w-[180px] h-[200px]" />
+		<view class="flex flex-col items-center flex-grow justify-center">
+		  <img :src="logo" alt="" class="w-[180px] h-[200px]" />
 		  <h1 class="text-3xl font-bold text-gray-800">Hệ thống báo biểu</h1>
 		  <p class="text-sm tracking-wide text-gray-600">Report system</p>
-		</div>
+		</view>
 
 		<!-- Card Section -->
-		<div class="bg-yellow-500 rounded-t-3xl size-full mx-auto p-8 shadow-lg text-center">
+		<view class="bg-yellow-500 rounded-t-3xl size-full mx-auto p-8 shadow-lg text-center">
 		  <h2 class="text-2xl text-black mb-2 font-bold">Welcome</h2>
 		  <p class="text-sm text-gray-800 font-semibold text-black">
 			Apache Footwear Vietnam
 		  </p>
 		  <!-- Buttons -->
-		  <div class="flex mt-6 space-x-4 justify-center">
+		  <view class="flex mt-6 space-x-4 justify-center">
 			<button
 			  class="bg-white text-black font-semibold py-2 px-6 rounded-full"
 			  @click="goIndex()"
 			>
 			  Khởi động
 			</button>
-		  </div>
-		</div>
-	</div>
+		  </view>
+		</view>
+	</view>
 </template>
 
 <script>

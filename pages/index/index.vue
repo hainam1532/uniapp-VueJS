@@ -1,26 +1,60 @@
 <template>
-  <view class="content">
-    <view
-      class="bg-[url(https://pic1.zhimg.com/v2-3ee20468f54bbfefcd0027283b21aaa8_720w.jpg)] bg-[length:100%_100%] bg-no-repeat w-screen h-[41.54vw]">
-    </view>
-
-	<view class="flex mt-[200px]">
-		<button class="font-semibold bg-blue-400 text-white" @click="doing()">Click me...</button>
-	</view>
-
-  </view>
+	 <view class="h-screen w-full bg-yellow-500 flex flex-col relative">
+		<view class="flex flex-col p-4 gap-2">
+			<view class="flex justify-between">
+				<view class="text-3xl font-bold text-white">
+					Báo biểu - QC
+				</view>
+				<view>
+					<svg fill="#ffffff" height="30px" width="30px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M477.867,187.638h-36.25l7.066-19.413c10.197-28.032-4.309-59.153-32.341-69.35L151.518,2.482 c-20.497-7.458-43.221,3.149-50.68,23.637l-27.793,76.373h-4.779c-18.825,0-34.133,15.309-34.133,34.133v51.012 C15.309,187.638,0,202.939,0,221.772v256c0,18.825,15.309,34.133,34.133,34.133h443.733c18.825,0,34.133-15.309,34.133-34.133 v-256C512,202.939,496.691,187.638,477.867,187.638z M162.133,290.226h-102.4c-4.71,0-8.533-3.814-8.533-8.533 s3.823-8.533,8.533-8.533h102.4c4.71,0,8.533,3.814,8.533,8.533S166.844,290.226,162.133,290.226z M162.133,256.093h-102.4 c-4.71,0-8.533-3.814-8.533-8.533s3.823-8.533,8.533-8.533h102.4c4.71,0,8.533,3.814,8.533,8.533S166.844,256.093,162.133,256.093 z M51.2,187.638v-51.012c0-9.412,7.654-17.067,17.067-17.067H202.88h29.636l17.69,24.431l7.194,9.933l24.414,33.715H51.2z M341.069,170.64c-1.263,3.473-4.54,5.623-8.021,5.623c-0.964,0-1.954-0.171-2.918-0.521l-48.683-17.715l-17.852-24.653 l72.371,26.334C340.395,161.321,342.682,166.22,341.069,170.64z M409.583,150.902c-1.254,3.465-4.531,5.615-8.013,5.615 c-0.973,0-1.954-0.162-2.918-0.512L142.046,62.599c-4.429-1.604-6.707-6.502-5.094-10.931c1.604-4.437,6.519-6.707,10.931-5.103 l256.597,93.406C408.917,141.575,411.196,146.473,409.583,150.902z"></path> </g> </g> </g>
+					</svg>
+				</view>
+			</view>
+			<p class="text-sm font-semibold text-gray-600 ml-4">Chọn báo biểu</p>
+		</view>
+		
+		<view class="bg-white rounded-t-3xl size-full mx-auto p-8 shadow-lg text-center">
+			
+		</view>
+	 </view>
 </template>
 
 
 <script>
 	export default {
 		name: 'menu',
+		data() {
+			return {
+				iconType: ['setting']
+			}
+		},
 		methods: {
 			doing() {
 				uni.navigateTo({
 					url: '/pages/homePage/homePage'
 				})
+			},
+			goReport() {
+				uni.navigateTo({
+					url: '/pages/iqcReport/reportDevice'
+				})
+			},
+			goSetting() {
+				uni.navigateTo({
+					url: '/pages/settingPage/settingPage'
+				})
 			}
+		},
+		onLoad() {
+			// #ifdef APP-PLUS|| MP-WEIXIN
+			this.iconType = ['success', 'success_no_circle', 'info', 'warn', 'waiting', 'cancel', 'download', 'search','clear']
+			// #endif
+			// #ifdef MP-ALIPAY
+			this.iconType = ['info', 'warn', 'waiting', 'cancel', 'download', 'search', 'clear', 'success', 'success_no_circle', 'loading']
+			// #endif
+			// #ifdef MP-BAIDU
+			this.iconType = ['success', 'info', 'warn', 'waiting', 'success_no_circle', 'clear', 'search', 'personal', 'setting', 'top', 'close', 'cancel', 'download', 'checkboxSelected', 'radioSelected', 'radioUnselect']
+			// #endif
 		}
 	}
 </script>
