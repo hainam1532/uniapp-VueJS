@@ -1,16 +1,16 @@
 <template>
-  <view class="h-screen w-full bg-white flex flex-col">
-    <view class="flex flex-col gap-4 p-2">
+  <view class="h-screen w-full bg-[#f3f8fe] flex flex-col">
+    <view class="flex flex-col bg-[#407bff] rounded-b-3xl gap-4 p-2">
 		<view class="mx-2 flex justify-between">
-			<svg @click="backMenu()" width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M6.3508 12.7499L11.2096 17.4615L10.1654 18.5383L3.42264 11.9999L10.1654 5.46148L11.2096 6.53833L6.3508 11.2499L21 11.2499L21 12.7499L6.3508 12.7499Z" fill="#407bff"></path> </g></svg>
-			<svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M15 12L12 12M12 12L9 12M12 12L12 9M12 12L12 15" stroke="#407bff" stroke-width="1.5" stroke-linecap="round"></path> <path d="M22 12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2C16.714 2 19.0711 2 20.5355 3.46447C21.5093 4.43821 21.8356 5.80655 21.9449 8" stroke="#407bff" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
+			<svg @click="backMenu()" width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M6.3508 12.7499L11.2096 17.4615L10.1654 18.5383L3.42264 11.9999L10.1654 5.46148L11.2096 6.53833L6.3508 11.2499L21 11.2499L21 12.7499L6.3508 12.7499Z" fill="#ffff"></path> </g></svg>
+			<svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M15 12L12 12M12 12L9 12M12 12L12 9M12 12L12 15" stroke="#ffff" stroke-width="1.5" stroke-linecap="round"></path> <path d="M22 12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2C16.714 2 19.0711 2 20.5355 3.46447C21.5093 4.43821 21.8356 5.80655 21.9449 8" stroke="#ffff" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
 		</view>
     	<view class="flex flex-col size-full">
     		<view class="flex flex-col p-2">
-    			<view class="font-semibold text-sm">Chọn ngày:</view>
+    			<view class="font-semibold text-sm text-white">Chọn ngày:</view>
     			<view class="grid grid-cols-2 grid-rows-1 gap-4 mt-2">
     			  <picker
-					class="border border-gray-300 rounded-lg"
+					class="border border-gray-300 rounded-lg font-semibold"
     			    mode="date"
     			    :value="startDate"
     			    :start="minDate"
@@ -21,7 +21,7 @@
     			  </picker>
     			  
     			  <picker
-					class="border border-gray-300 rounded-lg"
+					class="border border-gray-300 rounded-lg font-semibold"
     			    mode="date"
     			    :value="endDate"
     			    :start="startDate"
@@ -34,52 +34,31 @@
     		</view>
 			
 			<view class="flex flex-col gap-2 p-2 w-full">
-				<view class="font-semibold text-sm">
+				<view class="font-semibold text-sm text-white">
 					Tìm kiếm (số lô, tên liệu):
 				</view>
-				<input class="w-full h-full border px-4 py-2 rounded focus:border-blue-500 focus:shadow-outline outline-none" type="text" autofocus placeholder="..." />
+				<input class="w-full h-full bg-white font-semibold border px-4 py-2 rounded focus:border-blue-500 focus:shadow-outline outline-none" type="text" autofocus placeholder="..." />
 			</view>
 			
 			<view class="w-full p-2">
-				<button class="w-full font-semibold bg-[#407bff] text-white">Tìm kiếm</button>
+				<button class="w-full font-semibold bg-[#3acdbb] text-white">Tìm kiếm</button>
 			</view>
     	</view>
     </view>
 	
-	<view class="bg-[#407bff] rounded-t-3xl size-full mx-auto overflow-hidden shadow-lg p-4">
-		<list 
-		    class="h-screen bg-gray-100 p-4"
-		    @scrolltolower="loadMoreData"
-		  >
-		    <cell v-for="(item, index) in dataList" :key="item.id" class="bg-white shadow-md rounded-lg p-4 mb-4">
-		      <view>
-		        <text class="font-semibold text-gray-800">Ngày kiểm: <text class="text-gray-600">{{ item.checkDate }}</text></text>
-		      </view>
-		      <view>
-		        <text class="font-semibold text-gray-800">Ngày nhập kho: <text class="text-gray-600">{{ item.warehouseDate }}</text></text>
-		      </view>
-		      <view>
-		        <text class="font-semibold text-gray-800">Thời gian: <text class="text-gray-600">{{ item.time }}</text></text>
-		      </view>
-		      <view>
-		        <text class="font-semibold text-gray-800">Số lô: <text class="text-gray-600">{{ item.batchNumber }}</text></text>
-		      </view>
-		      <view>
-		        <text class="font-semibold text-gray-800">Khu vực: <text class="text-gray-600">{{ item.area }}</text></text>
-		      </view>
-		      <view>
-		        <text class="font-semibold text-gray-800">Tên liệu: <text class="text-gray-600">{{ item.materialName }}</text></text>
-		      </view>
-		      <view>
-		        <text class="font-semibold text-gray-800">Ghi chú: <text class="text-gray-600">{{ item.note }}</text></text>
-		      </view>
-		    </cell>
-		
-		    <!-- Thông báo hết dữ liệu -->
-		    <view v-if="startPage > totalPage" class="text-center text-gray-500 mt-4">Không còn dữ liệu</view>
-		  </list>
+	<!-- data list -->
+	<view class="bg-[#f3f8fe] size-full mx-auto overflow-x-auto shadow-lg p-4">
+		<div v-for="(item, index) in dataList" :key="item.id" @click="showDetail(item.id)" class="bg-white cursor-pointer shadow-md rounded-lg p-4 mb-4">
+		  <p class="font-semibold text-gray-800">Ngày kiểm: <span class="text-gray-600">{{ item.checkDate }}</span></p>
+		  <p class="font-semibold text-gray-800">Ngày nhập kho: <span class="text-gray-600">{{ item.warehouseDate }}</span></p>
+		  <p class="font-semibold text-gray-800">Thời gian: <span class="text-gray-600">{{ item.time }}</span></p>
+		  <p class="font-semibold text-gray-800">Số lô: <span class="text-gray-600">{{ item.batchNumber }}</span></p>
+		  <p class="font-semibold text-gray-800">Khu vực: <span class="text-gray-600">{{ item.area }}</span></p>
+		  <p class="font-semibold text-gray-800">Tên liệu: <span class="text-gray-600">{{ item.materialName }}</span></p>
+		  <p class="font-semibold text-gray-800">Ghi chú: <span class="text-gray-600">{{ item.note }}</span></p>
+		</div>
 	</view>
-    
+
   </view>
 </template>
 
@@ -96,7 +75,9 @@
 			  dataList: [],
 			  startPage: 1,
 			  totalPage: 5,
-			  deviceData: null
+			  deviceData: null,
+			  selectedData: null,
+			  showDetailView: false
 			};
 		},
 		created() {
@@ -127,6 +108,18 @@
 			  const { scrollTop, scrollHeight, clientHeight } = event.target;
 			  if (scrollTop + clientHeight >= scrollHeight - 10) {
 				this.fetchData(); 
+			  }
+			},
+			showDetail(id) {
+			  const selected = this.dataList.find((item) => item.id === id);
+			  if (selected) {
+			    sessionStorage.setItem('selectedData', JSON.stringify(selected));
+			
+			    // Sử dụng Vue Router để điều hướng
+			    this.$router.push({
+			      path: '/pages/iqcReport/viewPage/viewMaterialIQC',
+			      query: { id },
+			    });
 			  }
 			},
 			// async getDataDevice() {
