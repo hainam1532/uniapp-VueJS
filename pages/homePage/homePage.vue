@@ -10,18 +10,25 @@
 		</view>
 
 		<!-- Card Section -->
-		<view class="bg-yellow-500 rounded-t-3xl size-full mx-auto p-8 shadow-lg text-center">
-		  <h2 class="text-2xl text-black mb-2 font-bold">Welcome</h2>
-		  <p class="text-sm text-gray-800 font-semibold text-black">
+		<view class="bg-[#407bff] rounded-t-3xl size-full mx-auto p-8 shadow-lg text-center">
+		  <h2 class="text-2xl text-white mb-2 font-bold">Welcome</h2>
+		  <p class="text-sm text-gray-300 font-semibold text-black">
 			Apache Footwear Vietnam
 		  </p>
 		  <!-- Buttons -->
-		  <view class="flex mt-6 space-x-4 justify-center">
+		  <view class="grid grid-cols-2 grid-rows-1 gap-2 mt-6 space-x-4">
 			<button
-			  class="bg-white text-black font-semibold py-2 px-6 rounded-full"
+			  class="bg-white w-full text-black font-semibold rounded-full"
 			  @click="goIndex()"
 			>
-			  Khởi động
+			  <span>Báo biểu</span>
+			</button>
+			
+			<button
+			  class="bg-white w-full text-black font-semibold rounded-full"
+			  @click="goDashboard()"
+			>
+			  <span>Dashboard</span>
 			</button>
 		  </view>
 		</view>
@@ -42,7 +49,17 @@
 			uni.navigateTo({
 				url: "/pages/index/index"
 			})
-		}
+		},
+		goDashboard() {
+			uni.navigateTo({
+				url: '/pages/index/indexDashboard'
+			})
+		},
+		goSetting() {
+			uni.navigateTo({
+				url: '/pages/settingPage/settingPage'
+			})
+		},
 	  }
 	  
 	};
@@ -55,7 +72,7 @@
 		right: 0;
 		width: 200px;
 		height: 200px;
-		background-color: #ffb901;
+		background-color: #407bff;
 		border-bottom-left-radius: 100%;
 	}
 </style>

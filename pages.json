@@ -12,12 +12,78 @@
        "navigationStyle": "custom"
       }
     },
-    {
-      "path": "pages/iqcReport/reportDevice",
-      "style": {
-       "navigationStyle": "custom"
-      }
-    }
+	{
+		"path": "pages/index/indexDashboard",
+		"style": {
+		 "navigationStyle": "custom"
+		}
+	},
+	{
+		"path": "pages/iqcReport/iqcCheckPhom",
+		"style": {
+			"navigationStyle": "custom"
+		}
+	},
+	{
+		"path": "pages/iqcReport/iqcMaterial",
+		"style": {
+			"navigationStyle": "custom"
+		}
+	},
+	{
+		"path": "pages/prodReport/prodControlOuterBox",
+		"style": {
+			"navigationStyle": "custom"
+		}
+	},
+	{
+		"path": "pages/prodReport/prodMaterialProduction",
+		"style": {
+			"navigationStyle": "custom"
+		}
+	},
+	{
+		"path": "pages/prodReport/prodNeedleCorrection",
+		"style": {
+			"navigationStyle": "custom"
+		}
+	},
+	{
+		"path": "pages/prodReport/prodOuterBoxSeal",
+		"style": {
+			"navigationStyle": "custom"
+		}
+	},
+	{
+		"path": "pages/prodReport/prodReportBC",
+		"style": {
+			"navigationStyle": "custom"
+		}
+	},
+	{
+		"path": "pages/dashboardPage/dashboardBC",
+		"style": {
+			"navigationStyle": "custom"
+		}
+	},
+	{
+		"path": "pages/dashboardPage/dashboardMaterialIQC",
+		"style": {
+			"navigationStyle": "custom"
+		}
+	},
+	{
+		"path": "pages/dashboardPage/dashboardMaterialProduction",
+		"style": {
+			"navigationStyle": "custom"
+		}
+	},
+	{
+		"path": "pages/dashboardPage/dashboardNeedle",
+		"style": {
+			"navigationStyle": "custom"
+		}
+	}
   ],
   "globalStyle": {
     "navigationBarTextStyle": "white",
