@@ -46,12 +46,38 @@
     	</view>
     </view>
 	
-	<view class="bg-[#407bff] rounded-t-3xl size-full mx-auto shadow-lg p-4">
-		<list>
-			<cell v-for="(item, index) in dataList" :key="item.id">
-			  <text class="text-semibold text-white">{{item.name}}</text>
-			</cell>
-		</list>
+	<view class="bg-[#407bff] rounded-t-3xl size-full mx-auto overflow-hidden shadow-lg p-4">
+		<list 
+		    class="h-screen bg-gray-100 p-4"
+		    @scrolltolower="loadMoreData"
+		  >
+		    <cell v-for="(item, index) in dataList" :key="item.id" class="bg-white shadow-md rounded-lg p-4 mb-4">
+		      <view>
+		        <text class="font-semibold text-gray-800">Ngày kiểm: <text class="text-gray-600">{{ item.checkDate }}</text></text>
+		      </view>
+		      <view>
+		        <text class="font-semibold text-gray-800">Ngày nhập kho: <text class="text-gray-600">{{ item.warehouseDate }}</text></text>
+		      </view>
+		      <view>
+		        <text class="font-semibold text-gray-800">Thời gian: <text class="text-gray-600">{{ item.time }}</text></text>
+		      </view>
+		      <view>
+		        <text class="font-semibold text-gray-800">Số lô: <text class="text-gray-600">{{ item.batchNumber }}</text></text>
+		      </view>
+		      <view>
+		        <text class="font-semibold text-gray-800">Khu vực: <text class="text-gray-600">{{ item.area }}</text></text>
+		      </view>
+		      <view>
+		        <text class="font-semibold text-gray-800">Tên liệu: <text class="text-gray-600">{{ item.materialName }}</text></text>
+		      </view>
+		      <view>
+		        <text class="font-semibold text-gray-800">Ghi chú: <text class="text-gray-600">{{ item.note }}</text></text>
+		      </view>
+		    </cell>
+		
+		    <!-- Thông báo hết dữ liệu -->
+		    <view v-if="startPage > totalPage" class="text-center text-gray-500 mt-4">Không còn dữ liệu</view>
+		  </list>
 	</view>
     
   </view>
@@ -59,68 +85,96 @@
 
 <script>
 	import axios from '../../axios.js';
-export default {
-  data() {
-    const currentDate = this.getDate();
-    return {
-      startDate: currentDate, // Ngày bắt đầu mặc định là hôm nay
-      endDate: currentDate, // Ngày kết thúc mặc định là hôm nay
-      minDate: this.getDate(-60), // 60 năm trước
-      maxDate: this.getDate(2), // 2 năm sau
-	  dataList: [{id: "1", name: 'A'}, {id: "2", name: 'B'}, {id: "3", name: 'C'}],
-	  deviceData: null
-    };
-  },
-  mounted() {
-	this.getDataDevice();  
-  },
-  methods: {
-	async getDataDevice() {
-		try {
-			const res = await axios.get('/getDEVICE');
-			this.deviceData = res.data;
-			
-			console.log('Data device: ', this.deviceData);
-		} catch (error) {
-			console.error('Get error: ', error);
-		}
-	},
-    onStartDateChange(e) {
-      this.startDate = e.detail.value;
-      if (new Date(this.endDate) < new Date(this.startDate)) {
-        // Tự động cập nhật ngày kết thúc nếu nhỏ hơn ngày bắt đầu
-        this.endDate = this.startDate;
-      }
-    },
-    // Hàm cập nhật Ngày Kết Thúc khi người dùng chọn
-    onEndDateChange(e) {
-      this.endDate = e.detail.value;
-	  console.log(this.endDate)
-    },
-    // Hàm tạo ngày với offset
-    getDate(offset = 0) {
-      const date = new Date();
-      date.setFullYear(date.getFullYear() + offset);
-      const year = date.getFullYear();
-      const month = String(date.getMonth() + 1).padStart(2, '0');
-      const day = String(date.getDate()).padStart(2, '0');
-      return `${year}/${month}/${day}`;
-    },
-	// Reset loadmore
-	resetLoadMore() {
-		this.$refs["dataList"].resetLoadmore();
-	},
-	loadmore() {
-	  console.log("loadmore事件触发");
-	  this.dataList.push('1');
-	},
-	backMenu() {
-		uni.navigateTo({
-			url: '/pages/index/index'
-		})
-	}
-  },
-};
+	export default {
+		data() {
+			const currentDate = this.getDate();
+			return {
+			  startDate: currentDate, // Ngày bắt đầu mặc định là hôm nay
+			  endDate: currentDate, // Ngày kết thúc mặc định là hôm nay
+			  minDate: this.getDate(-60), // 60 năm trước
+			  maxDate: this.getDate(2), // 2 năm sau
+			  dataList: [],
+			  startPage: 1,
+			  totalPage: 5,
+			  deviceData: null
+			};
+		},
+		created() {
+			this.fetchData();  
+		},
+		 //  mounted() {
+			// this.getDataDevice();  
+		 //  },
+		methods: {
+			fetchData() {
+			  // Giả lập API call để lấy dữ liệu
+			  if (this.startPage <= this.totalPage) {
+				const newData = Array.from({ length: 10 }, (_, i) => ({
+				  id: (this.startPage - 1) * 10 + i + 1,
+				  checkDate: '2024-11-21',
+				  warehouseDate: '2024-11-20',
+				  time: '10:30 AM',
+				  batchNumber: `Batch ${(this.startPage - 1) * 10 + i + 1}`,
+				  area: 'Khu A',
+				  materialName: `Material ${(this.startPage - 1) * 10 + i + 1}`,
+				  note: 'Ghi chú kiểm tra',
+				}));
+				this.dataList = [...this.dataList, ...newData];
+				this.startPage += 1;
+			  }
+			},
+			handleScroll(event) {
+			  const { scrollTop, scrollHeight, clientHeight } = event.target;
+			  if (scrollTop + clientHeight >= scrollHeight - 10) {
+				this.fetchData(); 
+			  }
+			},
+			// async getDataDevice() {
+			// 	try {
+			// 		const res = await axios.get('/getDEVICE');
+			// 		this.deviceData = res.data;
+					
+			// 		console.log('Data device: ', this.deviceData);
+			// 	} catch (error) {
+			// 		console.error('Get error: ', error);
+			// 	}
+			// },
+			onStartDateChange(e) {
+			  this.startDate = e.detail.value;
+			  if (new Date(this.endDate) < new Date(this.startDate)) {
+				// Tự động cập nhật ngày kết thúc nếu nhỏ hơn ngày bắt đầu
+				this.endDate = this.startDate;
+			  }
+			},
+			// Hàm cập nhật Ngày Kết Thúc khi người dùng chọn
+			onEndDateChange(e) {
+			  this.endDate = e.detail.value;
+			  console.log(this.endDate)
+			},
+			// Hàm tạo ngày với offset
+			getDate(offset = 0) {
+			  const date = new Date();
+			  date.setFullYear(date.getFullYear() + offset);
+			  const year = date.getFullYear();
+			  const month = String(date.getMonth() + 1).padStart(2, '0');
+			  const day = String(date.getDate()).padStart(2, '0');
+			  return `${year}/${month}/${day}`;
+			},
+			// Reset loadmore
+			resetLoadMore() {
+				this.$refs["dataList"].resetLoadmore();
+			},
+			loadmore() {
+			  console.log("loadmore事件触发");
+			  this.dataList.push('1');
+			},
+			backMenu() {
+				uni.navigateTo({
+					url: '/pages/index/index'
+				})
+			}
+		},
+	};
 </script>
 
 <style>
