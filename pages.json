@@ -83,8 +83,23 @@
 		"style": {
 			"navigationStyle": "custom"
 		}
+	},
+	{
+		"path": "pages/iqcReport/insertPage/insertCheckPhom",
+		"style": {
+			"navigationStyle": "custom"
+		}
+	},
+	{
+		"path": "pages/iqcReport/insertPage/insertMaterialIQC",
+		"style": {
+			"navigationStyle": "custom"
+		}
 	}
   ],
+  "usingComponents": {
+      "van-datetime-picker": "@vant/weapp/datetime-picker/index"
+    },
   "globalStyle": {
     "navigationBarTextStyle": "white",
     "navigationBarBackgroundColor": "#007aff",

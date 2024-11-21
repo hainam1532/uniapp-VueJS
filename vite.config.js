@@ -13,6 +13,7 @@ const vitePlugins = [uni(), uvwt({
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: vitePlugins,
+  transpileDependencies:['@dcloudio/uni-ui'],
   // 假如 postcss.config.js 不起作用，请使用内联 postcss Latset
   css: {
     postcss: {

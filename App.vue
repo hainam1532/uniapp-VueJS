@@ -2,6 +2,9 @@
 export default {
 	onLaunch: function () {
 		console.log('App Launch')
+		// #ifdef APP-PLUS
+		plus.screen.lockOrientation('portrait-primary'); //锁定竖屏
+		// #endif
 	},
 	onShow: function () {
 		console.log('App Show')

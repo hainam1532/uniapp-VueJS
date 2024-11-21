@@ -24,9 +24,13 @@
     "weapp-tailwindcss": "^3.7.0"
   },
   "dependencies": {
+    "@dcloudio/uni-ui": "^1.5.7",
     "@fontsource/bebas-neue": "^5.1.0",
+    "@vant/weapp": "^1.11.7",
+    "axios": "^1.7.7",
     "element-ui": "^2.15.14",
     "element-ui-2.4.6": "^2.4.6",
+    "vant": "^4.9.9",
     "vue-router": "^4.0.13"
   }
 }
