@@ -206,7 +206,7 @@
 				uni.navigateTo({
 					url: '/pages/iqcReport/iqcMaterial'
 				})
-			}
+			},
 		},
 	};
 </script>
