@@ -7,7 +7,7 @@
 		</view>
     	<view class="flex flex-col size-full">
     		<view class="flex flex-col p-2">
-    			<view class="font-semibold text-sm text-white">Chọn ngày:</view>
+    			<view class="font-semibold text-sm text-white">Chọn ngày :</view>
     			<view class="grid grid-cols-2 grid-rows-1 gap-4 mt-2">
     			  <picker
 					class="border border-gray-300 rounded-lg font-semibold"
@@ -17,7 +17,7 @@
     			    :end="endDate"
     			    @change="onStartDateChange"
     			  >
-    			    <view class="uni-input">{{ startDate }}</view>
+    			    <view class="uni-input">{{ startDate || 'Ngày bắt đầu' }}</view>
     			  </picker>
     			  
     			  <picker
@@ -28,36 +28,66 @@
     			    :end="maxDate"
     			    @change="onEndDateChange"
     			  >
-    			    <view class="uni-input">{{ endDate }}</view>
+    			    <view class="uni-input">{{ endDate || 'Ngày kết thúc' }}</view>
     			  </picker>
     			</view>
     		</view>
 			
 			<view class="flex flex-col gap-2 p-2 w-full">
 				<view class="font-semibold text-sm text-white">
-					Tìm kiếm (số lô, tên liệu):
+					Tìm kiếm (số lô) :
 				</view>
-				<input class="w-full h-full bg-white font-semibold border px-4 py-2 rounded focus:border-blue-500 focus:shadow-outline outline-none" type="text" autofocus placeholder="..." />
+				<input 
+				  class="w-full h-full bg-white font-semibold border px-4 py-2 rounded focus:border-blue-500 focus:shadow-outline outline-none" 
+				  v-model="searchValue"
+				  type="text" 
+				  autofocus 
+				  placeholder="Tìm kiếm..." 
+				/>
 			</view>
 			
-			<view class="w-full p-2">
-				<button class="w-full font-semibold bg-[#3acdbb] text-white">Tìm kiếm</button>
+			<view class="flex flex-col gap-2 w-full p-2">
+				<button @click="onSearchChange()" class="w-full rounded-lg font-semibold bg-[#3acdbb] text-white">Tìm kiếm</button>
+				<button @click="resetData()" class="w-full rounded-lg font-semibold bg-red-400 text-white">Reset</button>
+				<view v-if="showToast" class="toast-container">
+				    <view class="flex gap-2 toast-content">
+						<svg width="22px" height="22px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill="#036814" d="M512 64a448 448 0 1 1 0 896 448 448 0 0 1 0-896zm-55.808 536.384-99.52-99.584a38.4 38.4 0 1 0-54.336 54.336l126.72 126.72a38.272 38.272 0 0 0 54.336 0l262.4-262.464a38.4 38.4 0 1 0-54.272-54.336L456.192 600.384z"></path></g></svg>
+						Thành công
+				    </view>
+				</view>
 			</view>
     	</view>
     </view>
 	
 	<!-- data list -->
-	<view class="bg-[#f3f8fe] size-full mx-auto overflow-x-auto shadow-lg p-4">
-		<div v-for="(item, index) in dataList" :key="item.id" @click="showDetail(item.id)" class="bg-white cursor-pointer shadow-md rounded-lg p-4 mb-4">
-		  <p class="font-semibold text-gray-800">Ngày kiểm: <span class="text-gray-600">{{ item.checkDate }}</span></p>
-		  <p class="font-semibold text-gray-800">Ngày nhập kho: <span class="text-gray-600">{{ item.warehouseDate }}</span></p>
-		  <p class="font-semibold text-gray-800">Thời gian: <span class="text-gray-600">{{ item.time }}</span></p>
-		  <p class="font-semibold text-gray-800">Số lô: <span class="text-gray-600">{{ item.batchNumber }}</span></p>
-		  <p class="font-semibold text-gray-800">Khu vực: <span class="text-gray-600">{{ item.area }}</span></p>
-		  <p class="font-semibold text-gray-800">Tên liệu: <span class="text-gray-600">{{ item.materialName }}</span></p>
-		  <p class="font-semibold text-gray-800">Ghi chú: <span class="text-gray-600">{{ item.note }}</span></p>
-		</div>
-	</view>
+	<scroll-view 
+		@scrolltolower="fetchData"
+		scroll-y="true" 
+		class="scroll-container bg-[#f3f8fe] size-full mx-auto shadow-lg p-4"
+		style="overflow-y: auto; height: calc(100vh - 300px);"
+	>
+		<view v-for="(item, index) in dataList" :key="item.ID" @click="showDetail(item.ID)" class="bg-white cursor-pointer shadow-md rounded-lg p-4 mb-4">
+			<p class="font-semibold text-[#214263]">Ngày kiểm: <span class="text-gray-600 text-sm">{{ formatDate(item.DATE_RECORD) }}</span></p>
+			<p class="font-semibold text-[#214263]">Ngày nhập kho: <span class="text-gray-600 text-sm">{{ formatDate(item.DATE_WH) }}</span></p>
+			<p class="font-semibold text-[#214263]">Thời gian: <span class="text-gray-600 text-sm">{{ formatTime(item.TIME_REPORT) }}</span></p>
+			<p class="font-semibold text-[#214263]">Số lô: <span class="text-gray-600 text-sm">{{ item.MATERIAL_LOT }}</span></p>
+			<p class="font-semibold text-[#214263]">Khu vực: <span class="text-gray-600 text-sm">{{ showMaterialName(item.MEASUREMENT_AREA).text }}</span></p>
+			<p class="font-semibold text-[#214263]">Tên liệu: <span class="text-gray-600 text-sm">{{ item.NAME_MATERIAL }}</span></p>
+			<p class="font-semibold text-[#214263]">Ghi chú: <span class="text-gray-600 text-sm">{{ item.REMARK }}</span></p>
+			<p class="font-semibold text-[#214263]">
+				Trung bình:
+				<span v-if="item" :class="[caculateAverage(item).color, 'text-sm']">
+				    {{caculateAverage(item).text}}
+				</span>
+				<span v-else>
+				  Không có dữ liệu để tính toán
+				</span>
+			</p>
+		</view>
+		<view v-if="isLoading" class="loading-text">Đang tải...</view>
+		<view v-if="startPage > totalPage" class="end-text">Không còn dữ liệu để tải</view>
+	</scroll-view>
+
 
   </view>
 </template>
@@ -68,50 +98,107 @@
 		data() {
 			const currentDate = this.getDate();
 			return {
-			  startDate: currentDate, // Ngày bắt đầu mặc định là hôm nay
-			  endDate: currentDate, // Ngày kết thúc mặc định là hôm nay
-			  minDate: this.getDate(-60), // 60 năm trước
-			  maxDate: this.getDate(2), // 2 năm sau
+			  startDate: '', 
+			  endDate: '',
+			  searchValue: '',
 			  dataList: [],
 			  startPage: 1,
-			  totalPage: 5,
+			  totalPage: 1000,
 			  deviceData: null,
 			  selectedData: null,
-			  showDetailView: false
+			  showDetailView: false,
+			  isLoading: false,
+			  showToast: false,
 			};
 		},
-		created() {
+		// created() {
+		// 	this.fetchData();  
+		// },
+		mounted() {
+			this.$nextTick(() => {
+			    const scrollContainer = document.querySelector(".scroll-container");
+			    if (scrollContainer) {
+			      scrollContainer.scrollTop = 0; // Đặt lại vị trí cuộn
+			    }
+			  });
 			this.fetchData();  
 		},
-		 //  mounted() {
-			// this.getDataDevice();  
-		 //  },
 		methods: {
+			showToastMessage() {
+				this.showToast = true;
+				setTimeout(() => {
+					this.showToast = false;
+				}, 3000);
+			},
+			resetData() {
+				this.startDate = '';
+				this.endDate = '';
+				this.searchValue = '';
+				this.startPage = 1;
+				this.dataList = [];
+				this.fetchData();
+			},
 			fetchData() {
-			  // Giả lập API call để lấy dữ liệu
-			  if (this.startPage <= this.totalPage) {
-				const newData = Array.from({ length: 10 }, (_, i) => ({
-				  id: (this.startPage - 1) * 10 + i + 1,
-				  checkDate: '2024-11-21',
-				  warehouseDate: '2024-11-20',
-				  time: '10:30 AM',
-				  batchNumber: `Batch ${(this.startPage - 1) * 10 + i + 1}`,
-				  area: 'Khu A',
-				  materialName: `Material ${(this.startPage - 1) * 10 + i + 1}`,
-				  note: 'Ghi chú kiểm tra',
-				}));
-				this.dataList = [...this.dataList, ...newData];
-				this.startPage += 1;
+			  if (this.isLoading || this.startPage > this.totalPage) {
+			    console.log("Fetch skipped: Loading or all pages loaded");
+			    return;
 			  }
+			  
+			  this.isLoading = true;
+			
+			  axios
+			    .get("/iqcReport/dataIQC", {
+			      params: {
+			        page: this.startPage,
+			        limit: 10,
+			        startDate: this.startDate,
+			        endDate: this.endDate,
+			        searchValue: this.searchValue,
+			      },
+			    })
+			    .then((response) => {
+			      console.log("Response từ API:", response.data);
+			      const newData = response.data?.data || [];
+			
+			      // Kiểm tra dữ liệu trước khi cập nhật
+			      if (Array.isArray(newData) && newData.length > 0) {
+			        this.dataList = [...this.dataList, ...newData];
+					this.startPage += 1;
+			        if (response.data.totalPage) {
+			          this.totalPage = response.data.totalPage;
+			        }
+			      } else {
+			        console.log("Không có dữ liệu mới để thêm.");
+					uni.showToast({
+						title: "Không có dữ liệu mới để thêm.",
+						icon: 'none',
+						success: (res) => {
+						   this.exeRet = "success:" + JSON.stringify(res) + new Date()
+						},
+						fail: (res) => {
+						   this.exeRet = "fail:" + JSON.stringify(res)
+						},
+					})
+			      }
+			    })
+			    .catch((error) => {
+			      console.error("Lỗi khi gọi API:", error);
+			    })
+			    .finally(() => {
+			      this.isLoading = false;
+			    });
 			},
 			handleScroll(event) {
-			  const { scrollTop, scrollHeight, clientHeight } = event.target;
-			  if (scrollTop + clientHeight >= scrollHeight - 10) {
-				this.fetchData(); 
+			  const target = event.target;
+			  const { scrollTop, scrollHeight, clientHeight } = target;
+			
+			  // Nếu gần đến cuối danh sách, gọi fetchData
+			  if (scrollHeight - scrollTop <= clientHeight + 100) {
+			    this.fetchData();
 			  }
 			},
 			showDetail(id) {
-			  const selected = this.dataList.find((item) => item.id === id);
+			  const selected = this.dataList.find((item) => item.ID === id);
 			  if (selected) {
 			    sessionStorage.setItem('selectedData', JSON.stringify(selected));
 			
@@ -122,36 +209,86 @@
 			    });
 			  }
 			},
-			// async getDataDevice() {
-			// 	try {
-			// 		const res = await axios.get('/getDEVICE');
-			// 		this.deviceData = res.data;
-					
-			// 		console.log('Data device: ', this.deviceData);
-			// 	} catch (error) {
-			// 		console.error('Get error: ', error);
-			// 	}
-			// },
+			showMaterialName(measurementArea) {
+				switch (measurementArea) {
+					case 1:
+						return {text: 'Liệu mới về'};
+					case 2:
+						return {text: 'Liệu lưu trữ trong khu vực đạt'};
+					case 3: 
+						return {text: 'Liệu chuẩn bị phát cho hiện trường'};
+					default:
+						return {text: 'Không xác định'};
+				}
+			},
 			onStartDateChange(e) {
-			  this.startDate = e.detail.value;
-			  if (new Date(this.endDate) < new Date(this.startDate)) {
-				// Tự động cập nhật ngày kết thúc nếu nhỏ hơn ngày bắt đầu
-				this.endDate = this.startDate;
-			  }
+				const selectedDate = e.detail.value;
+			    this.startDate = this.formatDate(selectedDate);
+			  
+			    if (new Date(this.endDate) < new Date(this.startDate)) {
+			        this.endDate = this.startDate;
+			    }
+			},
+			onSearchChange() {
+			  // Đặt lại `startPage` về 1 khi thay đổi `searchValue`
+			  this.startPage = 1;
+			  this.dataList = []; // Đặt lại dataList để tìm kiếm mới từ trang đầu tiên
+			  this.fetchData(); // Gọi lại fetchData để truy vấn với searchValue mới
 			},
 			// Hàm cập nhật Ngày Kết Thúc khi người dùng chọn
 			onEndDateChange(e) {
-			  this.endDate = e.detail.value;
-			  console.log(this.endDate)
+				const selectedDate = e.detail.value;
+				this.endDate = this.formatDate(selectedDate);
+			    console.log(this.endDate)
 			},
-			// Hàm tạo ngày với offset
+			formatDate(dateString) {
+			    const date = new Date(dateString);
+			    const day = String(date.getDate()).padStart(2, '0');
+			    const month = String(date.getMonth() + 1).padStart(2, '0');
+			    const year = date.getFullYear();
+			    return `${year}/${month}/${day}`;
+			},
 			getDate(offset = 0) {
-			  const date = new Date();
-			  date.setFullYear(date.getFullYear() + offset);
-			  const year = date.getFullYear();
-			  const month = String(date.getMonth() + 1).padStart(2, '0');
-			  const day = String(date.getDate()).padStart(2, '0');
-			  return `${year}/${month}/${day}`;
+				const date = new Date();
+				date.setFullYear(date.getFullYear() + offset);
+				return this.formatDate(date);
+			},
+			formatTime(timestamp) {
+			    if (!timestamp) return '';
+			
+			    const date = new Date(timestamp);
+			
+			    if (isNaN(date.getTime())) return 'Invalid time';
+			
+			    let hours = date.getHours();
+			    const minutes = String(date.getMinutes()).padStart(2, '0');
+			    const seconds = String(date.getSeconds()).padStart(2, '0');
+			    const ampm = hours >= 12 ? 'AM' : 'PM';
+			
+			    // Convert to 12-hour format
+			    hours = hours % 12;
+			    if (hours === 0) hours = 12;
+			
+			    return `${String(hours).padStart(2, '0')}:${minutes}:${seconds} ${ampm}`;
+			},
+			caculateAverage(record) {
+			    const averageCal = (
+			      parseFloat(record.MATERIAL_VT_1) + 
+			      parseFloat(record.MATERIAL_VT_2) + 
+			      parseFloat(record.MATERIAL_VT_3)
+			    ) / 3;
+			
+			    if (averageCal < 17 && record.MATERIAL === 1) {
+			      return { text: 'Đạt', color: 'text-emerald-500', average: averageCal };
+			    } else if (averageCal < 7 && record.MATERIAL === 2) {
+			      return { text: 'Đạt', color: 'text-emerald-500', average: averageCal };
+			    } else if (averageCal < 2 && record.MATERIAL === 3) {
+			      return { text: 'Đạt', color: 'text-emerald-500', average: averageCal };
+			    } else if (averageCal < 6 && (record.MATERIAL === 4 || record.MATERIAL === 5 || record.MATERIAL === 6)) {
+			      return { text: 'Đạt', color: 'text-emerald-500', average: averageCal };
+			    } else {
+			      return { text: 'Vượt tiêu chuẩn', color: 'text-red-400', average: averageCal };
+			    }
 			},
 			// Reset loadmore
 			resetLoadMore() {
@@ -181,9 +318,36 @@
 	  font-weight: bold;
 	}
 	.uni-input {
-	  padding: 12px;
+	  padding: 4px;
 	  background-color: #f5f5f5;
 	  border-radius: 8px;
+	  text-align: center;
+	}
+	.loading-text,
+	.end-text {
+	  text-align: center;
+	  padding: 16px;
+	  color: #999;
+	}
+	.scroll-container {
+	  height: calc(100vh - 300px);
+	  overflow-y: auto;
+	}
+	.toast-container {
+	  position: fixed;
+	  top: 50%;
+	  left: 50%;
+	  transform: translate(-50%, -50%);
+	  background-color: #71be34; /* Màu nền xanh lá */
+	  color: white;
+	  padding: 12px;
+	  border-radius: 8px;
+	  z-index: 9999;
+	  opacity: 0.9;
+	}
+	
+	.toast-content {
+	  font-size: 14px;
 	  text-align: center;
 	}
 </style>
