@@ -17,6 +17,9 @@
 								<view class="flex items-center my-1">
 									<span class="font-semibold">Apache Footwear Vietnam</span>
 								</view>
+								<svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+								  <path d="M11.782 5.72a4.773 4.773 0 0 0-4.8 4.173 3.43 3.43 0 0 1 2.741-1.687c1.689 0 2.974 1.972 3.758 2.587a5.733 5.733 0 0 0 5.382.935c2-.638 2.934-2.865 3.137-3.921-.969 1.379-2.44 2.207-4.259 1.231-1.253-.673-2.19-3.438-5.959-3.318ZM6.8 11.979A4.772 4.772 0 0 0 2 16.151a3.431 3.431 0 0 1 2.745-1.687c1.689 0 2.974 1.972 3.758 2.587a5.733 5.733 0 0 0 5.382.935c2-.638 2.933-2.865 3.137-3.921-.97 1.379-2.44 2.208-4.259 1.231-1.253-.673-2.19-3.443-5.963-3.317Z"/>
+								</svg>
 							</view>
 							<view class="border-b border-dashed border-b-2 my-5"></view>
 							<view class="grid grid-cols-2 grid-rows-2 gap-4 text-sm" v-if="data">
@@ -58,18 +61,24 @@
 								<view class="absolute rounded-full w-5 h-5 bg-[#407bff] -mt-2 -right-2"></view>
 							</view>
 							<view class="grid grid-cols-2 grid-rows-2 gap-4" v-if="data">
-								<view class="flex flex-col gap-2 font-semibold">
-									Liệu
-									<span class="text-sm ml-5">{{ data.MATERIAL_NAMEE }}</span>
-								</view>
-								<view class="flex flex-col gap-2 font-semibold">
-									Trung bình
-									<span v-if="data" :class="[caculateAverage(data).color, 'text-sm ml-10']">
-									    {{ `${caculateAverage(data).average.toFixed(1)}%` }}
-									</span>
-									<span v-else>
-									  Không có dữ liệu để tính toán
-									</span>
+								<view class="flex col-span-2 justify-between items-center mb-2 px-5">
+									<view class="flex flex-col gap-2 font-semibold">
+										Liệu
+										<span class="text-sm ml-5">{{ data.MATERIAL_NAMEE }}</span>
+									</view>
+									<view class="flex flex-col gap-2 font-semibold">
+										Trung bình
+										<span v-if="data" :class="[caculateAverage(data).color, 'text-sm ml-10']">
+										    {{ `${caculateAverage(data).average.toFixed(1)}%` }}
+										</span>
+										<span v-else>
+										  Không có dữ liệu để tính toán
+										</span>
+									</view>
+									<view class="flex flex-col gap-2 font-semibold">
+										Nhân viên
+										<span class="text-sm ml-10">{{ data.STAFF_CHECK }}</span>
+									</view>
 								</view>
 								<view class="flex col-span-2 justify-between items-center mb-2 px-5">
 									<view class="flex flex-col gap-2 font-semibold">
