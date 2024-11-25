@@ -101,6 +101,12 @@
 		"style": {
 			"navigationStyle": "custom"
 		}
+	},
+	{
+		"path": "pages/iqcReport/viewPage/viewCheckPhom",
+		"style": {
+			"navigationStyle": "custom"
+		}
 	}
   ],
   "usingComponents": {
