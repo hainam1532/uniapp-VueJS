@@ -107,6 +107,12 @@
 		"style": {
 			"navigationStyle": "custom"
 		}
+	},
+	{
+		"path": "pages/prodReport/insertProd/insertOuterBoxSeal",
+		"style": {
+			"navigationStyle": "custom"
+		}
 	}
   ],
   "usingComponents": {

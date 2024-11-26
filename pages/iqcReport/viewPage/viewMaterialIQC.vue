@@ -22,38 +22,38 @@
 								</svg>
 							</view>
 							<view class="border-b border-dashed border-b-2 my-5"></view>
-							<view class="grid grid-cols-2 grid-rows-2 gap-4 text-sm" v-if="data">
+							<view class="grid grid-cols-2 grid-rows-1 gap-4 text-sm" v-if="data">
 								<view class="flex flex-col gap-2 font-semibold">
-									ID:
-									<span class="font-medium ml-10">{{ data.ID }}</span>
+									<span>ID:</span>
+									<h2 class="font-medium ml-10">{{ data.ID }}</h2>
 								</view>
 								<view class="flex flex-col gap-2 font-semibold">
-									Ngày kiểm:
-									<span class="font-medium ml-10">{{ formatDate(data.DATE_RECORD) }}</span>
+									<span>Ngày kiểm:</span>
+									<h2 class="font-medium ml-10">{{ formatDate(data.DATE_RECORD) }}</h2>
 								</view>
 								<view class="flex flex-col gap-2 font-semibold">
-									Ngày nhập kho:
-									<span class="font-medium ml-10">{{ formatDate(data.DATE_WH) }}</span>
+									<span>Ngày nhập kho:</span>
+									<h2 class="font-medium ml-10">{{ formatDate(data.DATE_WH) }}</h2>
 								</view>
 								<view class="flex flex-col gap-2 font-semibold">
-									Thời gian:
-									<span class="font-medium ml-10">{{ formatTime(data.TIME_REPORT) }}</span>
+									<span>Thời gian:</span>
+									<h2 class="font-medium ml-10">{{ formatTime(data.TIME_REPORT) }}</h2>
 								</view>
 								<view class="flex flex-col gap-2 font-semibold">
-									Số lô:
-									<span class="font-medium ml-10">{{ data.MATERIAL_LOT }}</span>
+									<span>Số lô:</span>
+									<h2 class="font-medium ml-10">{{ data.MATERIAL_LOT }}</h2>
 								</view>
 								<view class="flex flex-col gap-2 font-semibold">
-									Khu vực:
-									<span class="font-medium">{{ showMaterialName(data.MEASUREMENT_AREA).text }}</span>
+									<span>Khu vực:</span>
+									<h2 class="font-medium">{{ showMaterialName(data.MEASUREMENT_AREA).text }}</h2>
 								</view>
 								<view class="flex flex-col gap-2 font-semibold">
-									Tên liệu:
-									<span class="font-medium ml-10">{{ data.NAME_MATERIAL }}</span>
+									<span>Tên liệu:</span>
+									<h2 class="font-medium ml-10">{{ data.NAME_MATERIAL }}</h2>
 								</view>
 								<view class="flex flex-col gap-2 font-semibold">
-									Ghi chú:
-									<span class="font-medium">{{ data.REMARK }}</span>
+									<span>Ghi chú:</span>
+									<h2 class="font-medium">{{ data.REMARK }}</h2>
 								</view>
 							</view>
 							<view class="border-b border-dashed border-b-2 my-5">
@@ -63,35 +63,35 @@
 							<view class="grid grid-cols-2 grid-rows-2 gap-4" v-if="data">
 								<view class="flex col-span-2 justify-between items-center mb-2 px-5">
 									<view class="flex flex-col gap-2 font-semibold">
-										Liệu
-										<span class="text-sm ml-5">{{ data.MATERIAL_NAMEE }}</span>
+										<span>Liệu</span>
+										<h2 class="text-sm ml-5">{{ data.MATERIAL_NAMEE }}</h2>
 									</view>
 									<view class="flex flex-col gap-2 font-semibold">
-										Trung bình
-										<span v-if="data" :class="[caculateAverage(data).color, 'text-sm ml-10']">
+										<span>Trung bình</span>
+										<span v-if="data" :class="[caculateAverage(data).color, 'text-xl ml-10']">
 										    {{ `${caculateAverage(data).average.toFixed(1)}%` }}
 										</span>
-										<span v-else>
+										<h2 v-else>
 										  Không có dữ liệu để tính toán
-										</span>
+										</h2>
 									</view>
 									<view class="flex flex-col gap-2 font-semibold">
-										Nhân viên
-										<span class="text-sm ml-10">{{ data.STAFF_CHECK }}</span>
+										<span>Nhân viên</span>
+										<h2 class="text-sm ml-10">{{ data.STAFF_CHECK }}</h2>
 									</view>
 								</view>
 								<view class="flex col-span-2 justify-between items-center mb-2 px-5">
 									<view class="flex flex-col gap-2 font-semibold">
-										Vị trí 1
-										<span class="font-medium ml-10">{{ data.MATERIAL_VT_1 }}</span>
+										<span>Vị trí 1</span>
+										<h2 class="font-medium ml-10">{{ data.MATERIAL_VT_1 }}</h2>
 									</view>
 									<view class="flex flex-col gap-2 font-semibold">
-										Vị trí 2
-										<span class="font-medium ml-10">{{ data.MATERIAL_VT_2 }}</span>
+										<span>Vị trí 2</span>
+										<h2 class="font-medium ml-10">{{ data.MATERIAL_VT_2 }}</h2>
 									</view>
 									<view class="flex flex-col gap-2 font-semibold">
-										Vị trí 3
-										<span class="font-medium ml-10">{{ data.MATERIAL_VT_3 }}</span>
+										<span>Vị trí 3</span>
+										<h2 class="font-medium ml-10">{{ data.MATERIAL_VT_3 }}</h2>
 									</view>
 								</view>
 							</view>
@@ -226,5 +226,29 @@
 		box-shadow: 1px 0 0 1px, 5px 0 0 1px, 10px 0 0 1px, 11px 0 0 1px, 15px 0 0 1px, 18px 0 0 1px, 22px 0 0 1px, 23px 0 0 1px, 26px 0 0 1px, 30px 0 0 1px, 35px 0 0 1px, 37px 0 0 1px, 41px 0 0 1px, 44px 0 0 1px, 47px 0 0 1px, 51px 0 0 1px, 56px 0 0 1px, 59px 0 0 1px, 64px 0 0 1px, 68px 0 0 1px, 72px 0 0 1px, 74px 0 0 1px, 77px 0 0 1px, 81px 0 0 1px, 85px 0 0 1px, 88px 0 0 1px, 92px 0 0 1px, 95px 0 0 1px, 96px 0 0 1px, 97px 0 0 1px, 101px 0 0 1px, 105px 0 0 1px, 109px 0 0 1px, 110px 0 0 1px, 113px 0 0 1px, 116px 0 0 1px, 120px 0 0 1px, 123px 0 0 1px, 127px 0 0 1px, 130px 0 0 1px, 131px 0 0 1px, 134px 0 0 1px, 135px 0 0 1px, 138px 0 0 1px, 141px 0 0 1px, 144px 0 0 1px, 147px 0 0 1px, 148px 0 0 1px, 151px 0 0 1px, 155px 0 0 1px, 158px 0 0 1px, 162px 0 0 1px, 165px 0 0 1px, 168px 0 0 1px, 173px 0 0 1px, 176px 0 0 1px, 177px 0 0 1px, 180px 0 0 1px;
 		display: inline-block;
 		transform: translateX(-90px);
+	}
+	
+	@media screen and (min-width: 1024px) {
+	  span {
+	    font-size: 35px;
+		padding: 15px;
+	  }
+	  
+	  input {
+	  	font-size: 35px;
+		font-weight: bold;
+	  }
+	  
+	  h2 {
+	  	font-size: 27px;
+		font-weight: bold;
+		color: royalblue;
+		margin-top: 15rpx;
+	  }
+	  
+	  .circle {
+		width: 35px;
+		height: 35px;
+	  }
 	}
 </style>
