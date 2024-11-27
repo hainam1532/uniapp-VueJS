@@ -63,11 +63,11 @@
 		<scroll-view
 			@scrolltolower="fetchData"
 			scroll-y="true" 
-			class="bg-[#f3f8fe] rounded-t-2xl shadow-lg size-full mx-auto shadow-lg p-4"
+			class="rounded-t-2xl shadow-lg size-full mx-auto shadow-lg p-4"
 			style="overflow-y: auto; height: calc(430vh - 300px);"
 		>
 			<view v-for="(item, index) in dataList" :key="item.ID" @click="showDetail(item.ID)" 
-				class="grid grid-cols-2 grid-rows-1 gap-2 cursor-pointer shadow-lg rounded-lg p-4 mb-4"
+				class="grid grid-cols-2 grid-rows-1 bg-white gap-2 cursor-pointer shadow-lg rounded-lg p-4 mb-4"
 			>
 				<p class="font-semibold text-[#214263]">
 					ID:

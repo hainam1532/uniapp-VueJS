@@ -1,5 +1,5 @@
 <template>
-  <view class="h-screen w-full bg-[#f3f8fe] flex flex-col">
+  <view class="h-screen w-full bg-gradient-to-b from-blue-200 via-blue-100 to-white flex flex-col">
     <view class="flex flex-col bg-[#407bff] rounded-b-3xl gap-4 p-2">
 		<view class="mx-2 flex justify-between">
 			<svg @click="backMenu()" width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M6.3508 12.7499L11.2096 17.4615L10.1654 18.5383L3.42264 11.9999L10.1654 5.46148L11.2096 6.53833L6.3508 11.2499L21 11.2499L21 12.7499L6.3508 12.7499Z" fill="#ffff"></path> </g></svg>
@@ -64,7 +64,7 @@
 	<scroll-view 
 		@scrolltolower="fetchData"
 		scroll-y="true" 
-		class="scroll-container bg-[#f3f8fe] size-full mx-auto shadow-lg p-4"
+		class="scroll-container size-full mx-auto shadow-lg p-4"
 		style="overflow-y: auto; height: calc(100vh - 300px);"
 	>
 		<view v-for="(item, index) in dataList" :key="item.ID" @click="showDetail(item.ID)" class="bg-white cursor-pointer shadow-md rounded-lg p-4 mb-4">

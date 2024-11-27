@@ -113,6 +113,24 @@
 		"style": {
 			"navigationStyle": "custom"
 		}
+	},
+	{
+		"path": "pages/prodReport/insertProd/insertControlOuterBox",
+		"style": {
+			"navigationStyle": "custom"
+		}
+	},
+	{
+		"path": "pages/prodReport/insertProd/insertReportBC",
+		"style": {
+			"navigationStyle": "custom"
+		}
+	},
+	{
+		"path": "pages/prodReport/viewProd/viewReportBC",
+		"style": {
+			"navigationStyle": "custom"
+		}
 	}
   ],
   "usingComponents": {
