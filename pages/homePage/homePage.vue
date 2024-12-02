@@ -4,7 +4,9 @@
 		<view class="quarter-circle"></view>
 		<!-- Logo Section -->
 		<view class="flex flex-col items-center flex-grow justify-center">
-		  <img :src="logo" alt="" class="w-[180px] h-[200px]" />
+			<view class="image-container">
+		      <view class="logo"></view>
+		    </view>
 		  <h1 class="text-3xl font-bold text-gray-800">Hệ thống báo biểu</h1>
 		  <p class="text-sm tracking-wide text-gray-600">Report system</p>
 		</view>
@@ -36,12 +38,14 @@
 </template>
 
 <script>
-	import logo from '../asset/logo.png'
+	//import logo from '../asset/logo.png'
 	export default {
 	  name: "WelcomePage",
 	  data() {
 	    return {
-	      logo,
+			imgLogo: [
+			    { url: '/static/logo.png' },
+			],
 	    };
 	  },
 	  methods: {
@@ -65,7 +69,7 @@
 	};
 </script>
 
-<style>
+<style scoped>
 	.quarter-circle {
 		position: absolute;
 		top: 0;
@@ -74,5 +78,20 @@
 		height: 200px;
 		background-color: #407bff;
 		border-bottom-left-radius: 100%;
+	}
+	
+	.image-container {
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  height: 100%;
+	}
+	
+	.logo {
+	  background-image: url('/static/logo.png');
+	  background-size: contain;
+	  background-repeat: no-repeat;
+	  width: 180px;
+	  height: 200px;
 	}
 </style>

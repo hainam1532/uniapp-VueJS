@@ -2,7 +2,7 @@
 	<view class="flex flex-col bg-gray-200 h-screen w-full overflow-hidden">
 		<view class="flex flex-col bg-[#407bff] rounded-b-3xl gap-4 p-2">
 			<view class="mx-2 flex justify-between">
-				<svg @click="backMenu()" width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M6.3508 12.7499L11.2096 17.4615L10.1654 18.5383L3.42264 11.9999L10.1654 5.46148L11.2096 6.53833L6.3508 11.2499L21 11.2499L21 12.7499L6.3508 12.7499Z" fill="#ffff"></path> </g></svg>
+				<view class="return" @click="backMenu()"></view>
 				<span class="font-semibold text-white py-1">
 					Tạo biểu phát tem
 				</span>
@@ -537,7 +537,7 @@
 		methods: {
 			backMenu() {
 				uni.navigateTo({
-					url:'/pages/prodReport/prodOuterBoxSeal'
+					url:'/pages/prodReport/prodReportBC'
 				})
 			},
 			bindPickerFootBFIChange(event) {
@@ -806,4 +806,23 @@
 </script>
 
 <style>
+	.return {
+		background-image: url('/static/return.png');
+		background-size: contain;
+		background-repeat: no-repeat;
+		width: 30px;
+		height: 30px;
+		margin-top: 2px;
+		margin-left: 4px;
+	}
+		
+	.add {
+		background-image: url('/static/add.png');
+		background-size: contain;
+		background-repeat: no-repeat;
+		width: 30px;
+		height: 30px;
+		margin-top: 2px;
+		margin-left: 4px;
+	}
 </style>

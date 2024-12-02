@@ -2,15 +2,13 @@
 	<view class="flex flex-col bg-gray-200 h-screen w-full">
 		<view class="flex flex-col bg-[#407bff] rounded-b-3xl gap-4 p-2">
 			<view class="mx-2 flex justify-between" v-if="data">
-				<svg @click="backMenu()" width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M6.3508 12.7499L11.2096 17.4615L10.1654 18.5383L3.42264 11.9999L10.1654 5.46148L11.2096 6.53833L6.3508 11.2499L21 11.2499L21 12.7499L6.3508 12.7499Z" fill="#ffff"></path> </g></svg>
+				<view class="return" @click="backMenu()"></view>
 				<span class="font-semibold text-white py-1">
 					Thông tin chi tiết - 
 					{{data.ID}}
 				</span>
 				<view class="flex justify-center items-center">
-					 <svg @click="updateData()" class="w-8 h-8 text-gray-800 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-					   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.5 11.5 11 14l4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
-					 </svg>
+					 <view class="add" @click="updateData()"></view>
 				</view>
 			</view>
 		</view>
@@ -334,6 +332,25 @@ export default {
 </script>
 
 <style>
+	.return {
+	  background-image: url('/static/return.png');
+	  background-size: contain;
+	  background-repeat: no-repeat;
+	  width: 30px;
+	  height: 30px;
+	  margin-top: 2px;
+	  margin-left: 4px;
+	}
+	
+	.add {
+	  background-image: url('/static/add.png');
+	  background-size: contain;
+	  background-repeat: no-repeat;
+	  width: 30px;
+	  height: 30px;
+	  margin-top: 2px;
+	  margin-left: 4px;
+	}
 	.barcode {
 		left: 50%;
 		box-shadow: 1px 0 0 1px, 5px 0 0 1px, 10px 0 0 1px, 11px 0 0 1px, 15px 0 0 1px, 18px 0 0 1px, 22px 0 0 1px, 23px 0 0 1px, 26px 0 0 1px, 30px 0 0 1px, 35px 0 0 1px, 37px 0 0 1px, 41px 0 0 1px, 44px 0 0 1px, 47px 0 0 1px, 51px 0 0 1px, 56px 0 0 1px, 59px 0 0 1px, 64px 0 0 1px, 68px 0 0 1px, 72px 0 0 1px, 74px 0 0 1px, 77px 0 0 1px, 81px 0 0 1px, 85px 0 0 1px, 88px 0 0 1px, 92px 0 0 1px, 95px 0 0 1px, 96px 0 0 1px, 97px 0 0 1px, 101px 0 0 1px, 105px 0 0 1px, 109px 0 0 1px, 110px 0 0 1px, 113px 0 0 1px, 116px 0 0 1px, 120px 0 0 1px, 123px 0 0 1px, 127px 0 0 1px, 130px 0 0 1px, 131px 0 0 1px, 134px 0 0 1px, 135px 0 0 1px, 138px 0 0 1px, 141px 0 0 1px, 144px 0 0 1px, 147px 0 0 1px, 148px 0 0 1px, 151px 0 0 1px, 155px 0 0 1px, 158px 0 0 1px, 162px 0 0 1px, 165px 0 0 1px, 168px 0 0 1px, 173px 0 0 1px, 176px 0 0 1px, 177px 0 0 1px, 180px 0 0 1px;
@@ -360,9 +377,28 @@ export default {
 	
 	/* Khi thiết bị là iPad hoặc kích thước màn hình lớn hơn */
 	@media screen and (min-width: 768px) {
-	  span {
-	    font-size: 22px; /* Tăng kích thước chữ */
-	  }
+		.return {
+		  background-image: url('/static/return.png');
+		  background-size: contain;
+		  background-repeat: no-repeat;
+		  width: 30px;
+		  height: 30px;
+		  margin-top: 2px;
+		  margin-left: 4px;
+		}
+		
+		.add {
+		  background-image: url('/static/add.png');
+		  background-size: contain;
+		  background-repeat: no-repeat;
+		  width: 30px;
+		  height: 30px;
+		  margin-top: 2px;
+		  margin-left: 4px;
+		}
+		  span {
+			font-size: 22px; /* Tăng kích thước chữ */
+		  }
 	  
 		input {
 			font-size: 20px;
@@ -378,6 +414,25 @@ export default {
 	
 	/* Khi thiết bị là iPad Pro hoặc lớn hơn */
 	@media screen and (min-width: 1024px) {
+		.return {
+		  background-image: url('/static/return.png');
+		  background-size: contain;
+		  background-repeat: no-repeat;
+		  width: 30px;
+		  height: 30px;
+		  margin-top: 2px;
+		  margin-left: 4px;
+		}
+		
+		.add {
+		  background-image: url('/static/add.png');
+		  background-size: contain;
+		  background-repeat: no-repeat;
+		  width: 30px;
+		  height: 30px;
+		  margin-top: 2px;
+		  margin-left: 4px;
+		}
 	  span {
 	    font-size: 24px; /* Thêm kích thước chữ */
 	  }

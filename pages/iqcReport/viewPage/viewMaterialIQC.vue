@@ -1,7 +1,7 @@
 <template>
 	<view class="flex flex-col h-screen w-full bg-gradient-to-b from-blue-200 via-blue-100 to-white">
 		<view class="flex justify-between p-4">
-			<svg @click="backMenu()" width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M6.3508 12.7499L11.2096 17.4615L10.1654 18.5383L3.42264 11.9999L10.1654 5.46148L11.2096 6.53833L6.3508 11.2499L21 11.2499L21 12.7499L6.3508 12.7499Z" fill="#407bff"></path> </g></svg>
+			<view class="return" @click="backMenu()"></view>
 		</view>
 		
 		<view class="flex p-2">
@@ -223,4 +223,14 @@
 		display: inline-block;
 		transform: translateX(-90px);
 	}
+	
+	.return {
+		  background-image: url('/static/return.png');
+		  background-size: contain;
+		  background-repeat: no-repeat;
+		  width: 30px;
+		  height: 30px;
+		  margin-top: 2px;
+		  margin-left: 4px;
+		}
 </style>

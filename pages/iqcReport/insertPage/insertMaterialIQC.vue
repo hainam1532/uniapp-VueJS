@@ -5,7 +5,7 @@
 	    <view class="bg-[#407bff] text-white text-center py-8 rounded-b-full relative">
 	      <h1 class="text-2xl font-semibold">Tạo báo cáo</h1>
 	      <view class="absolute bg-[#407bff] w-16 h-16 rounded-full flex items-center justify-center border-4 border-white -bottom-8 left-1/2 transform -translate-x-1/2">
-	        <svg width="50px" height="50px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle cx="12" cy="12" r="10" stroke="#ffffff" stroke-width="1.5"></circle> <path d="M15 12L12 12M12 12L9 12M12 12L12 9M12 12L12 15" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
+			<view class="circle"></view>
 	      </view>
 	    </view>
 	
@@ -469,6 +469,14 @@
 	.scroll-Y {
 		height: calc(100vh - 300px);
 		overflow-y: auto;
+	}
+	
+	.circle {
+	  background-image: url('/static/circle.png');
+	  background-size: contain;
+	  background-repeat: no-repeat;
+	  width: 50px;
+	  height: 50px;
 	}
 	
 </style>
