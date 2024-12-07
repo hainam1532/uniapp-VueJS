@@ -24,7 +24,10 @@
 								  <path d="M11.782 5.72a4.773 4.773 0 0 0-4.8 4.173 3.43 3.43 0 0 1 2.741-1.687c1.689 0 2.974 1.972 3.758 2.587a5.733 5.733 0 0 0 5.382.935c2-.638 2.934-2.865 3.137-3.921-.969 1.379-2.44 2.207-4.259 1.231-1.253-.673-2.19-3.438-5.959-3.318ZM6.8 11.979A4.772 4.772 0 0 0 2 16.151a3.431 3.431 0 0 1 2.745-1.687c1.689 0 2.974 1.972 3.758 2.587a5.733 5.733 0 0 0 5.382.935c2-.638 2.933-2.865 3.137-3.921-.97 1.379-2.44 2.208-4.259 1.231-1.253-.673-2.19-3.443-5.963-3.317Z"/>
 								</svg>
 							</view>
-							<view class="border-b border-dashed border-black border-b-2 my-5"></view>
+							<view class="border-b border-dashed border-black border-b-2 my-5">
+								<view class="absolute rounded-full w-5 h-5 bg-blue-200 -mt-2 -left-2"></view>
+								<view class="absolute rounded-full w-5 h-5 bg-blue-200 -mt-2 -right-2"></view>
+							</view>
 							<view class="flex justify-center items-center text-center">
 								<span class="font-bold text-2xl text-blue-500">THÔNG TIN CƠ BẢN</span>
 							</view>
@@ -44,38 +47,55 @@
 								</view>
 								<view class="flex items-center border-b border-gray-300 pb-2">
 									<view class="clock"></view>
-									<picker mode="time" :value="formData.TIME" @change="bindTimeChange">
-										<view class="w-full ml-2 text-xl outline-none font-bold">{{formData.TIME || '12:00'}}</view>
+									<picker mode="time" :value="formData.TIME_REPORT" @change="bindTimeChange">
+										<view class="w-full ml-2 text-xl outline-none font-bold">{{formData.TIME_REPORT || '12:00'}}</view>
 									</picker>
 								</view>
 								<view class="flex items-center border-b border-gray-300 pb-2">
-									<view class="pen"></view>
+									<view class="user"></view>
 									<input
 										class="w-full ml-2 outline-none text-xl font-bold" 
 										type="text"
-										v-model="formData.QC"
+										v-model="formData.STAFF_CHECK"
 										autofocus 
 										placeholder="Nhập QC" 
 									/>
 								</view>
 								<view class="flex items-center border-b border-gray-300 pb-2">
 									<view class="pen"></view>
-									<my-select
-										:data="dataDeviceNeedle"
-										v-model="selectedDeviceNeedle"
-										valueField="NAME_DEVICE"
-										placeholder="Chọn thiết bị"
-										@select="handleDeviceNeedleSelect"
+									<input
+										class="w-full ml-2 outline-none text-xl font-bold" 
+										type="text"
+										v-model="formData.PO"
+										autofocus 
+										placeholder="Nhập PO" 
 									/>
+								</view>
+								<view class="flex items-center border-b border-gray-300 pb-2">
+									<view class="pen"></view>
+									<view class="flex" >
+										<!-- Dropdown MySelect -->
+										<my-select
+											:data="dataART"
+											v-model="selectedART"
+											valueField="PROD_NO"
+											placeholder="Chọn ART"
+											@select="handleARTSelect"
+										/>
+									</view>
+								</view>
+								<view class="flex items-center border-b border-gray-300 pb-2">
+									<view class="pen"></view>
+									<span class="w-full ml-2 outline-none font-bold">{{formData.MODEL || "Model"}}</span>
 								</view>
 								<view class="flex items-center border-b border-gray-300 pb-2">
 									<view class="location"></view>
 									<picker
 									    @change="bindPickerDepartmentChange"
-									    :value="formData.DEPARTMENT_CODE"
+									    :value="formData.LINE"
 									    :range="departmentList">
 									    <view class="w-full ml-2 text-[18px] outline-none font-bold">
-									      {{ formData.DEPARTMENT_CODE || 'Chọn chuyền' }}
+									      {{ formData.LINE || 'Chọn chuyền' }}
 									    </view>
 									</picker>
 								</view>
@@ -91,74 +111,96 @@
 								</view>
 							</view>
 							<view class="border-b border-dashed border-black border-b-2 my-7">
-								<view class="absolute rounded-full w-5 h-5 -mt-2 -left-2"></view>
-								<view class="absolute rounded-full w-5 h-5 -mt-2 -right-2"></view>
+								<view class="absolute rounded-full w-5 h-5 bg-blue-200 -mt-2 -left-2"></view>
+								<view class="absolute rounded-full w-5 h-5 bg-blue-200 -mt-2 -right-2"></view>
 							</view>
-							<scroll-view scroll-y="true" style="overflow-y: auto; height: calc(62vh - 300px);" >
+							<scroll-view scroll-y="true" style="overflow-y: auto; height: calc(79vh - 300px);" >
 								<view class="flex justify-center items-center text-center">
 									<span class="font-bold text-2xl text-blue-500">DỮ LIỆU</span>
 								</view>
 								<view class="flex flex-col">
 									<view class="flex flex-col gap-4 space-y-4 mt-4">
 										<view class="flex flex-col gap-4">
-											<h2 class="font-bold text-xl">Trái / (Vị trí / 1,4,7)</h2>
+											<h2 class="font-bold text-xl">Tên liệu</h2>
 											<view class="flex items-center border-b border-gray-300 pb-2">
 												<view class="pen"></view>
-												<input
-												  class="w-full ml-2 outline-none font-bold" 
-												  type="text"
-												   v-model="formData.FAIL_LEFT_POSITION"
-												  autofocus
-												  placeholder="Nhập..." 
-												/>
+												<picker
+												    @change="bindPickerMaterialChange"
+												    :value="formData.MATERIAL"
+												    :range="materialList">
+												    <view class="w-full ml-2 text-[18px] outline-none font-bold">
+												      {{ getMaterialName(formData.MATERIAL) }}
+												    </view>
+												</picker>
 											</view>
 										</view>
 										
 										<view class="flex flex-col gap-4">
-											<h2 class="font-bold text-xl">Giữa / (Vị trí / 2,5,8)</h2>
+											<h2 class="font-bold text-xl">Vị trí 1</h2>
 											<view class="flex items-center border-b border-gray-300 pb-2">
 												<view class="pen"></view>
 												<input
 												  class="w-full ml-2 outline-none font-bold" 
-												  type="text"
-												   v-model="formData.FAIL_MIDDLE_POSITION"
-												  autofocus 
-												  placeholder="Nhập..." 
-												/>
-											</view>
-										</view>
-										
-										<view class="flex flex-col gap-4">
-											<h2 class="font-bold text-xl">Phải / (Vị trí / 3,6,9)</h2>
-											<view class="flex items-center border-b border-gray-300 pb-2">
-												<view class="pen"></view>
-												<input
-												  class="w-full ml-2 outline-none font-bold" 
+												  v-model="formData.MATERIAL_VT_1"
 												  type="text" 
-												  v-model="formData.FAIL_RIGHT_POSITION"
 												  autofocus 
-												  placeholder="Nhập..." 
+												  placeholder="Nhập vị trí 1"
+												/>
+											</view>
+										</view>
+										
+										<view class="flex flex-col gap-4">
+											<h2 class="font-bold text-xl">Vị trí 2</h2>
+											<view class="flex items-center border-b border-gray-300 pb-2">
+												<view class="pen"></view>
+												<input
+												  class="w-full ml-2 outline-none font-bold" 
+												  v-model="formData.MATERIAL_VT_2"
+												  type="text" 
+												  autofocus 
+												  placeholder="Nhập vị trí 2"
 												/>
 											</view>
 										</view>
 										<view class="flex flex-col gap-4">
-										    <h2 class="font-bold text-xl">Trạng thái</h2>
-										    
+											<h2 class="font-bold text-xl">Vị trí 3</h2>
+											<view class="flex items-center border-b border-gray-300 pb-2">
+												<view class="pen"></view>
+												<input
+												  class="w-full ml-2 outline-none font-bold" 
+												  v-model="formData.MATERIAL_VT_3"
+												  type="text" 
+												  autofocus 
+												  placeholder="Nhập vị trí 3"
+												/>
+											</view>
+										</view>
+										<view class="flex flex-col gap-4">
+											<h2 class="font-bold text-xl">Trung bình</h2>
+											<view class="flex items-center border-b border-gray-300 pb-2">
+												<view class="pen"></view>
+												<span :class="[average.color, 'w-full ml-2 outline-none font-bold']">
+												    {{ average.average }}%
+												</span>
+											</view>
+										</view>
+										<view class="flex flex-col gap-4">
+										    <h2 class="font-bold text-xl">Kết quả</h2>
 											<radio-group @change="checkboxChange" :value="selectedValue" class="checkbox-group">
-											  <label class="checkbox-label" v-for="item in items" :key="item.value">
-											    <view>
-											      <radio :value="item.value" :checked="item.value === selectedValue" />
-											    </view>
-											    <view>{{ item.name }}</view>
-											  </label>
+											    <label class="checkbox-label" v-for="item in items" :key="item.value">
+											      <view>
+											        <radio :value="item.value" :checked="item.checked" />
+											      </view>
+											      <view>{{ item.name }}</view>
+											    </label>
 											</radio-group>
 										</view>
 									</view>
 								</view>
 							</scroll-view>
 							<view class="border-b border-dashed border-black border-b-2 my-5">
-								<view class="absolute rounded-full w-5 h-5 -mt-2 -left-2"></view>
-								<view class="absolute rounded-full w-5 h-5 -mt-2 -right-2"></view>
+								<view class="absolute rounded-full w-5 h-5 bg-blue-100 -mt-2 -left-2"></view>
+								<view class="absolute rounded-full w-5 h-5 bg-blue-100 -mt-2 -right-2"></view>
 							</view>
 							<view class="flex w-full text-lg">
 								<!-- Buttons -->
@@ -184,32 +226,39 @@
 		data() {
 			return {
 				data: null,
+				dataART: [],
 				dataDepartment: [],
+				dataMaterial: [],
 				dataDeviceNeedle: [],
+				selectedART: "",
 				selectedValue: null,
 				selectedDeviceNeedle: '',
 				items: [{
-						value: '7',
+						value: 'S',
 						name: 'Đạt',
 						checked: 'false'
 					},
 					{
-						value: '9',
+						value: 'F',
 						name: 'Không đạt',
 						checked: 'false'
 					},
 				],
 				formData: {
-					DATE_REPORT : '',
-					TIME: '',
-					QC: '',
-					METAL_NO: null,
-					DEPARTMENT_CODE: null,
+					DATE_REPORT: '',
+					TIME_REPORT: '',
+					PO: '',
+					ART: '',
+					MODEL: '',
+					MATERIAL: null, 
+					STAFF_CHECK: '',
 					REMARK: '',
-					FAIL_LEFT_POSITION: '',
-					FAIL_MIDDLE_POSITION: '',
-					FAIL_RIGHT_POSITION: '',
-					PASS_FAIL: ''
+					LINE: null,
+					MATERIAL_VT_1: '',
+					MATERIAL_VT_2: '',
+					MATERIAL_VT_3: '',
+					AVERAGE_MATERIAL: null,
+					STATUS_MATERIAL: ''
 				},
 				isLoading: false,
 				items: [
@@ -228,13 +277,44 @@
 			departmentList() {
 				return this.dataDepartment.map(item => item.DEPARTMENT_CODE);
 			},
+			materialList() {
+				return this.dataMaterial.map(item => item.MATERIAL_NAME);
+			},
 			deviceNeedle() {
 				return this.dataDeviceNeedle.map(item => item.NAME_DEVICE);
+			},
+			average() {
+				const vt1 = parseFloat(this.formData.MATERIAL_VT_1);
+				const vt2 = parseFloat(this.formData.MATERIAL_VT_2);
+				const vt3 = parseFloat(this.formData.MATERIAL_VT_3);
+				      
+				if (isNaN(vt1) || isNaN(vt2) || isNaN(vt3)) {
+				    return { text: 'Không có dữ liệu', color: 'text-gray-500', average: 0 };
+				}
+				      
+				const averageCal = (vt1 + vt2 + vt3) / 3;
+				const roundedAverage = parseFloat(averageCal.toFixed(1));
+				this.formData.AVERAGE_MATERIAL = roundedAverage;
+				
+				if (averageCal <= 17 && this.formData.MATERIAL === 1) {
+					return { text: 'Đạt', value: 'S', color: 'text-emerald-500', average: roundedAverage };
+				} else if (averageCal <= 7 && this.formData.MATERIAL === 2) {
+					return { text: 'Đạt', value: 'S', color: 'text-emerald-500', average: roundedAverage };
+				} else if (averageCal <= 2 && this.formData.MATERIAL === 3) {
+					return { text: 'Đạt', value: 'S', color: 'text-emerald-500', average: roundedAverage };
+				} else if (averageCal <= 6 && (this.formData.MATERIAL === 4 || this.formData.MATERIAL === 5 || this.formData.MATERIAL === 6)) {
+					return { text: 'Đạt', value: 'S', color: 'text-emerald-500', average: roundedAverage };
+				} else {
+					return { text: 'Vượt tiêu chuẩn', value: 'F', color: 'text-red-500', average: roundedAverage };
+				}
+				
 			}
 		},
 		mounted() {
 			this.getPlant()
 			this.getDeviceNeedle()
+			this.getART()
+			this.getMaterial()
 		},
 		methods: {
 			checkboxChange(e) {
@@ -246,9 +326,9 @@
 			        item.checked = false;
 			      }
 			    }
-				this.formData.PASS_FAIL = selectedValue
+				this.formData.STATUS_MATERIAL = selectedValue
 			
-			    console.log(this.formData.PASS_FAIL);
+			    console.log(this.formData.STATUS_MATERIAL);
 			  },
 			backMenu() {
 				uni.navigateTo({
@@ -267,18 +347,25 @@
 				this.formData.DATE_REPORT = this.formatDate(dateRecord);
 			},
 			bindTimeChange(e) {
-				this.formData.TIME = e.detail.value;
+				this.formData.TIME_REPORT = e.detail.value;
 			},
 			bindPickerDepartmentChange(e) {
 			    const selectedIndex = e.detail.value;
 			    const selectedDepartment = this.dataDepartment[selectedIndex];
-			    this.formData.DEPARTMENT_CODE = selectedDepartment.DEPARTMENT_CODE;
+			    this.formData.LINE = selectedDepartment.DEPARTMENT_CODE;
 				
 				//console.log(this.formData.DEPARTMENT)
 			},
-			getDepartmentName(code) {
-				const departmentName = this.dataDepartment.find(item => item.DEPARTMENT_CODE === code);
-				return departmentName ? departmentName.DEPARTMENT_CODE : 'Chọn bộ phận';
+			bindPickerMaterialChange(e) {
+			    const selectedIndex = e.detail.value;
+			    const selectedMaterial = this.dataMaterial[selectedIndex];
+			    this.formData.MATERIAL = selectedMaterial.MATERIAL_CODE;
+				
+				//console.log(this.formData.MATERIAL)
+			},
+			getMaterialName(code) {
+				const materialName = this.dataMaterial.find(item => item.MATERIAL_CODE === code);
+				return materialName ? materialName.MATERIAL_NAME : 'Chọn liệu';
 			},
 			bindPickerDeviceNeedleChange(e) {
 			    const selectedIndex = e.detail.value;
@@ -318,6 +405,28 @@
 			        }
 			    });
 			},
+			getMaterial() {
+			    this.isLoading = true;
+			
+			    uni.request({
+			        url: "http://10.30.3.50:8386/api/configData/getMaterial",
+			        method: 'GET',
+			        success: (res) => {
+			            const newDataMaterial = res.data?.data || [];
+			            if (Array.isArray(newDataMaterial) && newDataMaterial.length > 0) {
+			                this.dataMaterial = [...this.dataMaterial, ...newDataMaterial];
+			            } else {
+			                console.error('No material data or data is empty.');
+			            }
+			        },
+			        fail: (error) => {
+			            console.error("Error fetching material data:", error);
+			        },
+			        complete: () => {
+			            this.isLoading = false;
+			        }
+			    });
+			},
 			getDeviceNeedle() {
 			    this.isLoading = true;
 			
@@ -341,10 +450,33 @@
 			        }
 			    });
 			},
+			getART() {
+			    this.isLoading = true;
+			
+			    uni.request({
+			        url: "http://10.30.3.50:8386/api/configData/getART",
+			        method: 'GET',
+			        success: (res) => {
+			            const newDataART = res.data?.data || [];
+			
+			            if (Array.isArray(newDataART) && newDataART.length > 0) {
+			                this.dataART = [...this.dataART, ...newDataART];
+			            } else {
+			                console.error('No ART data or data is empty.');
+			            }
+			        },
+			        fail: (error) => {
+			            console.error("Error fetching ART data:", error);
+			        },
+			        complete: () => {
+			            this.isLoading = false;
+			        }
+			    });
+			},
 			async createData() {
 			    this.isLoading = true;
 			    try {
-			        // Kiểm tra trường hợp không có ngày hợp lệ
+			        // Không cần gọi lại formatDate vì DATE_DELIVERY đã được xử lý trong onDateRecordChange
 			        if (!this.formData.DATE_REPORT) {
 			            uni.showToast({
 			                title: "Ngày không hợp lệ",
@@ -352,11 +484,17 @@
 			                duration: 2000,
 			            });
 			            return;
+			        } else if (!this.STATUS_MATERIAL) {
+			            uni.showToast({
+			                title: "Kết quả chưa được chọn",
+			                icon: "none",
+			                duration: 2000
+			            })
 			        }
 			
 			        // Sử dụng uni.request thay vì axios
 			        uni.request({
-			            url: "http://10.30.3.50:8386/api/prodReport/createReportNeedle",
+			            url: "http://10.30.3.50:8386/api/prodReport/createReportMaterialControl",
 			            method: 'POST',
 			            data: this.formData,
 			            success: (response) => {
@@ -378,7 +516,7 @@
 			            complete: () => {
 			                this.isLoading = false;
 			                uni.navigateTo({
-			                    url: '/pages/prodReport/prodNeedleCorrection'
+			                    url: '/pages/prodReport/prodMaterialProduction'
 			                });
 			            }
 			        });
@@ -390,7 +528,14 @@
 			            duration: 2000,
 			        });
 			    }
-			}
+			},
+			handleARTSelect(selectedItem) {
+			    console.log("ART đã chọn:", selectedItem);
+			
+			    // Cập nhật giá trị cho formData
+			    this.formData.ART = selectedItem.PROD_NO;
+			    this.formData.MODEL = selectedItem.NAME_S;
+			},
 		}
 	}
 </script>
@@ -407,44 +552,44 @@
 	}
 	
 	.user {
-			background-image: url('/static/user.png');
-			background-size: contain;
-			background-repeat: no-repeat;
-			width: 25px;
-			height: 25px;
-		}
-		
-		.clock {
-			background-image: url('/static/clock.png');
-			background-size: contain;
-			background-repeat: no-repeat;
-			width: 25px;
-			height: 25px;
-		}
-		
-		.location {
-			background-image: url('/static/location.png');
-			background-size: contain;
-			background-repeat: no-repeat;
-			width: 25px;
-			height: 25px;
-		}
-		
-		.calendar {
-			background-image: url('/static/calendar.png');
-			background-size: contain;
-			background-repeat: no-repeat;
-			width: 25px;
-			height: 25px;
-		}
-		
-		.pen {
-			background-image: url('/static/pen.png');
-			background-size: contain;
-			background-repeat: no-repeat;
-			width: 25px;
-			height: 25px;
-		}
+		background-image: url('/static/user.png');
+		background-size: contain;
+		background-repeat: no-repeat;
+		width: 25px;
+		height: 25px;
+	}
+	
+	.clock {
+		background-image: url('/static/clock.png');
+		background-size: contain;
+		background-repeat: no-repeat;
+		width: 25px;
+		height: 25px;
+	}
+	
+	.location {
+		background-image: url('/static/location.png');
+		background-size: contain;
+		background-repeat: no-repeat;
+		width: 25px;
+		height: 25px;
+	}
+	
+	.calendar {
+		background-image: url('/static/calendar.png');
+		background-size: contain;
+		background-repeat: no-repeat;
+		width: 25px;
+		height: 25px;
+	}
+	
+	.pen {
+		background-image: url('/static/pen.png');
+		background-size: contain;
+		background-repeat: no-repeat;
+		width: 25px;
+		height: 25px;
+	}
 	
 	.checkbox-group {
 	  display: flex;

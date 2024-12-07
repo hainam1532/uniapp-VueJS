@@ -2,13 +2,16 @@
 	<view class="min-h-screen bg-white flex flex-col relative">
 		<!-- Circle -->
 		<view class="quarter-circle"></view>
+		<view class="p-4 font-semibold">
+			Phiên bản : {{ versionCode }}
+		</view>
 		<!-- Logo Section -->
 		<view class="flex flex-col items-center flex-grow justify-center">
 			<view class="image-container">
 		      <view class="logo"></view>
 		    </view>
-		  <h1 class="text-3xl font-bold text-gray-800">Hệ thống báo biểu</h1>
-		  <p class="text-sm tracking-wide text-gray-600">Report system</p>
+			<h1 class="text-3xl font-bold text-gray-800">Hệ thống báo biểu</h1>
+			<p class="text-sm tracking-wide text-gray-600">Report system</p>
 		</view>
 
 		<!-- Card Section -->
@@ -46,6 +49,7 @@
 			imgLogo: [
 			    { url: '/static/logo.png' },
 			],
+			versionCode: "1.0.0"
 	    };
 	  },
 	  methods: {

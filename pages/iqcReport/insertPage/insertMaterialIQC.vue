@@ -17,9 +17,7 @@
 				</view>
 				<!-- Date report Input -->
 				<view class="flex items-center border-b border-gray-300 pb-2">
-					<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-					  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 10h16m-8-3V4M7 7V4m10 3V4M5 20h14a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Zm3-7h.01v.01H8V13Zm4 0h.01v.01H12V13Zm4 0h.01v.01H16V13Zm-8 4h.01v.01H8V17Zm4 0h.01v.01H12V17Zm4 0h.01v.01H16V17Z"/>
-					</svg>
+					<view class="calendar"></view>
 					<picker
 						mode="date"
 						:value="formData.date_record"
@@ -30,9 +28,7 @@
 				</view>
 				<!-- date wh Input -->
 				<view class="flex items-center border-b border-gray-300 pb-2">
-					<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-					  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 10h16m-8-3V4M7 7V4m10 3V4M5 20h14a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Zm3-7h.01v.01H8V13Zm4 0h.01v.01H12V13Zm4 0h.01v.01H16V13Zm-8 4h.01v.01H8V17Zm4 0h.01v.01H12V17Zm4 0h.01v.01H16V17Z"/>
-					</svg>
+					<view class="calendar"></view>
 					<picker
 						mode="date"
 						:value="formData.date_wh"
@@ -44,9 +40,7 @@
 			  
 				<!-- Time Input -->
 				<view class="flex items-center border-b border-gray-300 pb-2">
-					<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-					  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
-					</svg>
+					<view class="clock"></view>
 					<picker mode="time" :value="formData.time_report" @change="bindTimeChange">
 						<view class="w-full ml-2 outline-none font-bold">{{formData.time_report || '12:00'}}</view>
 					</picker>
@@ -54,10 +48,7 @@
 			  
 				<!-- Select area -->
 				<view class="flex items-center border-b border-gray-300 pb-2">
-					<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-					  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
-					  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.8 13.938h-.011a7 7 0 1 0-11.464.144h-.016l.14.171c.1.127.2.251.3.371L12 21l5.13-6.248c.194-.209.374-.429.54-.659l.13-.155Z"/>
-					</svg>
+					<view class="location"></view>
 					<picker 
 					  :range="array" 
 					  :range-key="'label'" 
@@ -72,9 +63,7 @@
 				
 				<!-- Input material -->
 				<view class="flex items-center border-b border-gray-300 pb-2">
-					<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-					  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28"/>
-					</svg>
+					<view class="pen"></view>
 					<input
 					  class="w-full ml-2 outline-none font-bold" 
 					  v-model="formData.name_material"
@@ -86,9 +75,7 @@
 				
 				<!-- Input material number -->
 				<view class="flex items-center border-b border-gray-300 pb-2">
-					<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-					  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 8-4 4 4 4m8 0 4-4-4-4m-2-3-4 14"/>
-					</svg>
+					<view class="pen"></view>
 					<input
 					  class="w-full ml-2 outline-none font-bold" 
 					  v-model="formData.material_lot"
@@ -100,9 +87,7 @@
 				
 				<!-- Input user -->
 				<view class="flex items-center border-b border-gray-300 pb-2">
-					<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-					  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 8-4 4 4 4m8 0 4-4-4-4m-2-3-4 14"/>
-					</svg>
+					<view class="pen"></view>
 					<input
 					  class="w-full ml-2 outline-none font-bold" 
 					  v-model="formData.staff_check"
@@ -114,9 +99,7 @@
 				
 				<!-- Input remark -->
 				<view class="flex items-center border-b border-gray-300 pb-2">
-					<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-					  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 4h3a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h3m0 3h6m-6 5h6m-6 4h6M10 3v4h4V3h-4Z"/>
-					</svg>
+					<view class="pen"></view>
 					<textarea 
 						class="w-full ml-2 outline-none font-bold" 
 						@blur="bindTextAreaBlur" 
@@ -130,9 +113,7 @@
 				</view>
 				<!-- Select material -->
 				<view class="flex items-center border-b border-gray-300 pb-2">
-					<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-					  <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M18.796 4H5.204a1 1 0 0 0-.753 1.659l5.302 6.058a1 1 0 0 1 .247.659v4.874a.5.5 0 0 0 .2.4l3 2.25a.5.5 0 0 0 .8-.4v-7.124a1 1 0 0 1 .247-.659l5.302-6.059c.566-.646.106-1.658-.753-1.658Z"/>
-					</svg>
+					<view class="pen"></view>
 					<picker 
 					    @change="bindPickerMaterialChange" 
 					    :value="formData.material" 
@@ -145,9 +126,7 @@
 				
 				<!-- Input location 1 -->
 				<view class="flex items-center border-b border-gray-300 pb-2">
-					<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-					  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28"/>
-					</svg>
+					<view class="pen"></view>
 					<input
 					  class="w-full ml-2 outline-none font-bold" 
 					  v-model="formData.material_vt_1"
@@ -159,9 +138,7 @@
 				
 				<!-- Input location 2 -->
 				<view class="flex items-center border-b border-gray-300 pb-2">
-					<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-					  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28"/>
-					</svg>
+					<view class="pen"></view>
 					<input
 					  class="w-full ml-2 outline-none font-bold" 
 					  v-model="formData.material_vt_2"
@@ -173,9 +150,7 @@
 				
 				<!-- Input location 3 -->
 				<view class="flex items-center border-b border-gray-300 pb-2">
-					<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-					  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28"/>
-					</svg>
+					<view class="pen"></view>
 					<input
 					  class="w-full ml-2 outline-none font-bold" 
 					  v-model="formData.material_vt_3"
@@ -187,9 +162,7 @@
 				
 				<!-- Average -->
 				<view class="flex items-center border-b border-gray-300 pb-2">
-					<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-					  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 8v8m0-8a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 8a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm6-2a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm0 0h-1a5 5 0 0 1-5-5v-.5"/>
-					</svg>
+					<view class="pen"></view>
 					<span :class="[average.color, 'w-full ml-2 outline-none font-bold']">
 					    {{ average.average }}%
 					</span>
@@ -197,9 +170,7 @@
 				
 				<!-- Status result -->
 				<view class="flex items-center border-b border-gray-300 pb-2">
-					<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-					  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11.917 9.724 16.5 19 7.5"/>
-					</svg>
+					<view class="pen"></view>
 					<picker
 					  :range="arrayStatus" 
 					  :range-key="'label'" 
@@ -334,11 +305,12 @@
 			},
 			getMaterial() {
 			    this.isLoading = true;
-			
-			    axios.get("/iqcReport/getMaterial")
-			        .then((res) => {
-			            //console.log('Material (JSON):', JSON.stringify(res.data, null, 2));
-			
+			    
+			    uni.request({
+			        url: "http://10.30.3.50:8386/api/iqcReport/getMaterial",
+			        method: 'GET',
+			        success: (res) => {
+			            // console.log('Material (JSON):', JSON.stringify(res.data, null, 2));
 			            const newDataMaterial = res.data?.data || [];
 			
 			            if (Array.isArray(newDataMaterial) && newDataMaterial.length > 0) {
@@ -346,64 +318,71 @@
 			            } else {
 			                console.error('No material data or data is empty.');
 			            }
-			        })
-			        .catch((error) => {
+			        },
+			        fail: (error) => {
 			            console.error("Error fetching material data:", error);
-			        })
-			        .finally(() => {
+			        },
+			        complete: () => {
 			            this.isLoading = false;
-			        });
+			        }
+			    });
 			},
 			createReport() {
-				this.isLoading = true;
-				
-				if (!this.formData.date_record) {
-				    uni.showToast({
-				        icon: 'none',
-				        title: 'Vui lòng nhập ngày !',
-						duration: 2000
-				    });
-				    this.isLoading = false;
-				    return;
-				} else if (!this.formData.staff_check) {
-					uni.showToast({
-					    icon: 'none',
-					    title: 'MSNV không được trống',
-						duration: 2000
-					});
-					this.isLoading = false;
-					return;
-				} else if (!this.formData.status_material) {
-					uni.showToast({
-					    icon: 'none',
-					    title: 'Vui lòng chọn trạng thái',
-						duration: 2000
-					});
-					this.isLoading = false;
-					return;
-				}
-				
-				//console.log("FormData being sent:", this.formData);
-				axios.post("/iqcReport/insertMaterialIQC",
-					this.formData
-				).then((response) => {
-					console.log("Create success");
-					uni.showToast({
-						title: "Thành công",
-						icon: 'none',
-						success: (res) => {
-						   this.exeRet = "success:" + JSON.stringify(res) + new Date()
-						},
-					})
-				}).catch((error) => {
-					console.error("Error create: ", error);
-					alert("Create fail");
-				}).finally(() => {
-					this.isLoading = false;
-					uni.navigateTo({
-						url:'/pages/iqcReport/iqcMaterial'
-					})
-				})
+			    this.isLoading = true;
+			
+			    if (!this.formData.date_record) {
+			        uni.showToast({
+			            icon: 'none',
+			            title: 'Vui lòng nhập ngày !',
+			            duration: 2000
+			        });
+			        this.isLoading = false;
+			        return;
+			    } else if (!this.formData.staff_check) {
+			        uni.showToast({
+			            icon: 'none',
+			            title: 'MSNV không được trống',
+			            duration: 2000
+			        });
+			        this.isLoading = false;
+			        return;
+			    } else if (!this.formData.status_material) {
+			        uni.showToast({
+			            icon: 'none',
+			            title: 'Vui lòng chọn trạng thái',
+			            duration: 2000
+			        });
+			        this.isLoading = false;
+			        return;
+			    }
+			
+			    uni.request({
+			        url: "http://10.30.3.50:8386/api/iqcReport/insertMaterialIQC",
+			        method: 'POST',
+			        data: this.formData,
+			        success: (response) => {
+			            console.log("Create success");
+			            uni.showToast({
+			                title: "Thành công",
+			                icon: 'none',
+			                duration: 2000
+			            });
+			        },
+			        fail: (error) => {
+			            console.error("Error create:", error);
+			            uni.showToast({
+			                icon: 'none',
+			                title: 'Tạo thất bại',
+			                duration: 2000
+			            });
+			        },
+			        complete: () => {
+			            this.isLoading = false;
+			            uni.navigateTo({
+			                url: '/pages/iqcReport/iqcMaterial'
+			            });
+			        }
+			    });
 			},
 			onDateRecordChange(e) {
 				const dateRecord = e.detail.value;
@@ -478,5 +457,45 @@
 	  width: 50px;
 	  height: 50px;
 	}
+	
+	.user {
+			background-image: url('/static/user.png');
+			background-size: contain;
+			background-repeat: no-repeat;
+			width: 25px;
+			height: 25px;
+		}
+		
+		.clock {
+			background-image: url('/static/clock.png');
+			background-size: contain;
+			background-repeat: no-repeat;
+			width: 25px;
+			height: 25px;
+		}
+		
+		.location {
+			background-image: url('/static/location.png');
+			background-size: contain;
+			background-repeat: no-repeat;
+			width: 25px;
+			height: 25px;
+		}
+		
+		.calendar {
+			background-image: url('/static/calendar.png');
+			background-size: contain;
+			background-repeat: no-repeat;
+			width: 25px;
+			height: 25px;
+		}
+		
+		.pen {
+			background-image: url('/static/pen.png');
+			background-size: contain;
+			background-repeat: no-repeat;
+			width: 25px;
+			height: 25px;
+		}
 	
 </style>

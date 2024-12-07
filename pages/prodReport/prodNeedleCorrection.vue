@@ -62,7 +62,7 @@
 			class="scroll-container size-full mx-auto shadow-xl p-4"
 			style="overflow-y: auto; height: calc(190vh - 300px);"
 		>
-			<view v-for="(item, index) in dataList" :key="item.ID" @click="showDetail(item.ID)" class="grid grid-cols-2 grid-rows-1 gap-2 bg-white cursor-pointer shadow-lg rounded-xl p-4 mb-4">
+			<view v-for="(item, index) in dataList" :key="item.ID" class="grid grid-cols-3 grid-rows-1 gap-2 bg-white cursor-pointer shadow-lg rounded-xl p-4 mb-4">
 				<p class="font-semibold text-[#214263]">
 					Ngày kiểm : 
 					<span class="text-gray-600 text-sm font-bold">
@@ -70,9 +70,9 @@
 					</span>
 				</p>
 				<p class="font-semibold text-[#214263]">
-					Giữa ( Vị trí / 2,5,8 ) : 
+					Số máy : 
 					<span class="text-gray-600 text-sm font-bold">
-						{{ item.FAIL_MIDDLE_POSITION }}
+						{{ item.METAL_NO }}
 					</span>
 				</p>
 				<p class="font-semibold text-[#214263]">
@@ -84,25 +84,31 @@
 				<p class="font-semibold text-[#214263]">
 					Trái ( Vị trí / 1,4,7 ) : 
 					<span class="text-gray-600 text-sm font-bold">
-						{{ item.FAIL_LEFT_POSITION }}
+						{{ item.FAIL_LEFT_POSITION || '0' }}
 					</span>
 				</p>
 				<p class="font-semibold text-[#214263]">
-					Số máy : 
+					Giữa ( Vị trí / 2,5,8 ) : 
 					<span class="text-gray-600 text-sm font-bold">
-						{{ item.METAL_NO }}
+						{{ item.FAIL_MIDDLE_POSITION || '0' }}
 					</span>
 				</p>
 				<p class="font-semibold text-[#214263]">
 					Phải ( Vị trí / 3,6,9 ) : 
 					<span class="text-gray-600 text-sm font-bold">
-						{{ item.FAIL_RIGHT_POSITION }}
+						{{ item.FAIL_RIGHT_POSITION || '0' }}
 					</span>
 				</p>
 				<p class="font-semibold text-[#214263]">
 					Chuyền : 
 					<span class="text-gray-600 text-sm font-bold">
 						{{ item.DEPARTMENT_CODE }}
+					</span>
+				</p>
+				<p class="font-semibold text-[#214263]">
+					QC : 
+					<span class="text-gray-600 text-sm font-bold">
+						{{ item.QC }}
 					</span>
 				</p>
 				<p class="font-semibold text-[#214263]">
@@ -215,12 +221,19 @@
 			showDetail(id) {
 			  const selected = this.dataList.find((item) => item.ID === id);
 			  if (selected) {
-			    sessionStorage.setItem('selectedData', JSON.stringify(selected));
-			
-			    // Sử dụng Vue Router để điều hướng
-			    this.$router.push({
-			      path: '/pages/prodReport/viewProd/viewReportBC',
-			      query: { id },
+			    // Lưu trữ dữ liệu vào bộ nhớ tạm
+			    uni.setStorage({
+			      key: 'selectedData',
+			      data: selected,
+			      success: () => {
+			        // Chuyển hướng đến trang viewCheckPhom
+			        uni.navigateTo({
+			          url: '/pages/prodReport/viewProd/viewReportMaterialProduction',
+			        });
+			      },
+			      fail: (error) => {
+			        console.error('Error saving selectedData:', error);
+			      }
 			    });
 			  }
 			},
@@ -239,52 +252,67 @@
 			    }
 			},
 			fetchData() {
-				if (this.isLoading || this.startPage > this.totalPage) {
-				  console.log("Fetch skipped: Loading or all pages loaded");
-				  return;
-				}
-				this.isLoading = true;		
-				axios
-				.get("/prodReport/dataReportNeedle", {
-				    params: {
-				      page: this.startPage,
-				      limit: 10,
-				      startDate: this.startDate,
-				      endDate: this.endDate,
-				      searchValue: this.searchValue,
-				    },
-				})
-				.then((response) => {
-				    console.log("Response từ API:", response.data);
-				    const newData = response.data?.data || [];
-							
-				    // Kiểm tra dữ liệu trước khi cập nhật
-				    if (Array.isArray(newData) && newData.length > 0) {
-				      this.dataList = [...this.dataList, ...newData];
-									this.startPage += 1;
-				      if (response.data.totalPage) {
-				        this.totalPage = response.data.totalPage;
-				      }
-				    } else {
-						console.log("Không có dữ liệu mới để thêm.");
-						uni.showToast({
-							title: "Không có dữ liệu mới để thêm.",
-							icon: 'none',
-							success: (res) => {
-								this.exeRet = "success:" + JSON.stringify(res) + new Date()
-							},
-							fail: (res) => {
-								this.exeRet = "fail:" + JSON.stringify(res)
-							},
-						})
-				    }
-				})
-				.catch((error) => {
-				    console.error("Lỗi khi gọi API:", error);
-				})
-				.finally(() => {
-				    this.isLoading = false;
-				});
+			  // Tránh gọi API nếu đang tải hoặc đã tải hết các trang
+			  if (this.isLoading || this.startPage > this.totalPage) {
+			    console.log("Fetch skipped: Đang tải hoặc đã tải hết các trang.");
+			    return;
+			  }
+			
+			  this.isLoading = true;
+			
+			  uni.request({
+			    url: 'http://10.30.3.50:8386/api/prodReport/dataReportNeedle', // Địa chỉ API của bạn
+			    method: 'GET',
+			    data: {
+			      page: this.startPage,
+			      limit: 10,
+			      startDate: this.startDate,
+			      endDate: this.endDate,
+			      searchValue: this.searchValue,
+			    },
+			    success: (response) => {
+			      console.log("Response từ API:", response.data);
+			
+			      // Xử lý dữ liệu nhận được
+			      const newData = response.data?.data || [];
+			      if (Array.isArray(newData) && newData.length > 0) {
+			        // Cập nhật danh sách dữ liệu và số trang
+			        this.dataList = [...this.dataList, ...newData];
+			        this.startPage += 1;
+			
+			        if (response.data.totalPage) {
+			          this.totalPage = response.data.totalPage;
+			        }
+			      } else {
+			        // Không có dữ liệu mới
+			        console.log("Không có dữ liệu mới để thêm.");
+			        uni.showToast({
+			          title: "Không có dữ liệu mới để thêm.",
+			          icon: 'none',
+			          success: (res) => {
+			            console.log("Thông báo thành công:", res);
+			          },
+			          fail: (res) => {
+			            console.error("Thông báo thất bại:", res);
+			          },
+			        });
+			      }
+			    },
+			    fail: (error) => {
+			      // Hiển thị lỗi khi gọi API
+			      console.error("Lỗi khi gọi API:", error);
+			
+			      // Thông báo lỗi cho người dùng
+			      uni.showToast({
+			        title: "Lỗi khi tải dữ liệu!",
+			        icon: "none",
+			      });
+			    },
+			    complete: () => {
+			      // Đặt lại trạng thái isLoading
+			      this.isLoading = false;
+			    }
+			  });
 			}
 		}
 	}

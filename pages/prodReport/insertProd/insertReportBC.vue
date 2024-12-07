@@ -33,9 +33,7 @@
 								<view class="flex flex-col gap-4 text-sm mt-4">
 									<h2 class="font-semibold text-xl">Ngày :</h2>
 									<view class="flex items-center border-b border-gray-300 pb-2">
-										<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-										  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 10h16m-8-3V4M7 7V4m10 3V4M5 20h14a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Zm3-7h.01v.01H8V13Zm4 0h.01v.01H12V13Zm4 0h.01v.01H16V13Zm-8 4h.01v.01H8V17Zm4 0h.01v.01H12V17Zm4 0h.01v.01H16V17Z"/>
-										</svg>
+										<view class="calendar"></view>
 										<picker
 											class="w-full ml-2 outline-none font-bold"
 											mode="date"
@@ -50,10 +48,7 @@
 									<view class="flex flex-col gap-4">
 										<h2 class="font-semibold text-xl">Chuyền :</h2>
 										<view class="flex items-center border-b border-gray-300 pb-2">
-											<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-											  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
-											  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.8 13.938h-.011a7 7 0 1 0-11.464.144h-.016l.14.171c.1.127.2.251.3.371L12 21l5.13-6.248c.194-.209.374-.429.54-.659l.13-.155Z"/>
-											</svg>
+											<view class="location"></view>
 											<picker
 											    @change="bindPickerDepartmentChange"
 											    :value="formData.DEPARTMENT_CODE"
@@ -68,10 +63,7 @@
 									<view class="flex flex-col gap-4">
 										<h2 class="font-semibold text-xl">PO :</h2>
 										<view class="flex items-center border-b border-gray-300 pb-2">
-											<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-											  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
-											  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.8 13.938h-.011a7 7 0 1 0-11.464.144h-.016l.14.171c.1.127.2.251.3.371L12 21l5.13-6.248c.194-.209.374-.429.54-.659l.13-.155Z"/>
-											</svg>
+											<view class="pen"></view>
 											<view class="flex justify-between items-center" >
 												<input
 												  class="w-full ml-2 text-[18px] outline-none font-bold" 
@@ -86,10 +78,7 @@
 									<view class="flex flex-col gap-4">
 										<h2 class="font-semibold text-xl">ART :</h2>
 										<view class="flex items-center border-b border-gray-300 pb-2">
-											<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-											  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
-											  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.8 13.938h-.011a7 7 0 1 0-11.464.144h-.016l.14.171c.1.127.2.251.3.371L12 21l5.13-6.248c.194-.209.374-.429.54-.659l.13-.155Z"/>
-											</svg>
+											<view class="pen"></view>
 											<view class="flex" >
 												<!-- Dropdown MySelect -->
 												<my-select
@@ -105,18 +94,14 @@
 									<view class="flex flex-col gap-4">
 										<h2 class="font-semibold text-xl">Hình thể</h2>
 										<view class="flex items-center border-b border-gray-300 pb-2">
-											<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-											  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28"/>
-											</svg>
-											<span class="w-full ml-2 outline-none font-bold">{{formData.STYLE}}</span>
+											<view class="pen"></view>
+											<span class="w-full ml-2 outline-none font-bold">{{formData.STYLE || "Hình thể"}}</span>
 										</view>
 									</view>
 									<view class="flex flex-col gap-4">
 										<h2 class="font-semibold text-xl">Ghi chú</h2>
 										<view class="flex items-center border-b border-gray-300 pb-2">
-											<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-											  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28"/>
-											</svg>
+											<view class="pen"></view>
 											<input
 											  class="w-full ml-2 text-[18px] outline-none font-bold" 
 											  type="text" 
@@ -142,9 +127,7 @@
 										<view class="flex flex-col gap-4">
 											<h2 class="font-semibold text-xl">Size B</h2>
 											<view class="flex items-center border-b border-gray-300 pb-2">
-												<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-												  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28"/>
-												</svg>
+												<view class="pen"></view>
 												<picker
 												    @change="bindPickerSizeBFI"
 												    :value="formData.FI_SIZE_B"
@@ -159,9 +142,7 @@
 										<view class="flex flex-col gap-4">
 											<h2 class="font-semibold text-xl">Chân trái/phải</h2>
 											<view class="flex items-center border-b border-gray-300 pb-2">
-												<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-												  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28"/>
-												</svg>
+												<view class="pen"></view>
 												<picker
 												  :range="arrayFoot" 
 												  :range-key="'label'" 
@@ -177,9 +158,7 @@
 										<view class="flex flex-col gap-4">
 											<h2 class="font-semibold text-xl">Số lượng B</h2>
 											<view class="flex items-center border-b border-gray-300 pb-2">
-												<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-												  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28"/>
-												</svg>
+												<view class="pen"></view>
 												<input
 												  class="w-full ml-2 outline-none font-bold" 
 												  type="text" 
@@ -193,9 +172,7 @@
 										<view class="flex flex-col gap-4">
 											<h2 class="font-semibold text-xl">Nguyên nhân</h2>
 											<view class="flex items-center border-b border-gray-300 pb-2">
-												<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-												  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28"/>
-												</svg>
+												<view class="pen"></view>
 												<my-select
 													class="w-full ml-2"
 													:data="dataIssueBFI"
@@ -212,9 +189,7 @@
 										<view class="flex flex-col gap-4">
 											<h2 class="font-semibold text-xl">Size C</h2>
 											<view class="flex items-center border-b border-gray-300 pb-2">
-												<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-												  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28"/>
-												</svg>
+												<view class="pen"></view>
 												<picker
 												    @change="bindPickerSizeCFI"
 												    :value="formData.FI_SIZE_C"
@@ -229,9 +204,7 @@
 										<view class="flex flex-col gap-4">
 											<h2 class="font-semibold text-xl">Chân trái/phải</h2>
 											<view class="flex items-center border-b border-gray-300 pb-2">
-												<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-												  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28"/>
-												</svg>
+												<view class="pen"></view>
 												<picker
 												  :range="arrayFoot" 
 												  :range-key="'label'" 
@@ -247,9 +220,7 @@
 										<view class="flex flex-col gap-4">
 											<h2 class="font-semibold text-xl">Số lượng C</h2>
 											<view class="flex items-center border-b border-gray-300 pb-2">
-												<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-												  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28"/>
-												</svg>
+												<view class="pen"></view>
 												<input
 												  class="w-full ml-2 outline-none font-bold" 
 												  type="text" 
@@ -263,9 +234,7 @@
 										<view class="flex flex-col gap-4">
 											<h2 class="font-semibold text-xl">Nguyên nhân</h2>
 											<view class="flex items-center border-b border-gray-300 pb-2">
-												<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-												  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28"/>
-												</svg>
+												<view class="pen"></view>
 												<my-select
 													:data="dataIssueCFI"
 													v-model="selectedIssueCFI"
@@ -291,9 +260,7 @@
 										<view class="flex flex-col gap-4">
 											<h2 class="font-semibold text-xl">Size B</h2>
 											<view class="flex items-center border-b border-gray-300 pb-2">
-												<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-												  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28"/>
-												</svg>
+												<view class="pen"></view>
 												<picker
 												    @change="bindPickerSizeBProd"
 												    :value="formData.LINE_SIZE_B"
@@ -308,9 +275,7 @@
 										<view class="flex flex-col gap-4">
 											<h2 class="font-semibold text-xl">Chân trái/phải</h2>
 											<view class="flex items-center border-b border-gray-300 pb-2">
-												<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-												  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28"/>
-												</svg>
+												<view class="pen"></view>
 												<picker
 												  :range="arrayFoot" 
 												  :range-key="'label'" 
@@ -326,9 +291,7 @@
 										<view class="flex flex-col gap-4">
 											<h2 class="font-semibold text-xl">Số lượng B</h2>
 											<view class="flex items-center border-b border-gray-300 pb-2">
-												<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-												  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28"/>
-												</svg>
+												<view class="pen"></view>
 												<input
 												  class="w-full ml-2 outline-none font-bold" 
 												  type="text" 
@@ -342,9 +305,7 @@
 										<view class="flex flex-col gap-4">
 											<h2 class="font-semibold text-xl">Nguyên nhân</h2>
 											<view class="flex items-center border-b border-gray-300 pb-2">
-												<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-												  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28"/>
-												</svg>
+												<view class="pen"></view>
 												<my-select
 													class="w-full ml-2"
 													:data="dataIssueBProd"
@@ -361,9 +322,7 @@
 										<view class="flex flex-col gap-4">
 											<h2 class="font-semibold text-xl">Size C</h2>
 											<view class="flex items-center border-b border-gray-300 pb-2">
-												<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-												  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28"/>
-												</svg>
+												<view class="pen"></view>
 												<picker
 												    @change="bindPickerSizeCProd"
 												    :value="formData.LINE_SIZE_C"
@@ -378,9 +337,7 @@
 										<view class="flex flex-col gap-4">
 											<h2 class="font-semibold text-xl">Chân trái/phải</h2>
 											<view class="flex items-center border-b border-gray-300 pb-2">
-												<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-												  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28"/>
-												</svg>
+												<view class="pen"></view>
 												<picker
 												  :range="arrayFoot" 
 												  :range-key="'label'" 
@@ -396,9 +353,7 @@
 										<view class="flex flex-col gap-4">
 											<h2 class="font-semibold text-xl">Số lượng C</h2>
 											<view class="flex items-center border-b border-gray-300 pb-2">
-												<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-												  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28"/>
-												</svg>
+												<view class="pen"></view>
 												<input
 												  class="w-full ml-2 outline-none font-bold" 
 												  type="text" 
@@ -412,9 +367,7 @@
 										<view class="flex flex-col gap-4">
 											<h2 class="font-semibold text-xl">Nguyên nhân</h2>
 											<view class="flex items-center border-b border-gray-300 pb-2">
-												<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-												  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28"/>
-												</svg>
+												<view class="pen"></view>
 												<my-select
 													class="w-full ml-2"
 													:data="dataIssueCProd"
@@ -598,22 +551,24 @@
 			getDepartment() {
 			    this.isLoading = true;
 			
-			    axios.get("/configData/getDepartment")
-				.then((res) => {
-					//console.log('Material (JSON):', JSON.stringify(res.data, null, 2));
-					const newDataDepartment = res.data?.data || [];
-					if (Array.isArray(newDataDepartment) && newDataDepartment.length > 0) {
-						this.dataDepartment = [...this.dataDepartment, ...newDataDepartment];
-					} else {
-						console.error('No department data or data is empty.');
-					}
-				})
-				.catch((error) => {
-					console.error("Error fetching department data:", error);
-				})
-				.finally(() => {
-					this.isLoading = false;
-				});
+			    uni.request({
+			        url: 'http://10.30.3.50:8386/api/configData/getDepartment',
+			        method: 'GET',
+			        success: (res) => {
+			            const newDataDepartment = res.data?.data || [];
+			            if (Array.isArray(newDataDepartment) && newDataDepartment.length > 0) {
+			                this.dataDepartment = [...this.dataDepartment, ...newDataDepartment];
+			            } else {
+			                console.error('No department data or data is empty.');
+			            }
+			        },
+			        fail: (error) => {
+			            console.error("Error fetching department data:", error);
+			        },
+			        complete: () => {
+			            this.isLoading = false;
+			        }
+			    });
 			},
 			bindPickerDepartmentChange(e){
 				const selectedIndex = e.detail.value;
@@ -643,24 +598,24 @@
 			getART() {
 			    this.isLoading = true;
 			
-			    axios.get("/configData/getART")
-			        .then((res) => {
-			            //console.log('Material (JSON):', JSON.stringify(res.data, null, 2));
-			
+			    uni.request({
+			        url: 'http://10.30.3.50:8386/api/configData/getART',
+			        method: 'GET',
+			        success: (res) => {
 			            const newDataART = res.data?.data || [];
-			
 			            if (Array.isArray(newDataART) && newDataART.length > 0) {
 			                this.dataART = [...this.dataART, ...newDataART];
 			            } else {
 			                console.error('No ART data or data is empty.');
 			            }
-			        })
-			        .catch((error) => {
+			        },
+			        fail: (error) => {
 			            console.error("Error fetching ART data:", error);
-			        })
-			        .finally(() => {
+			        },
+			        complete: () => {
 			            this.isLoading = false;
-			        });
+			        }
+			    });
 			},
 			handleARTSelect(selectedItem) {
 			    console.log("ART đã chọn:", selectedItem);
@@ -672,52 +627,52 @@
 			getSIZE() {
 			    this.isLoading = true;
 			
-			    axios.get("/configData/getSize")
-			        .then((res) => {
-			            //console.log('Material (JSON):', JSON.stringify(res.data, null, 2));
-			
+			    uni.request({
+			        url: 'http://10.30.3.50:8386/api/configData/getSize',
+			        method: 'GET',
+			        success: (res) => {
 			            const newDataSIZE = res.data?.data || [];
-			
 			            if (Array.isArray(newDataSIZE) && newDataSIZE.length > 0) {
 			                this.dataSIZEBFI = [...this.dataSIZEBFI, ...newDataSIZE];
-							this.dataSIZECFI = [...this.dataSIZECFI, ...newDataSIZE];
-							this.dataSIZEBProd = [...this.dataSIZEBProd, ...newDataSIZE];
-							this.dataSIZECProd = [...this.dataSIZECProd, ...newDataSIZE];
+			                this.dataSIZECFI = [...this.dataSIZECFI, ...newDataSIZE];
+			                this.dataSIZEBProd = [...this.dataSIZEBProd, ...newDataSIZE];
+			                this.dataSIZECProd = [...this.dataSIZECProd, ...newDataSIZE];
 			            } else {
-			                console.error('No ART data or data is empty.');
+			                console.error('No size data or data is empty.');
 			            }
-			        })
-			        .catch((error) => {
-			            console.error("Error fetching ART data:", error);
-			        })
-			        .finally(() => {
+			        },
+			        fail: (error) => {
+			            console.error("Error fetching size data:", error);
+			        },
+			        complete: () => {
 			            this.isLoading = false;
-			        });
+			        }
+			    });
 			},
 			getISSUE() {
 			    this.isLoading = true;
 			
-			    axios.get("/configData/getIssue")
-			        .then((res) => {
-			            //console.log('Material (JSON):', JSON.stringify(res.data, null, 2));
-			
+			    uni.request({
+			        url: 'http://10.30.3.50:8386/api/configData/getIssue',
+			        method: 'GET',
+			        success: (res) => {
 			            const newDataISSUE = res.data?.data || [];
-			
 			            if (Array.isArray(newDataISSUE) && newDataISSUE.length > 0) {
 			                this.dataIssueBFI = [...this.dataIssueBFI, ...newDataISSUE];
-							this.dataIssueCFI = [...this.dataIssueCFI, ...newDataISSUE];
-							this.dataIssueBProd = [...this.dataIssueBProd, ...newDataISSUE];
-							this.dataIssueCProd = [...this.dataIssueCProd, ...newDataISSUE];
+			                this.dataIssueCFI = [...this.dataIssueCFI, ...newDataISSUE];
+			                this.dataIssueBProd = [...this.dataIssueBProd, ...newDataISSUE];
+			                this.dataIssueCProd = [...this.dataIssueCProd, ...newDataISSUE];
 			            } else {
-			                console.error('No ART data or data is empty.');
+			                console.error('No issue data or data is empty.');
 			            }
-			        })
-			        .catch((error) => {
-			            console.error("Error fetching ART data:", error);
-			        })
-			        .finally(() => {
+			        },
+			        fail: (error) => {
+			            console.error("Error fetching issue data:", error);
+			        },
+			        complete: () => {
 			            this.isLoading = false;
-			        });
+			        }
+			    });
 			},
 			handleSIZEBFI(selectedItem) {
 			    console.log("ART đã chọn:", selectedItem);
@@ -770,22 +725,42 @@
 			async createData() {
 			    this.isLoading = true;
 			    try {
-			        
+			        // Kiểm tra ngày lãnh (DATE_REPORT)
 			        if (!this.formData.DATE_REPORT) {
 			            uni.showToast({
-			                title: "Ngày lãnh không hợp lệ",
+			                title: "Ngày lãnh không hợp lệ",
 			                icon: "none",
 			                duration: 2000,
 			            });
 			            return;
 			        }
-					
 			
-			        await axios.post(`/prodReport/createReportBC`, this.formData);
-			        uni.showToast({
-			            title: "Tạo thành công",
-			            icon: "none",
-			            duration: 2000,
+			        // Sử dụng uni.request thay cho axios.post
+			        uni.request({
+			            url: 'http://10.30.3.50:8386/api/prodReport/createReportBC',
+			            method: 'POST',
+			            data: this.formData,
+			            success: (res) => {
+			                uni.showToast({
+			                    title: "Tạo thành công",
+			                    icon: "none",
+			                    duration: 2000,
+			                });
+			            },
+			            fail: (error) => {
+			                console.error("Create error: " + error);
+			                uni.showToast({
+			                    title: "Tạo thất bại",
+			                    icon: "none",
+			                    duration: 2000,
+			                });
+			            },
+			            complete: () => {
+			                this.isLoading = false;
+			                uni.navigateTo({
+			                    url: '/pages/prodReport/prodReportBC'
+			                });
+			            }
 			        });
 			    } catch (error) {
 			        console.error("Create error: " + error);
@@ -794,13 +769,8 @@
 			            icon: "none",
 			            duration: 2000,
 			        });
-			    } finally {
-			        this.isLoading = false;
-			        uni.navigateTo({
-			            url: '/pages/prodReport/prodReportBC'
-			        });
 			    }
-			},
+			}
 		}
 	}
 </script>
@@ -825,4 +795,44 @@
 		margin-top: 2px;
 		margin-left: 4px;
 	}
+	
+	.user {
+			background-image: url('/static/user.png');
+			background-size: contain;
+			background-repeat: no-repeat;
+			width: 25px;
+			height: 25px;
+		}
+		
+		.clock {
+			background-image: url('/static/clock.png');
+			background-size: contain;
+			background-repeat: no-repeat;
+			width: 25px;
+			height: 25px;
+		}
+		
+		.location {
+			background-image: url('/static/location.png');
+			background-size: contain;
+			background-repeat: no-repeat;
+			width: 25px;
+			height: 25px;
+		}
+		
+		.calendar {
+			background-image: url('/static/calendar.png');
+			background-size: contain;
+			background-repeat: no-repeat;
+			width: 25px;
+			height: 25px;
+		}
+		
+		.pen {
+			background-image: url('/static/pen.png');
+			background-size: contain;
+			background-repeat: no-repeat;
+			width: 25px;
+			height: 25px;
+		}
 </style>

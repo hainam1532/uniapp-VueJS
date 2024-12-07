@@ -170,62 +170,84 @@
 			showDetail(id) {
 			  const selected = this.dataList.find((item) => item.ID === id);
 			  if (selected) {
-			    sessionStorage.setItem('selectedData', JSON.stringify(selected));
-			
-			    // Sử dụng Vue Router để điều hướng
-			    this.$router.push({
-			      path: '/pages/prodReport/viewProd/viewReportBC',
-			      query: { id },
+			    // Lưu trữ dữ liệu vào bộ nhớ tạm
+			    uni.setStorage({
+			      key: 'selectedData',
+			      data: selected,
+			      success: () => {
+			        // Chuyển hướng đến trang viewCheckPhom
+			        uni.navigateTo({
+			          url: '/pages/prodReport/viewProd/viewReportBC',
+			        });
+			      },
+			      fail: (error) => {
+			        console.error('Error saving selectedData:', error);
+			      }
 			    });
 			  }
 			},
 			fetchData() {
-				if (this.isLoading || this.startPage > this.totalPage) {
-				  console.log("Fetch skipped: Loading or all pages loaded");
-				  return;
-				}
-				this.isLoading = true;		
-				axios
-				.get("/prodReport/dataReportBC", {
-				    params: {
-				      page: this.startPage,
-				      limit: 10,
-				      startDate: this.startDate,
-				      endDate: this.endDate,
-				      searchValue: this.searchValue,
-				    },
-				})
-				.then((response) => {
-				    console.log("Response từ API:", response.data);
-				    const newData = response.data?.data || [];
-							
-				    // Kiểm tra dữ liệu trước khi cập nhật
-				    if (Array.isArray(newData) && newData.length > 0) {
-				      this.dataList = [...this.dataList, ...newData];
-									this.startPage += 1;
-				      if (response.data.totalPage) {
-				        this.totalPage = response.data.totalPage;
-				      }
-				    } else {
-						console.log("Không có dữ liệu mới để thêm.");
-						uni.showToast({
-							title: "Không có dữ liệu mới để thêm.",
-							icon: 'none',
-							success: (res) => {
-								this.exeRet = "success:" + JSON.stringify(res) + new Date()
-							},
-							fail: (res) => {
-								this.exeRet = "fail:" + JSON.stringify(res)
-							},
-						})
-				    }
-				})
-				.catch((error) => {
-				    console.error("Lỗi khi gọi API:", error);
-				})
-				.finally(() => {
-				    this.isLoading = false;
-				});
+			  // Tránh gọi API nếu đang tải hoặc đã tải hết các trang
+			  if (this.isLoading || this.startPage > this.totalPage) {
+			    console.log("Fetch skipped: Đang tải hoặc đã tải hết các trang.");
+			    return;
+			  }
+			
+			  this.isLoading = true;
+			
+			  uni.request({
+			    url: 'http://10.30.3.50:8386/api/prodReport/dataReportBC', // Địa chỉ API của bạn
+			    method: 'GET',
+			    data: {
+			      page: this.startPage,
+			      limit: 10,
+			      startDate: this.startDate,
+			      endDate: this.endDate,
+			      searchValue: this.searchValue,
+			    },
+			    success: (response) => {
+			      console.log("Response từ API:", response.data);
+			
+			      // Xử lý dữ liệu nhận được
+			      const newData = response.data?.data || [];
+			      if (Array.isArray(newData) && newData.length > 0) {
+			        // Cập nhật danh sách dữ liệu và số trang
+			        this.dataList = [...this.dataList, ...newData];
+			        this.startPage += 1;
+			
+			        if (response.data.totalPage) {
+			          this.totalPage = response.data.totalPage;
+			        }
+			      } else {
+			        // Không có dữ liệu mới
+			        console.log("Không có dữ liệu mới để thêm.");
+			        uni.showToast({
+			          title: "Không có dữ liệu mới để thêm.",
+			          icon: 'none',
+			          success: (res) => {
+			            console.log("Thông báo thành công:", res);
+			          },
+			          fail: (res) => {
+			            console.error("Thông báo thất bại:", res);
+			          },
+			        });
+			      }
+			    },
+			    fail: (error) => {
+			      // Hiển thị lỗi khi gọi API
+			      console.error("Lỗi khi gọi API:", error);
+			
+			      // Thông báo lỗi cho người dùng
+			      uni.showToast({
+			        title: "Lỗi khi tải dữ liệu!",
+			        icon: "none",
+			      });
+			    },
+			    complete: () => {
+			      // Đặt lại trạng thái isLoading
+			      this.isLoading = false;
+			    }
+			  });
 			}
 		}
 	}

@@ -157,44 +157,67 @@
 			  this.fetchData(); // Gọi lại fetchData để truy vấn với searchValue mới
 			},
 			fetchData() {
-				this.isLoading = true;
-				
-				axios.get('/prodReport/dataOuterBoxSeal', {
-					params: {
-						page: this.startPage,
-						limit: 20,
-						startDate: this.startDate,
-						endDate: this.endDate,
-					}
-				}).then((response) => {
-					console.log('Data' + response.data)
-					const newData = response.data?.data || [];
-								
-					// Kiểm tra dữ liệu trước khi cập nhật
-					if (Array.isArray(newData) && newData.length > 0) {
-					  this.dataList = [...this.dataList, ...newData];
-										this.startPage += 1;
-					  if (response.data.totalPage) {
-					    this.totalPage = response.data.totalPage;
-					  }
-					} else {
-						console.log("Không có dữ liệu mới để thêm.");
-						uni.showToast({
-							title: "Không có dữ liệu mới để thêm.",
-							icon: 'none',
-							success: (res) => {
-							   this.exeRet = "success:" + JSON.stringify(res) + new Date()
-							},
-							fail: (res) => {
-							   this.exeRet = "fail:" + JSON.stringify(res)
-							},
-						})
-					}
-				}).catch((error) => {
-					console.error('Error get data phom: ' + error)
-				}).finally(() => {
-					this.isLoading = false;
-				})
+			  // Tránh gọi API nếu đang tải hoặc đã tải hết các trang
+			  if (this.isLoading || this.startPage > this.totalPage) {
+			    console.log("Fetch skipped: Đang tải hoặc đã tải hết các trang.");
+			    return;
+			  }
+			
+			  this.isLoading = true;
+			
+			  uni.request({
+			    url: 'http://10.30.3.50:8386/api/prodReport/dataOuterBoxSeal', // Địa chỉ API của bạn
+			    method: 'GET',
+			    data: {
+			      page: this.startPage,
+			      limit: 10,
+			      startDate: this.startDate,
+			      endDate: this.endDate,
+			      searchValue: this.searchValue,
+			    },
+			    success: (response) => {
+			      console.log("Response từ API:", response.data);
+			
+			      // Xử lý dữ liệu nhận được
+			      const newData = response.data?.data || [];
+			      if (Array.isArray(newData) && newData.length > 0) {
+			        // Cập nhật danh sách dữ liệu và số trang
+			        this.dataList = [...this.dataList, ...newData];
+			        this.startPage += 1;
+			
+			        if (response.data.totalPage) {
+			          this.totalPage = response.data.totalPage;
+			        }
+			      } else {
+			        // Không có dữ liệu mới
+			        console.log("Không có dữ liệu mới để thêm.");
+			        uni.showToast({
+			          title: "Không có dữ liệu mới để thêm.",
+			          icon: 'none',
+			          success: (res) => {
+			            console.log("Thông báo thành công:", res);
+			          },
+			          fail: (res) => {
+			            console.error("Thông báo thất bại:", res);
+			          },
+			        });
+			      }
+			    },
+			    fail: (error) => {
+			      // Hiển thị lỗi khi gọi API
+			      console.error("Lỗi khi gọi API:", error);
+			
+			      // Thông báo lỗi cho người dùng
+			      uni.showToast({
+			        title: "Lỗi khi tải dữ liệu!",
+			        icon: "none",
+			      });
+			    },
+			    complete: () => {
+			      // Đặt lại trạng thái isLoading
+			      this.isLoading = false;
+			    }
+			  });
 			},
 			// Hàm cập nhật Ngày Kết Thúc khi người dùng chọn
 			onEndDateChange(e) {

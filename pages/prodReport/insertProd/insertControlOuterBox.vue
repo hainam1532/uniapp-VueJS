@@ -31,9 +31,7 @@
 							</view>
 							<view class="flex flex-col gap-4 text-sm mt-4">
 								<view class="flex items-center border-b border-gray-300 pb-2">
-									<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-									  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 10h16m-8-3V4M7 7V4m10 3V4M5 20h14a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Zm3-7h.01v.01H8V13Zm4 0h.01v.01H12V13Zm4 0h.01v.01H16V13Zm-8 4h.01v.01H8V17Zm4 0h.01v.01H12V17Zm4 0h.01v.01H16V17Z"/>
-									</svg>
+									<view class="calendar"></view>
 									<picker
 										class="w-full ml-2 outline-none font-bold"
 										mode="date"
@@ -46,9 +44,7 @@
 									</picker>
 								</view>
 								<view class="flex items-center border-b border-gray-300 pb-2">
-									<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-									  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 10h16m-8-3V4M7 7V4m10 3V4M5 20h14a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Zm3-7h.01v.01H8V13Zm4 0h.01v.01H12V13Zm4 0h.01v.01H16V13Zm-8 4h.01v.01H8V17Zm4 0h.01v.01H12V17Zm4 0h.01v.01H16V17Z"/>
-									</svg>
+									<view class="calendar"></view>
 									<input
 										class="w-full ml-2 outline-none text-xl font-bold" 
 										type="text"
@@ -58,9 +54,7 @@
 									/>
 								</view>
 								<view class="flex items-center border-b border-gray-300 pb-2">
-									<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-									  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28"/>
-									</svg>
+									<view class="pen"></view>
 									<input
 										class="w-full ml-2 outline-none text-xl font-bold" 
 										type="text"
@@ -83,9 +77,7 @@
 										<view class="flex flex-col gap-4">
 											<h2 class="font-semibold text-xl">Số lượng lãnh</h2>
 											<view class="flex items-center border-b border-gray-300 pb-2">
-												<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-												  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28"/>
-												</svg>
+												<view class="pen"></view>
 												<input
 												  class="w-full ml-2 outline-none font-bold" 
 												  type="text"
@@ -99,9 +91,7 @@
 										<view class="flex flex-col gap-4">
 											<h2 class="font-semibold text-xl">Số lượng sử dụng</h2>
 											<view class="flex items-center border-b border-gray-300 pb-2">
-												<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-												  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28"/>
-												</svg>
+												<view class="pen"></view>
 												<input
 												  class="w-full ml-2 outline-none font-bold" 
 												  type="text"
@@ -115,9 +105,7 @@
 										<view class="flex flex-col gap-4">
 											<h2 class="font-semibold text-xl">Số lượng hư hỏng</h2>
 											<view class="flex items-center border-b border-gray-300 pb-2">
-												<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-												  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28"/>
-												</svg>
+												<view class="pen"></view>
 												<input
 												  class="w-full ml-2 outline-none font-bold" 
 												  type="text" 
@@ -130,9 +118,7 @@
 										<view class="flex flex-col gap-4">
 											<h2 class="font-semibold text-xl">Số lượng còn lại</h2>
 											<view class="flex items-center border-b border-gray-300 pb-2">
-												<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-												  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28"/>
-												</svg>
+												<view class="pen"></view>
 												<input
 												  class="w-full ml-2 outline-none font-bold" 
 												  type="text" 
@@ -146,10 +132,7 @@
 										<view class="flex flex-col gap-4">
 											<h2 class="font-semibold text-xl">Bộ phận</h2>
 											<view class="flex items-center border-b border-gray-300 pb-2">
-												<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-												  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
-												  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.8 13.938h-.011a7 7 0 1 0-11.464.144h-.016l.14.171c.1.127.2.251.3.371L12 21l5.13-6.248c.194-.209.374-.429.54-.659l.13-.155Z"/>
-												</svg>
+												<view class="location"></view>
 												<picker
 												    @change="bindPickerDepartmentChange" 
 												    :value="formData.DEPARTMENT"
@@ -164,9 +147,7 @@
 										<view class="flex flex-col gap-4">
 											<h2 class="font-semibold text-xl">Ghi chú</h2>
 											<view class="flex items-center border-b border-gray-300 pb-2">
-												<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-												  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28"/>
-												</svg>
+												<view class="pen"></view>
 												<input
 												  class="w-full ml-2 outline-none font-bold" 
 												  type="text" 
@@ -257,10 +238,11 @@
 			getPlant() {
 			    this.isLoading = true;
 			
-			    axios.get("/configData/getPlant")
-			        .then((res) => {
-			            //console.log('Material (JSON):', JSON.stringify(res.data, null, 2));
-			
+			    uni.request({
+			        url: "http://10.30.3.50:8386/api/configData/getPlant",
+			        method: 'GET',
+			        success: (res) => {
+			            // console.log('Plant data:', JSON.stringify(res.data, null, 2));
 			            const newDataMaterial = res.data?.data || [];
 			
 			            if (Array.isArray(newDataMaterial) && newDataMaterial.length > 0) {
@@ -268,13 +250,14 @@
 			            } else {
 			                console.error('No department data or data is empty.');
 			            }
-			        })
-			        .catch((error) => {
+			        },
+			        fail: (error) => {
 			            console.error("Error fetching department data:", error);
-			        })
-			        .finally(() => {
+			        },
+			        complete: () => {
 			            this.isLoading = false;
-			        });
+			        }
+			    });
 			},
 			async createData() {
 			    this.isLoading = true;
@@ -288,14 +271,34 @@
 			            });
 			            return;
 			        }
-					
-					//console.log(this.formData)
 			
-			        await axios.post(`/prodReport/createControlOuterBox`, this.formData);
-			        uni.showToast({
-			            title: "Tạo thành công",
-			            icon: "none",
-			            duration: 2000,
+			        // Sử dụng uni.request thay vì axios
+			        uni.request({
+			            url: `http://10.30.3.50:8386/api/prodReport/createControlOuterBox`,
+			            method: 'POST',
+			            data: this.formData,
+			            success: (response) => {
+			                console.log("Create success");
+			                uni.showToast({
+			                    title: "Tạo thành công",
+			                    icon: "none",
+			                    duration: 2000,
+			                });
+			            },
+			            fail: (error) => {
+			                console.error("Create error: " + error);
+			                uni.showToast({
+			                    title: "Tạo thất bại",
+			                    icon: "none",
+			                    duration: 2000,
+			                });
+			            },
+			            complete: () => {
+			                this.isLoading = false;
+			                uni.navigateTo({
+			                    url: '/pages/prodReport/prodControlOuterBox'
+			                });
+			            }
 			        });
 			    } catch (error) {
 			        console.error("Create error: " + error);
@@ -304,25 +307,60 @@
 			            icon: "none",
 			            duration: 2000,
 			        });
-			    } finally {
-			        this.isLoading = false;
-			        uni.navigateTo({
-			            url: '/pages/prodReport/prodControlOuterBox'
-			        });
 			    }
-			},
+			}
 		}
 	}
 </script>
 
 <style>
 	.return {
-		  background-image: url('/static/return.png');
-		  background-size: contain;
-		  background-repeat: no-repeat;
-		  width: 30px;
-		  height: 30px;
-		  margin-top: 2px;
-		  margin-left: 4px;
+	  background-image: url('/static/return.png');
+	  background-size: contain;
+	  background-repeat: no-repeat;
+	  width: 30px;
+	  height: 30px;
+	  margin-top: 2px;
+	  margin-left: 4px;
+	}
+	
+	.user {
+			background-image: url('/static/user.png');
+			background-size: contain;
+			background-repeat: no-repeat;
+			width: 25px;
+			height: 25px;
+		}
+		
+		.clock {
+			background-image: url('/static/clock.png');
+			background-size: contain;
+			background-repeat: no-repeat;
+			width: 25px;
+			height: 25px;
+		}
+		
+		.location {
+			background-image: url('/static/location.png');
+			background-size: contain;
+			background-repeat: no-repeat;
+			width: 25px;
+			height: 25px;
+		}
+		
+		.calendar {
+			background-image: url('/static/calendar.png');
+			background-size: contain;
+			background-repeat: no-repeat;
+			width: 25px;
+			height: 25px;
+		}
+		
+		.pen {
+			background-image: url('/static/pen.png');
+			background-size: contain;
+			background-repeat: no-repeat;
+			width: 25px;
+			height: 25px;
 		}
 </style>

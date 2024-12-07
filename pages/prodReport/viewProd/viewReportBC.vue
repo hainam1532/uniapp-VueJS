@@ -56,6 +56,8 @@
 								</view>
 							</view>
 							<view class="border-b border-dashed border-black border-b-2 my-5">
+								<view class="absolute rounded-full w-5 h-5 bg-blue-200 -mt-2 -left-2"></view>
+								<view class="absolute rounded-full w-5 h-5 bg-blue-200 -mt-2 -right-2"></view>
 							</view>
 							<view class="flex justify-center items-center text-center">
 								<span class="font-bold text-2xl text-blue-500">KIỂM TRA Ở FI</span>
@@ -107,6 +109,8 @@
 								</view>
 							</view>
 							<view class="border-b border-dashed border-black border-b-2 my-5">
+								<view class="absolute rounded-full w-5 h-5 bg-blue-200 -mt-2 -left-2"></view>
+								<view class="absolute rounded-full w-5 h-5 bg-blue-200 -mt-2 -right-2"></view>
 							</view>
 							<view class="flex justify-center items-center text-center">
 								<span class="font-bold text-2xl text-blue-500">KIỂM TRA Ở SẢN XUẤT</span>
@@ -177,28 +181,21 @@
 		created() {
 			this.loadData();
 		},
-		watch: {
-			'$route.query.id': {
-			  handler() {
-				this.loadData();
-			  },
-			  immediate: true,
-			},
-		},
 		methods: {
 			loadData() {
-				this.data = null;
-				const id = this.$route.query.id;
-				if (id) {
-					const storedData = sessionStorage.getItem('selectedData');
-					if (storedData) {
-					  this.data = JSON.parse(storedData);
-					} else {
-					  console.error('Không tìm thấy dữ liệu trong sessionStorage');
-					}
-				} else {
-					console.error('ID không tồn tại trong URL');
-				}
+			  this.data = null;
+			  
+			  // Lấy dữ liệu đã lưu từ bộ nhớ tạm
+			  uni.getStorage({
+			    key: 'selectedData',
+			    success: (res) => {
+			      this.data = res.data;
+			      this.editableData = { ...this.data };
+			    },
+			    fail: () => {
+			      console.error("Không tìm thấy dữ liệu trong bộ nhớ tạm");
+			    }
+			  });
 			},
 			formatDate(dateString) {
 			    const date = new Date(dateString);

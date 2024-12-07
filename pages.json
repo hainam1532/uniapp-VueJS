@@ -137,6 +137,18 @@
 		"style": {
 			"navigationStyle": "custom"
 		}
+	},
+	{
+		"path": "pages/prodReport/insertProd/insertMaterialProduction",
+		"style": {
+			"navigationStyle": "custom"
+		}
+	},
+	{
+		"path": "pages/prodReport/viewProd/viewReportMaterialProduction",
+		"style": {
+			"navigationStyle": "custom"
+		}
 	}
   ],
   "usingComponents": {

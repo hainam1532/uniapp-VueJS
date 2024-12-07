@@ -117,28 +117,21 @@
 		created() {
 			this.loadData();
 		},
-		watch: {
-			'$route.query.id': {
-			  handler() {
-				this.loadData();
-			  },
-			  immediate: true,
-			},
-		},
 		methods: {
 			loadData() {
-				this.data = null;
-				const id = this.$route.query.id;
-				if (id) {
-					const storedData = sessionStorage.getItem('selectedData');
-					if (storedData) {
-					  this.data = JSON.parse(storedData);
-					} else {
-					  console.error('Không tìm thấy dữ liệu trong sessionStorage');
-					}
-				} else {
-					console.error('ID không tồn tại trong URL');
-				}
+			  this.data = null;
+			  
+			  // Lấy dữ liệu đã lưu từ bộ nhớ tạm
+			  uni.getStorage({
+			    key: 'selectedData',
+			    success: (res) => {
+			      this.data = res.data;
+			      this.editableData = { ...this.data };
+			    },
+			    fail: () => {
+			      console.error("Không tìm thấy dữ liệu trong bộ nhớ tạm");
+			    }
+			  });
 			},
 			caculateAverage(data) {
 			  if (!data) {

@@ -1,5 +1,5 @@
 <template>
-	<view class="flex flex-col bg-gray-200 h-screen w-full">
+	<view class="flex flex-col bg-gradient-to-b from-blue-200 via-blue-100 to-white h-screen w-full">
 		<view class="flex flex-col bg-[#407bff] rounded-b-3xl gap-4 p-2">
 			<view class="mx-2 flex justify-between">
 				<view class="return" @click="backMenu()"></view>
@@ -10,7 +10,7 @@
 			</view>
 		</view>
 		<!-- FORM INPUT -->
-		<view class="flex h-screen bg-center bg-cover">
+		<view class="flex flex-col bg-cover">
 			<view class="w-full mx-auto z-10">
 				<view class="flex flex-col">
 					<view class="bg-white drop-shadow-2xl rounded-3xl p-4 m-4">
@@ -19,19 +19,18 @@
 								<view class="flex items-center my-1">
 									<span class="font-semibold">Apache Footwear Vietnam</span>
 								</view>
-								<svg class="w-6 h-6 text-sky-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-								  <path d="M11.782 5.72a4.773 4.773 0 0 0-4.8 4.173 3.43 3.43 0 0 1 2.741-1.687c1.689 0 2.974 1.972 3.758 2.587a5.733 5.733 0 0 0 5.382.935c2-.638 2.934-2.865 3.137-3.921-.969 1.379-2.44 2.207-4.259 1.231-1.253-.673-2.19-3.438-5.959-3.318ZM6.8 11.979A4.772 4.772 0 0 0 2 16.151a3.431 3.431 0 0 1 2.745-1.687c1.689 0 2.974 1.972 3.758 2.587a5.733 5.733 0 0 0 5.382.935c2-.638 2.933-2.865 3.137-3.921-.97 1.379-2.44 2.208-4.259 1.231-1.253-.673-2.19-3.443-5.963-3.317Z"/>
-								</svg>
+								
 							</view>
-							<view class="border-b border-dashed border-b-2 my-5"></view>
+							<view class="border-b border-dashed border-b-2 border-black my-5">
+								<view class="absolute rounded-full w-5 h-5 bg-blue-200 -mt-2 -left-2"></view>
+								<view class="absolute rounded-full w-5 h-5 bg-blue-200 -mt-2 -right-2"></view>
+							</view>
 							<view class="flex justify-center items-center text-center">
 								<span class="font-bold text-xl text-blue-500">THÔNG TIN PHOM</span>
 							</view>
 							<view class="flex flex-col justify-center gap-4 text-sm py-4">
 								<view class="flex items-center border-b border-gray-300 pb-2">
-									<svg class="w-6 h-6 text-blue-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-									  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 10h16m-8-3V4M7 7V4m10 3V4M5 20h14a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Zm3-7h.01v.01H8V13Zm4 0h.01v.01H12V13Zm4 0h.01v.01H16V13Zm-8 4h.01v.01H8V17Zm4 0h.01v.01H12V17Zm4 0h.01v.01H16V17Z"/>
-									</svg>
+									<view class="calendar"></view>
 									<picker
 										mode="date"
 										:value="editableData.DATE_REPORT"
@@ -59,9 +58,9 @@
 									/>
 								</view>
 							</view>
-							<view class="border-b border-dashed border-b-2 my-5">
-								<view class="absolute rounded-full w-5 h-5 -mt-2 -left-2"></view>
-								<view class="absolute rounded-full w-5 h-5 -mt-2 -right-2"></view>
+							<view class="border-b border-dashed border-b-2 border-black my-5">
+								<view class="absolute rounded-full w-5 h-5 bg-blue-200 -mt-2 -left-2"></view>
+								<view class="absolute rounded-full w-5 h-5 bg-blue-200 -mt-2 -right-2"></view>
 							</view>
 							<scroll-view scroll-y="true" style="overflow-y: auto; height: calc(80vh - 300px);" >
 								<view class="flex justify-center items-center text-center">
@@ -212,9 +211,9 @@
 									</view>
 								</view>
 							</scroll-view>
-							<view class="border-b border-dashed border-b-2 my-5">
-								<view class="absolute rounded-full w-5 h-5 -mt-2 -left-2"></view>
-								<view class="absolute rounded-full w-5 h-5 -mt-2 -right-2"></view>
+							<view class="border-b border-dashed border-b-2 border-black my-5">
+								<view class="absolute rounded-full w-5 h-5 bg-blue-100 -mt-2 -left-2"></view>
+								<view class="absolute rounded-full w-5 h-5 bg-blue-100 -mt-2 -right-2"></view>
 							</view>
 							<view class="flex flex-col justify-center items-center">
 								<button @click="createData()" class="w-full text-white bg-[#407bff] rounded-lg font-semibold transition">Tạo</button>
@@ -307,11 +306,33 @@
 			
 			        console.log("Data to send:", this.editableData);
 			
-			        await axios.post(`/iqcReport/createPHOM`, this.editableData);
-			        uni.showToast({
-			            title: "Tạo thành công",
-			            icon: "none",
-			            duration: 2000,
+			        // Sử dụng uni.request thay vì axios
+			        uni.request({
+			            url: 'http://10.30.3.50:8386/api/iqcReport/createPHOM',
+			            method: 'POST',
+			            data: this.editableData,
+			            success: (response) => {
+			                console.log('Create response:', response);
+			                uni.showToast({
+			                    title: "Tạo thành công",
+			                    icon: "none",
+			                    duration: 2000,
+			                });
+			            },
+			            fail: (error) => {
+			                console.error('Create error:', error);
+			                uni.showToast({
+			                    title: "Tạo thất bại",
+			                    icon: "none",
+			                    duration: 2000,
+			                });
+			            },
+			            complete: () => {
+			                this.isLoading = false;
+			                uni.navigateTo({
+			                    url: '/pages/iqcReport/iqcCheckPhom'
+			                });
+			            }
 			        });
 			    } catch (error) {
 			        console.error("Create error: " + error);
@@ -320,13 +341,9 @@
 			            icon: "none",
 			            duration: 2000,
 			        });
-			    } finally {
 			        this.isLoading = false;
-			        uni.navigateTo({
-			            url: '/pages/iqcReport/iqcCheckPhom'
-			        });
 			    }
-			},
+			}
 		}
 	}
 </script>
@@ -340,6 +357,46 @@
 	  height: 30px;
 	  margin-top: 2px;
 	  margin-left: 4px;
+	}
+	
+	.user {
+		background-image: url('/static/user.png');
+		background-size: contain;
+		background-repeat: no-repeat;
+		width: 25px;
+		height: 25px;
+	}
+	
+	.clock {
+		background-image: url('/static/clock.png');
+		background-size: contain;
+		background-repeat: no-repeat;
+		width: 25px;
+		height: 25px;
+	}
+	
+	.location {
+		background-image: url('/static/location.png');
+		background-size: contain;
+		background-repeat: no-repeat;
+		width: 25px;
+		height: 25px;
+	}
+	
+	.calendar {
+		background-image: url('/static/calendar.png');
+		background-size: contain;
+		background-repeat: no-repeat;
+		width: 25px;
+		height: 25px;
+	}
+	
+	.pen {
+		background-image: url('/static/pen.png');
+		background-size: contain;
+		background-repeat: no-repeat;
+		width: 25px;
+		height: 25px;
 	}
 	
 	.add {
@@ -381,6 +438,46 @@
 		  margin-left: 4px;
 		}
 		
+		.user {
+			background-image: url('/static/user.png');
+			background-size: contain;
+			background-repeat: no-repeat;
+			width: 25px;
+			height: 25px;
+		}
+		
+		.clock {
+			background-image: url('/static/clock.png');
+			background-size: contain;
+			background-repeat: no-repeat;
+			width: 25px;
+			height: 25px;
+		}
+		
+		.location {
+			background-image: url('/static/location.png');
+			background-size: contain;
+			background-repeat: no-repeat;
+			width: 25px;
+			height: 25px;
+		}
+		
+		.calendar {
+			background-image: url('/static/calendar.png');
+			background-size: contain;
+			background-repeat: no-repeat;
+			width: 25px;
+			height: 25px;
+		}
+		
+		.pen {
+			background-image: url('/static/pen.png');
+			background-size: contain;
+			background-repeat: no-repeat;
+			width: 25px;
+			height: 25px;
+		}
+		
 		.add {
 		  background-image: url('/static/add.png');
 		  background-size: contain;
@@ -416,6 +513,46 @@
 		  height: 30px;
 		  margin-top: 2px;
 		  margin-left: 4px;
+		}
+		
+		.user {
+			background-image: url('/static/user.png');
+			background-size: contain;
+			background-repeat: no-repeat;
+			width: 25px;
+			height: 25px;
+		}
+		
+		.clock {
+			background-image: url('/static/clock.png');
+			background-size: contain;
+			background-repeat: no-repeat;
+			width: 25px;
+			height: 25px;
+		}
+		
+		.location {
+			background-image: url('/static/location.png');
+			background-size: contain;
+			background-repeat: no-repeat;
+			width: 25px;
+			height: 25px;
+		}
+		
+		.calendar {
+			background-image: url('/static/calendar.png');
+			background-size: contain;
+			background-repeat: no-repeat;
+			width: 25px;
+			height: 25px;
+		}
+		
+		.pen {
+			background-image: url('/static/pen.png');
+			background-size: contain;
+			background-repeat: no-repeat;
+			width: 25px;
+			height: 25px;
 		}
 		
 		.add {
