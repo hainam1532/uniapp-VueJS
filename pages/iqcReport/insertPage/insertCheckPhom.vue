@@ -1,9 +1,9 @@
 <template>
 	<view class="flex flex-col bg-gradient-to-b from-blue-200 via-blue-100 to-white h-screen w-full">
-		<view class="flex flex-col bg-[#407bff] rounded-b-3xl gap-4 p-2">
+		<view class="flex flex-col bg-[#407bff] rounded-b-3xl gap-2 p-2">
 			<view class="mx-2 flex justify-between">
 				<view class="return" @click="backMenu()"></view>
-				<span class="font-semibold text-white py-1">
+				<span class="font-semibold text-white text-[20px]">
 					Tạo báo cáo PHOM
 				</span>
 				<view class="flex justify-center items-center"></view>
@@ -13,68 +13,64 @@
 		<view class="flex flex-col bg-cover">
 			<view class="w-full mx-auto z-10">
 				<view class="flex flex-col">
-					<view class="bg-white drop-shadow-2xl rounded-3xl p-4 m-4">
+					<view class="bg-white drop-shadow-2xl rounded-2xl p-2 m-4">
 						<view class="flex-auto justify-evenly">
 							<view class="flex items-center justify-between">
-								<view class="flex items-center my-1">
-									<span class="font-semibold">Apache Footwear Vietnam</span>
+								<view class="flex items-center">
+									<span class="font-semibold mx-2">Apache Footwear Vietnam</span>
 								</view>
 								
 							</view>
-							<view class="border-b border-dashed border-b-2 border-black my-5">
-								<view class="absolute rounded-full w-5 h-5 bg-blue-200 -mt-2 -left-2"></view>
-								<view class="absolute rounded-full w-5 h-5 bg-blue-200 -mt-2 -right-2"></view>
+							<view class="border-b border-dashed border-b-2 border-black my-2">
 							</view>
 							<view class="flex justify-center items-center text-center">
-								<span class="font-bold text-xl text-blue-500">THÔNG TIN PHOM</span>
+								<span class="font-bold text-[20px] text-blue-500">THÔNG TIN PHOM</span>
 							</view>
-							<view class="flex flex-col justify-center gap-4 text-sm py-4">
-								<view class="flex items-center border-b border-gray-300 pb-2">
+							<view class="flex flex-col justify-center gap-4 text-sm p-1">
+								<view class="flex items-center border-b border-gray-300 pb-1">
 									<view class="calendar"></view>
 									<picker
 										mode="date"
 										:value="editableData.DATE_REPORT"
 										@change="onDateRecordChange"
 									>
-									  <view class="w-full ml-2 text-lg outline-none font-bold">{{ editableData.DATE_REPORT || 'Ngày nhập' }}</view>
+									  <view class="w-full ml-2 text-[15px] outline-none font-bold">{{ editableData.DATE_REPORT || 'Ngày nhập' }}</view>
 									</picker>
 								</view>
 							</view>
-							<view class="flex justify-around items-center gap-4 text-sm">
-								<view class="flex flex-col gap-4 font-semibold">
+							<view class="flex justify-around items-center gap-2 text-[20px]">
+								<view class="flex flex-col gap-2 font-semibold">
 									<span>Mã phom:</span>
 									<input
-										class="border border-gray-300 rounded text-sm w-14  text-center"
+										class="border border-gray-300 rounded text-sm text-center"
 										type="text"
 										v-model="editableData.CODE_PHOM"
 									/>
 								</view>
-								<view class="flex flex-col gap-4 font-semibold">
+								<view class="flex flex-col gap-2 font-semibold">
 									<span>QC:</span>
 									<input
-										class="border border-gray-300 rounded text-sm w-14 text-center"
+										class="border border-gray-300 rounded text-sm text-center"
 										type="text"
 										v-model="editableData.QC"
 									/>
 								</view>
 							</view>
-							<view class="border-b border-dashed border-b-2 border-black my-5">
-								<view class="absolute rounded-full w-5 h-5 bg-blue-200 -mt-2 -left-2"></view>
-								<view class="absolute rounded-full w-5 h-5 bg-blue-200 -mt-2 -right-2"></view>
+							<view class="border-b border-dashed border-b-2 border-black my-2">
 							</view>
 							<scroll-view scroll-y="true" style="overflow-y: auto; height: calc(80vh - 300px);" >
 								<view class="flex justify-center items-center text-center">
-									<span class="font-bold text-xl text-blue-500">THÔNG TIN CƠ BẢN</span>
+									<span class="font-bold text-[20px] text-blue-500">THÔNG TIN CƠ BẢN</span>
 								</view>
-								<view class="grid grid-cols-2 grid-rows-2 mt-2">
-									<view class="flex col-span-2 justify-around items-center px-2 py-4">
+								<view class="grid grid-cols-2 grid-rows-2">
+									<view class="flex col-span-2 justify-around items-center">
 										<view class="flex flex-col gap-2 justify-center items-center">
 											<h2 class="font-semibold">7:30 - 9:30</h2>
 											<view class="flex flex-col gap-2 justify-center items-center">
 												<view class="flex flex-col gap-2 justify-center items-center">
 													<span>Đạt:</span>
 													<input
-														class="border border-gray-300 rounded text-sm w-14 text-center"
+														class="border border-gray-300 rounded text-sm text-center"
 														type="text"
 														v-model="editableData.H07_SUCCESS"
 													/>
@@ -82,7 +78,7 @@
 												<view class="flex flex-col gap-2 justify-center items-center">
 													<span>Không đạt</span>
 													<input
-														class="border border-gray-300 rounded text-sm w-14 text-center"
+														class="border border-gray-300 rounded text-sm text-center"
 														type="text"
 														v-model="editableData.H07_FAIL"
 													/>
@@ -102,7 +98,7 @@
 												<view class="flex flex-col gap-2 justify-center items-center">
 													<span>Đạt:</span>
 													<input
-														class="border border-gray-300 rounded text-sm w-14 text-center"
+														class="border border-gray-300 rounded text-sm text-center"
 														type="text"
 														v-model="editableData.H09_SUCCESS"
 													/>
@@ -110,7 +106,7 @@
 												<view class="flex flex-col gap-2 justify-center items-center">
 													<span>Không đạt</span>
 													<input
-														class="border border-gray-300 rounded text-sm w-14 text-center"
+														class="border border-gray-300 rounded text-sm text-center"
 														type="text"
 														v-model="editableData.H09_FAIL"
 													/>
@@ -124,14 +120,14 @@
 											</view>
 										</view>
 									</view>
-									<view class="flex col-span-2 justify-around px-2 py-1.5 mt-4">
+									<view class="flex col-span-2 justify-around mt-2">
 										<view class="flex flex-col gap-2 justify-center items-center">
 											<h2 class="font-semibold">12:30 - 14:30</h2>
 											<view class="flex flex-col gap-2 justify-center items-center">
 												<view class="flex flex-col gap-2 justify-center items-center">
 													<span>Đạt:</span>
 													<input
-														class="border border-gray-300 rounded text-sm w-14 text-center"
+														class="border border-gray-300 rounded text-sm text-center"
 														type="text"
 														v-model="editableData.H12_SUCCESS"
 													/>
@@ -139,7 +135,7 @@
 												<view class="flex flex-col gap-2 justify-center items-center">
 													<span>Không đạt</span>
 													<input
-														class="border border-gray-300 rounded text-sm w-14 text-center"
+														class="border border-gray-300 rounded text-sm text-center"
 														type="text"
 														v-model="editableData.H12_FAIL"
 													/>
@@ -158,7 +154,7 @@
 												<view class="flex flex-col gap-2 justify-center items-center">
 													<span>Đạt:</span>
 													<input
-														class="border border-gray-300 rounded text-sm w-14 text-center"
+														class="border border-gray-300 rounded text-sm text-center"
 														type="text"
 														v-model="editableData.H14_SUCCESS"
 													/>
@@ -166,7 +162,7 @@
 												<view class="flex flex-col gap-2 justify-center items-center">
 													<span>Không đạt</span>
 													<input
-														class="border border-gray-300 rounded text-sm w-14 text-center"
+														class="border border-gray-300 rounded text-sm text-center"
 														type="text"
 														v-model="editableData.H14_FAIL"
 													/>
@@ -180,14 +176,14 @@
 											</view>
 										</view>
 									</view>
-									<view class="flex col-span-2 justify-around items-center px-2 mt-4">
+									<view class="flex col-span-2 justify-around items-center mt-2">
 										<view class="flex flex-col gap-2 justify-center items-center">
 											<h2 class="font-semibold">16:30 - 18:30</h2>
 											<view class="flex flex-col gap-2 justify-center items-center">
 												<view class="flex flex-col gap-2 justify-center items-center">
 													<span>Đạt:</span>
 													<input
-														class="border border-gray-300 rounded text-sm w-14 text-center"
+														class="border border-gray-300 rounded text-sm text-center"
 														type="text"
 														v-model="editableData.H16_SUCCESS"
 													/>
@@ -195,14 +191,14 @@
 												<view class="flex flex-col gap-2 justify-center items-center">
 													<span>Không đạt</span>
 													<input
-														class="border border-gray-300 rounded text-sm w-14 text-center"
+														class="border border-gray-300 rounded text-sm text-center"
 														type="text"
 														v-model="editableData.H16_FAIL"
 													/>
 												</view>
 												<view class="flex flex-col gap-2 justify-center items-center">
 													<span>Tỷ lệ không đạt</span>
-													<span class="text-xl px-2 font-semibold text-red-500">
+													<span class="text-sm px-2 font-semibold text-red-500">
 														{{ calculateRate(editableData.H16_SUCCESS, editableData.H16_FAIL) }}%
 													</span>
 												</view>
@@ -211,9 +207,7 @@
 									</view>
 								</view>
 							</scroll-view>
-							<view class="border-b border-dashed border-b-2 border-black my-5">
-								<view class="absolute rounded-full w-5 h-5 bg-blue-100 -mt-2 -left-2"></view>
-								<view class="absolute rounded-full w-5 h-5 bg-blue-100 -mt-2 -right-2"></view>
+							<view class="border-b border-dashed border-b-2 border-black my-2">
 							</view>
 							<view class="flex flex-col justify-center items-center">
 								<button @click="createData()" class="w-full text-white bg-[#407bff] rounded-lg font-semibold transition">Tạo</button>
@@ -426,156 +420,4 @@
 		border-radius: 4px;
 	}
 	
-	/* Khi thiết bị là iPad hoặc kích thước màn hình lớn hơn */
-	@media screen and (min-width: 768px) {
-		.return {
-		  background-image: url('/static/return.png');
-		  background-size: contain;
-		  background-repeat: no-repeat;
-		  width: 30px;
-		  height: 30px;
-		  margin-top: 2px;
-		  margin-left: 4px;
-		}
-		
-		.user {
-			background-image: url('/static/user.png');
-			background-size: contain;
-			background-repeat: no-repeat;
-			width: 25px;
-			height: 25px;
-		}
-		
-		.clock {
-			background-image: url('/static/clock.png');
-			background-size: contain;
-			background-repeat: no-repeat;
-			width: 25px;
-			height: 25px;
-		}
-		
-		.location {
-			background-image: url('/static/location.png');
-			background-size: contain;
-			background-repeat: no-repeat;
-			width: 25px;
-			height: 25px;
-		}
-		
-		.calendar {
-			background-image: url('/static/calendar.png');
-			background-size: contain;
-			background-repeat: no-repeat;
-			width: 25px;
-			height: 25px;
-		}
-		
-		.pen {
-			background-image: url('/static/pen.png');
-			background-size: contain;
-			background-repeat: no-repeat;
-			width: 25px;
-			height: 25px;
-		}
-		
-		.add {
-		  background-image: url('/static/add.png');
-		  background-size: contain;
-		  background-repeat: no-repeat;
-		  width: 30px;
-		  height: 30px;
-		  margin-top: 2px;
-		  margin-left: 4px;
-		}
-	  span {
-	    font-size: 22px; /* Tăng kích thước chữ */
-	  }
-	  
-		input {
-			font-size: 20px;
-			font-weight: bold;
-		}
-		
-		h2 {
-			font-size: 20px;
-			color: coral;
-		}
-	  
-	}
-	
-	/* Khi thiết bị là iPad Pro hoặc lớn hơn */
-	@media screen and (min-width: 1024px) {
-		.return {
-		  background-image: url('/static/return.png');
-		  background-size: contain;
-		  background-repeat: no-repeat;
-		  width: 30px;
-		  height: 30px;
-		  margin-top: 2px;
-		  margin-left: 4px;
-		}
-		
-		.user {
-			background-image: url('/static/user.png');
-			background-size: contain;
-			background-repeat: no-repeat;
-			width: 25px;
-			height: 25px;
-		}
-		
-		.clock {
-			background-image: url('/static/clock.png');
-			background-size: contain;
-			background-repeat: no-repeat;
-			width: 25px;
-			height: 25px;
-		}
-		
-		.location {
-			background-image: url('/static/location.png');
-			background-size: contain;
-			background-repeat: no-repeat;
-			width: 25px;
-			height: 25px;
-		}
-		
-		.calendar {
-			background-image: url('/static/calendar.png');
-			background-size: contain;
-			background-repeat: no-repeat;
-			width: 25px;
-			height: 25px;
-		}
-		
-		.pen {
-			background-image: url('/static/pen.png');
-			background-size: contain;
-			background-repeat: no-repeat;
-			width: 25px;
-			height: 25px;
-		}
-		
-		.add {
-		  background-image: url('/static/add.png');
-		  background-size: contain;
-		  background-repeat: no-repeat;
-		  width: 30px;
-		  height: 30px;
-		  margin-top: 2px;
-		  margin-left: 4px;
-		}
-	  span {
-	    font-size: 24px; /* Thêm kích thước chữ */
-	  }
-	  
-	  input {
-	  	font-size: 35px;
-		font-weight: bold;
-	  }
-	  
-	  h2 {
-	  	font-size: 30px;
-		color: coral;
-	  }
-	}
 </style>

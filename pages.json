@@ -149,6 +149,36 @@
 		"style": {
 			"navigationStyle": "custom"
 		}
+	},
+	{
+		"path": "pages/iprdReport/materialPHYLON",
+		"style": {
+			"navigationStyle": "custom"
+		}
+	},
+	{
+		"path": "pages/iprdReport/temperatureMachine",
+		"style": {
+			"navigationStyle": "custom"
+		}
+	},
+	{
+		"path": "pages/iprdReport/insertPage/insertPHYLON",
+		"style": {
+			"navigationStyle": "custom"
+		}
+	},
+	{
+		"path": "pages/iprdReport/insertPage/insertTempMachine",
+		"style": {
+			"navigationStyle": "custom"
+		}
+	},
+	{
+		"path": "pages/iprdReport/viewPage/viewPHYLON",
+		"style": {
+			"navigationStyle": "custom"
+		}
 	}
   ],
   "usingComponents": {

@@ -49,7 +49,7 @@
 			imgLogo: [
 			    { url: '/static/logo.png' },
 			],
-			versionCode: "1.0.0"
+			versionCode: "1.0.2"
 	    };
 	  },
 	  methods: {

@@ -1,6 +1,6 @@
 <template>
 	<view class="h-screen w-full bg-gradient-to-b from-blue-200 via-blue-100 to-white flex flex-col">
-		<view class="flex flex-col bg-[#407bff] rounded-b-3xl gap-4 p-2">
+		<view class="flex flex-col bg-[#407bff] rounded-b-3xl gap-4 p-1">
 			<view class="mx-2 flex justify-between">
 				<view class="return" @click="backMenu()"></view>
 				<span class="font-semibold text-white py-1">Quản khống tem ngoài thùng</span>
@@ -9,11 +9,11 @@
 		</view>
 		<!-- FORM INPUT -->
 		<view class="flex flex-col size-full">
-			<view class="flex flex-col p-2 py-4">
+			<view class="flex flex-col p-2 py-2">
 				<view class="font-semibold text-[16px] text-black">Chọn ngày lãnh :</view>
-				<view class="grid grid-cols-2 grid-rows-1 gap-4 mt-2">
+				<view class="grid grid-cols-2 grid-rows-1 gap-2 mt-1">
 				  <picker
-					class="w-full h-full bg-white shadow-lg font-semibold border px-4 py-2 rounded-lg focus:border-blue-500 focus:shadow-outline outline-none"
+					class="w-full h-full bg-white shadow-lg font-semibold border px-2 py-2 rounded-lg focus:border-blue-500 focus:shadow-outline outline-none"
 				    mode="date"
 				    :value="startDate"
 				    :start="minDate"
@@ -35,7 +35,7 @@
 				  </picker>
 				</view>
 			</view>
-			<view class="flex flex-col gap-2 w-full p-2">
+			<view class="flex flex-col gap-2 w-full p-1">
 				<button @click="onSearchChange()" class="w-full rounded-lg font-semibold bg-[#3acdbb] text-white">Tìm kiếm</button>
 				<button @click="resetSearch()" class="w-full rounded-lg font-semibold bg-red-400 text-white">Reset</button>
 				<view v-if="showToast" class="toast-container">
@@ -50,69 +50,69 @@
 		<scroll-view
 			@scrolltolower="fetchData"
 			scroll-y="true" 
-			class="rounded-t-2xl shadow-lg size-full mx-auto shadow-lg p-2 scroll-container"
+			class="rounded-t-2xl shadow-lg size-full mx-auto shadow-lg p-1 scroll-container"
 			style="overflow-y: auto; height: calc(590vh - 300px);"
 		>
 			<view v-for="(item, index) in dataList" :key="item.ID" 
-				class="grid grid-cols-2 grid-rows-1 bg-white gap-2 cursor-pointer shadow-lg rounded-lg p-4 mb-4"
+				class="grid grid-cols-3 grid-rows-1 bg-white gap-2 cursor-pointer shadow-lg rounded-lg p-2 mb-2"
 			>
-				<p class="flex flex-col font-semibold text-[#214263]">
+				<p class="flex font-semibold text-[#214263] gap-2">
 					ID:
-					<span class="text-gray-600 text-sm px-4">
+					<span class="text-gray-600 text-[15px]">
 						{{ item.ID }}
 					</span>
 				</p>
-				<p class="flex flex-col font-semibold text-[#214263]">
+				<p class="flex font-semibold text-[#214263] gap-2">
 					Nhà máy:
-					<span class="text-gray-600 text-sm px-4">
+					<span class="text-gray-600 text-[15px]">
 						{{ item.DEPARTMENT }}
 					</span>
 				</p>
-				<p class="flex flex-col font-semibold text-[#214263]">
+				<p class="flex font-semibold text-[#214263] gap-2">
 					Loại tem: 
-					<span class="text-gray-600 text-sm px-4">
+					<span class="text-gray-600 text-[15px]">
 						{{ item.STAMP_TYPE }}
 					</span>
 				</p>
-				<p class="flex flex-col font-semibold text-[#214263]">
+				<p class="flex font-semibold text-[#214263] gap-2">
 					Ngày kiểm: 
-					<span class="text-gray-600 text-sm px-4">
+					<span class="text-gray-600 text-[15px]">
 						{{ formatDate(item.DATE_RECORD) }}
 					</span>
 				</p>
-				<p class="flex flex-col font-semibold text-[#214263]">
+				<p class="flex font-semibold text-[#214263] gap-2">
 					Thực lãnh: 
-					<span class="text-gray-600 text-sm  px-4">
+					<span class="text-gray-600 text-[15px] ">
 						{{ item.QTY_SALARY }}
 					</span>
 				</p>
-				<p class="flex flex-col font-semibold text-[#214263]">
+				<p class="flex font-semibold text-[#214263] gap-2">
 					Sử dụng: 
-					<span class="text-gray-600 text-sm px-4">
+					<span class="text-gray-600 text-[15px]">
 						{{ item.QTY_USE }}
 					</span>
 				</p>
-				<p class="flex flex-col font-semibold text-[#214263]">
+				<p class="flex font-semibold text-[#214263] gap-2">
 					Hư hỏng: 
-					<span class="text-gray-600 text-sm px-4">
+					<span class="text-gray-600 text-[15px]">
 						{{ item.QTY_DAME }}
 					</span>
 				</p>
-				<p class="flex flex-col font-semibold text-[#214263]">
+				<p class="flex font-semibold text-[#214263] gap-2">
 					Còn lại: 
-					<span class="text-gray-600 text-sm px-4">
+					<span class="text-gray-600 text-[15px]">
 						{{ item.QTY_REMAIN }}
 					</span>
 				</p>
-				<p class="flex flex-col font-semibold text-[#214263]">
+				<p class="flex font-semibold text-[#21 gap-24263] gap-2">
 					QC: 
-					<span class="text-gray-600 text-sm px-4">
+					<span class="text-gray-600 text-[15px]">
 						{{ item.QIP_STAFF }}
 					</span>
 				</p>
-				<p class="flex flex-col font-semibold text-[#214263]">
+				<p class="flex font-semibold text-[#214263] gap-2">
 					Ghi chú: 
-					<span class="text-gray-600 text-sm px-4">
+					<span class="text-gray-600 text-[15px]">
 						{{ item.REMARK }}
 					</span>
 				</p>

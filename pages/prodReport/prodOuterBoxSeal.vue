@@ -9,11 +9,11 @@
 		</view>
 		<!-- FORM INPUT -->
 		<view class="flex flex-col size-full">
-			<view class="flex flex-col p-2 py-4">
+			<view class="flex flex-col p-2">
 				<view class="font-semibold text-[16px] text-black">Chọn ngày lãnh :</view>
-				<view class="grid grid-cols-2 grid-rows-1 gap-4 mt-2">
+				<view class="grid grid-cols-2 grid-rows-1 gap-4 mt-1">
 				  <picker
-					class="w-full h-full bg-white shadow-lg font-semibold border px-4 py-2 rounded-lg focus:border-blue-500 focus:shadow-outline outline-none"
+					class="w-full h-full bg-white shadow-lg font-semibold border px-2 py-2 rounded-lg focus:border-blue-500 focus:shadow-outline outline-none"
 				    mode="date"
 				    :value="startDate"
 				    :start="minDate"
@@ -35,7 +35,7 @@
 				  </picker>
 				</view>
 			</view>
-			<view class="flex flex-col gap-2 w-full p-2">
+			<view class="flex flex-col gap-2 w-full p-1">
 				<button @click="onSearchChange()" class="w-full rounded-lg font-semibold bg-[#3acdbb] text-white">Tìm kiếm</button>
 				<button @click="resetSearch()" class="w-full rounded-lg font-semibold bg-red-400 text-white">Reset</button>
 				<view v-if="showToast" class="toast-container">
@@ -54,59 +54,59 @@
 			style="overflow-y: auto; height: calc(590vh - 300px);"
 		>
 			<view v-for="(item, index) in dataList" :key="item.ID" 
-				class="grid grid-cols-2 grid-rows-1 bg-white gap-2 cursor-pointer shadow-lg rounded-lg p-4 mb-4"
+				class="grid grid-cols-3 grid-rows-1 bg-white gap-2 cursor-pointer shadow-lg rounded-lg p-2 mb-2"
 			>
 				<p class="flex flex-col font-semibold text-[#214263]">
 					ID:
-					<span class="text-gray-600 text-sm px-4">
+					<span class="text-gray-600 text-[15px] px-4">
 						{{ item.ID }}
 					</span>
 				</p>
 				<p class="flex flex-col font-semibold text-[#214263]">
 					Loại tem: 
-					<span class="text-gray-600 text-sm px-4">
+					<span class="text-gray-600 text-[15px] px-4">
 						{{ item.STAMP_TYPE }}
 					</span>
 				</p>
 				<p class="flex flex-col font-semibold text-[#214263]">
 					Ngày lãnh: 
-					<span class="text-gray-600 text-sm px-4">
+					<span class="text-gray-600 text-[15px] px-4">
 						{{ formatDate(item.DATE_DELIVERY) }}
 					</span>
 				</p>
 				<p class="flex flex-col font-semibold text-[#214263]">
 					Ngày phát: 
-					<span class="text-gray-600 text-sm  px-4">
+					<span class="text-gray-600 text-[15px]  px-4">
 						{{ formatDate(item.DATE_PAY) }}
 					</span>
 				</p>
 				<p class="flex flex-col font-semibold text-[#214263]">
 					Số lượng phát: 
-					<span class="text-gray-600 text-sm px-4">
+					<span class="text-gray-600 text-[15px] px-4">
 						{{ item.QTY_DELIVERY }}
 					</span>
 				</p>
 				<p class="flex flex-col font-semibold text-[#214263]">
 					Số lượng còn lại: 
-					<span class="text-gray-600 text-sm px-4">
+					<span class="text-gray-600 text-[15px] px-4">
 						{{ item.QTY_PAY }}
 					</span>
 				</p>
 				<p class="flex flex-col font-semibold text-[#214263]">
 					Người nhận: 
-					<span class="text-gray-600 text-sm px-4">
+					<span class="text-gray-600 text-[15px] px-4">
 						{{ item.PAY_PEOPLE }}
 					</span>
 				</p>
 				<p class="flex flex-col font-semibold text-[#214263]">
 					Người phát: 
-					<span class="text-gray-600 text-sm px-4">
+					<span class="text-gray-600 text-[15px] px-4">
 						{{ item.DELIVERY_PEOPLE }}
 					</span>
 				</p>
-				<p class="font-semibold text-[#214263]">
+				<p class="flex flex-col font-semibold text-[#214263]">
 					Ghi chú: 
-					<span class="text-gray-600 text-sm">
+					<span class="text-gray-600 text-[15px] px-4">
 						{{ item.REMARK }}
 					</span>
 				</p>

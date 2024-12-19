@@ -3,16 +3,16 @@
 		<view class="flex flex-col bg-[#407bff] rounded-b-3xl gap-4 p-2">
 			<view class="mx-2 flex justify-between">
 				<view class="return" @click="backMenu()"></view>
-				<h2 class="font-semibold text-2xl text-white py-1">Theo dõi PHOM</h2>
+				<h2 class="font-semibold text-[20px] text-white">Theo dõi PHOM</h2>
 				<view class="add" @click="toCreatePage()"></view>
 			</view>
 		</view>
 
 		<!-- FORM INPUT -->
 		<view class="flex flex-col size-full">
-			<view class="flex flex-col p-2">
+			<view class="flex flex-col p-2 gap-1">
 				<span class="font-semibold text-[16px] ml-2 text-black">Chọn ngày :</span>
-				<view class="grid grid-cols-2 grid-rows-1 gap-4 mt-2">
+				<view class="grid grid-cols-2 grid-rows-1 gap-2 mt-1">
 					<picker
 						class="w-full h-full bg-white shadow-lg font-semibold border px-4 py-2 rounded-lg focus:border-blue-500 focus:shadow-outline outline-none"
 						mode="date" :value="startDate" :start="minDate" :end="endDate" @change="onStartDateChange">
@@ -25,8 +25,6 @@
 						<view class="uni-input">{{ endDate || 'Ngày kết thúc' }}</view>
 					</picker>
 				</view>
-			</view>
-			<view class="flex flex-col gap-2 p-2 w-full">
 				<span class="font-semibold text-[16px] ml-2 text-black">
 					Mã phom :
 				</span>
@@ -34,7 +32,8 @@
 					class="w-full h-full bg-white shadow-lg font-semibold border px-4 py-2 rounded-lg focus:border-blue-500 focus:shadow-outline outline-none"
 					v-model="searchValue" type="text" autofocus placeholder="Tìm kiếm..." />
 			</view>
-			<view class="flex flex-col gap-2 w-full p-2">
+	
+			<view class="flex flex-col gap-2 w-full p-1">
 				<button @click="onSearchChange()" class="w-full rounded-lg font-semibold bg-[#3acdbb] text-white">Tìm
 					kiếm</button>
 				<button @click="resetSearch()"
@@ -58,31 +57,31 @@
 		</view>
 		<!-- DATA LIST -->
 		<scroll-view @scrolltolower="fetchData" scroll-y="true"
-			class="rounded-t-2xl shadow-lg size-full mx-auto shadow-lg p-4"
+			class="rounded-t-2xl shadow-lg size-full mx-auto shadow-lg p-2"
 			style="overflow-y: auto; height: calc(430vh - 300px);">
 			<view v-for="(item, index) in dataList" :key="item.ID" @click="showDetail(item.ID)"
-				class="grid grid-cols-2 grid-rows-1 bg-white gap-2 cursor-pointer shadow-lg rounded-lg p-4 mb-4">
+				class="grid grid-cols-2 grid-rows-1 bg-white gap-2 cursor-pointer shadow-lg rounded-lg p-2 mb-2">
 				<p class="font-semibold text-[#214263]">
 					ID:
-					<span class="text-gray-600 text-sm">
+					<span class="text-gray-600 text-[15px]">
 						{{ item.ID }}
 					</span>
 				</p>
 				<p class="font-semibold text-[#214263]">
 					Ngày:
-					<span class="text-gray-600 text-sm">
+					<span class="text-gray-600 text-[15px]">
 						{{ formatDate(item.DATE_REPORT) }}
 					</span>
 				</p>
 				<p class="font-semibold text-[#214263]">
 					Mã phom:
-					<span class="text-gray-600 text-sm">
+					<span class="text-gray-600 text-[15px]">
 						{{ item.CODE_PHOM }}
 					</span>
 				</p>
 				<p class="font-semibold text-[#214263]">
 					QC:
-					<span class="text-gray-600 text-sm">
+					<span class="text-gray-600 text-[15px]">
 						{{ item.QC }}
 					</span>
 				</p>

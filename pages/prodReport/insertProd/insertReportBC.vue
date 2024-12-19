@@ -1,6 +1,6 @@
 <template>
-	<view class="flex flex-col bg-gray-200 h-screen w-full overflow-hidden">
-		<view class="flex flex-col bg-[#407bff] rounded-b-3xl gap-4 p-2">
+	<view class="flex flex-col bg-gray-200 h-screen w-full">
+		<view class="flex flex-col bg-[#407bff] rounded-b-3xl gap-2 p-1">
 			<view class="mx-2 flex justify-between">
 				<view class="return" @click="backMenu()"></view>
 				<span class="font-semibold text-white py-1">
@@ -15,24 +15,21 @@
 		<view class="flex h-screen bg-center bg-cover">
 			<view class="w-full mx-auto z-10">
 				<view class="flex flex-col">
-					<view class="bg-white drop-shadow-2xl rounded-3xl p-4 m-4">
+					<view class="bg-white drop-shadow-2xl rounded-3xl p-2 m-2">
 						<view class="flex-auto justify-evenly">
 							<view class="flex items-center justify-between">
 								<view class="flex items-center my-1">
 									<span class="font-semibold">Apache Footwear Vietnam</span>
 								</view>
-								<svg class="w-6 h-6 text-sky-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-								  <path d="M11.782 5.72a4.773 4.773 0 0 0-4.8 4.173 3.43 3.43 0 0 1 2.741-1.687c1.689 0 2.974 1.972 3.758 2.587a5.733 5.733 0 0 0 5.382.935c2-.638 2.934-2.865 3.137-3.921-.969 1.379-2.44 2.207-4.259 1.231-1.253-.673-2.19-3.438-5.959-3.318ZM6.8 11.979A4.772 4.772 0 0 0 2 16.151a3.431 3.431 0 0 1 2.745-1.687c1.689 0 2.974 1.972 3.758 2.587a5.733 5.733 0 0 0 5.382.935c2-.638 2.933-2.865 3.137-3.921-.97 1.379-2.44 2.208-4.259 1.231-1.253-.673-2.19-3.443-5.963-3.317Z"/>
-								</svg>
 							</view>
-							<view class="border-b border-dashed border-black border-b-2 my-5"></view>
+							<view class="border-b border-dashed border-black border-b-2 my-2"></view>
 							<view class="flex justify-center items-center text-center">
-								<span class="font-bold text-2xl text-blue-500">THÔNG TIN CƠ BẢN</span>
+								<span class="font-bold text-[20px] text-blue-500">THÔNG TIN CƠ BẢN</span>
 							</view>
-							<scroll-view scroll-y="true" style="overflow-y: auto; height: calc(40vh - 240px);">
-								<view class="flex flex-col gap-4 text-sm mt-4">
-									<h2 class="font-semibold text-xl">Ngày :</h2>
-									<view class="flex items-center border-b border-gray-300 pb-2">
+							<scroll-view scroll-y="true" style="overflow-y: auto; height: calc(90vh - 240px);">
+								<view class="flex flex-col gap-2 text-sm">
+									<h2 class="font-semibold text-[20px]">Ngày :</h2>
+									<view class="flex items-center border-b border-gray-300">
 										<view class="calendar"></view>
 										<picker
 											class="w-full ml-2 outline-none font-bold"
@@ -40,29 +37,30 @@
 											:value="formData.DATE_REPORT"
 											@change="onDateDeliveryChange"
 										>
-											<view class="w-full ml-2 text-[18px] outline-none font-bold">
+											<view class="w-full text-[15px] outline-none font-bold">
 												{{ formData.DATE_REPORT || 'Chọn ngày' }}
 											</view>
 										</picker>
 									</view>
-									<view class="flex flex-col gap-4">
-										<h2 class="font-semibold text-xl">Chuyền :</h2>
-										<view class="flex items-center border-b border-gray-300 pb-2">
+									<view class="flex flex-col gap-2">
+										<h2 class="font-semibold text-[20px]">Chuyền :</h2>
+										<view class="flex items-center border-b border-gray-300">
 											<view class="location"></view>
 											<picker
+												class="w-full ml-2 outline-none font-bold"
 											    @change="bindPickerDepartmentChange"
 											    :value="formData.DEPARTMENT_CODE"
 											    :range="departmentList">
-											    <view class="w-full ml-2 text-[18px] outline-none font-bold">
+											    <view class="w-full text-[15px] outline-none font-bold">
 											      {{ formData.DEPARTMENT_CODE || 'Chọn chuyền' }}
 											    </view>
 											</picker>
 											
 										</view>
 									</view>
-									<view class="flex flex-col gap-4">
-										<h2 class="font-semibold text-xl">PO :</h2>
-										<view class="flex items-center border-b border-gray-300 pb-2">
+									<view class="flex flex-col gap-2">
+										<h2 class="font-semibold text-[20px]">PO :</h2>
+										<view class="flex items-center border-b border-gray-300">
 											<view class="pen"></view>
 											<view class="flex justify-between items-center" >
 												<input
@@ -75,9 +73,9 @@
 											</view>
 										</view>
 									</view>
-									<view class="flex flex-col gap-4">
-										<h2 class="font-semibold text-xl">ART :</h2>
-										<view class="flex items-center border-b border-gray-300 pb-2">
+									<view class="flex flex-col gap-2">
+										<h2 class="font-semibold text-[20px]">ART :</h2>
+										<view class="flex items-center border-b border-gray-300">
 											<view class="pen"></view>
 											<view class="flex" >
 												<!-- Dropdown MySelect -->
@@ -91,16 +89,16 @@
 											</view>
 										</view>
 									</view>
-									<view class="flex flex-col gap-4">
-										<h2 class="font-semibold text-xl">Hình thể</h2>
-										<view class="flex items-center border-b border-gray-300 pb-2">
+									<view class="flex flex-col gap-2">
+										<h2 class="font-semibold text-[20px]">Hình thể</h2>
+										<view class="flex items-center border-b border-gray-300">
 											<view class="pen"></view>
-											<span class="w-full ml-2 outline-none font-bold">{{formData.STYLE || "Hình thể"}}</span>
+											<span class="w-full ml-2 text-[18px] outline-none font-bold">{{formData.STYLE || "Hình thể"}}</span>
 										</view>
 									</view>
-									<view class="flex flex-col gap-4">
-										<h2 class="font-semibold text-xl">Ghi chú</h2>
-										<view class="flex items-center border-b border-gray-300 pb-2">
+									<view class="flex flex-col gap-2">
+										<h2 class="font-semibold text-[20px]">Ghi chú</h2>
+										<view class="flex items-center border-b border-gray-300">
 											<view class="pen"></view>
 											<input
 											  class="w-full ml-2 text-[18px] outline-none font-bold" 
@@ -113,19 +111,17 @@
 									</view>
 								</view>
 							</scroll-view>
-							<view class="border-b border-dashed border-black border-b-2 my-5">
-								<view class="absolute rounded-full w-5 h-5 -mt-2 -left-2"></view>
-								<view class="absolute rounded-full w-5 h-5 -mt-2 -right-2"></view>
+							<view class="border-b border-dashed border-black border-b-2">
 							</view>
 							
 							<view class="flex justify-center items-center text-center">
-								<span class="font-bold text-2xl text-blue-500">Kiểm tra ở FI</span>
+								<span class="font-bold text-[20px] mt-1 text-blue-500">Kiểm tra ở FI</span>
 							</view>
-							<scroll-view scroll-y="true" style="overflow-y: auto; height: calc(40vh - 240px);">
+							<scroll-view scroll-y="true" style="overflow-y: auto; height: calc(83vh - 240px);">
 								<view class="flex flex-col">
 									<view class="grid grid-cols-2 grid-rows-1 gap-4 mt-4">
 										<view class="flex flex-col gap-4">
-											<h2 class="font-semibold text-xl">Size B</h2>
+											<h2 class="font-semibold text-[20px]">Size B</h2>
 											<view class="flex items-center border-b border-gray-300 pb-2">
 												<view class="pen"></view>
 												<picker
@@ -140,7 +136,7 @@
 										</view>
 										
 										<view class="flex flex-col gap-4">
-											<h2 class="font-semibold text-xl">Chân trái/phải</h2>
+											<h2 class="font-semibold text-[20px]">Chân trái/phải</h2>
 											<view class="flex items-center border-b border-gray-300 pb-2">
 												<view class="pen"></view>
 												<picker
@@ -156,7 +152,7 @@
 											</view>
 										</view>
 										<view class="flex flex-col gap-4">
-											<h2 class="font-semibold text-xl">Số lượng B</h2>
+											<h2 class="font-semibold text-[20px]">Số lượng B</h2>
 											<view class="flex items-center border-b border-gray-300 pb-2">
 												<view class="pen"></view>
 												<input
@@ -170,7 +166,7 @@
 										</view>
 										
 										<view class="flex flex-col gap-4">
-											<h2 class="font-semibold text-xl">Nguyên nhân</h2>
+											<h2 class="font-semibold text-[20px]">Nguyên nhân</h2>
 											<view class="flex items-center border-b border-gray-300 pb-2">
 												<view class="pen"></view>
 												<my-select
@@ -187,7 +183,7 @@
 									
 									<view class="grid grid-cols-2 grid-rows-1 gap-4 mt-4">
 										<view class="flex flex-col gap-4">
-											<h2 class="font-semibold text-xl">Size C</h2>
+											<h2 class="font-semibold text-[20px]">Size C</h2>
 											<view class="flex items-center border-b border-gray-300 pb-2">
 												<view class="pen"></view>
 												<picker
@@ -202,7 +198,7 @@
 										</view>
 										
 										<view class="flex flex-col gap-4">
-											<h2 class="font-semibold text-xl">Chân trái/phải</h2>
+											<h2 class="font-semibold text-[20px]">Chân trái/phải</h2>
 											<view class="flex items-center border-b border-gray-300 pb-2">
 												<view class="pen"></view>
 												<picker
@@ -218,7 +214,7 @@
 											</view>
 										</view>
 										<view class="flex flex-col gap-4">
-											<h2 class="font-semibold text-xl">Số lượng C</h2>
+											<h2 class="font-semibold text-[20px]">Số lượng C</h2>
 											<view class="flex items-center border-b border-gray-300 pb-2">
 												<view class="pen"></view>
 												<input
@@ -232,7 +228,7 @@
 										</view>
 										
 										<view class="flex flex-col gap-4">
-											<h2 class="font-semibold text-xl">Nguyên nhân</h2>
+											<h2 class="font-semibold text-[20px]">Nguyên nhân</h2>
 											<view class="flex items-center border-b border-gray-300 pb-2">
 												<view class="pen"></view>
 												<my-select
@@ -247,18 +243,16 @@
 									</view>
 								</view>
 							</scroll-view>
-							<view class="border-b border-dashed border-black border-b-2 my-5">
-								<view class="absolute rounded-full w-5 h-5 -mt-2 -left-2"></view>
-								<view class="absolute rounded-full w-5 h-5 -mt-2 -right-2"></view>
+							<view class="border-b border-dashed border-black border-b-2">
 							</view>
 							<view class="flex justify-center items-center text-center">
-								<span class="font-bold text-2xl text-blue-500">Kiểm tra ở chuyền sản xuất</span>
+								<span class="font-bold text-[20px] mt-1 text-blue-500">Kiểm tra ở chuyền sản xuất</span>
 							</view>
-							<scroll-view scroll-y="true" style="overflow-y: auto; height: calc(40vh - 240px);">
+							<scroll-view scroll-y="true" style="overflow-y: auto; height: calc(87vh - 300px);">
 								<view class="flex flex-col">
 									<view class="grid grid-cols-2 grid-rows-1 gap-4 mt-4">
 										<view class="flex flex-col gap-4">
-											<h2 class="font-semibold text-xl">Size B</h2>
+											<h2 class="font-semibold text-[20px]">Size B</h2>
 											<view class="flex items-center border-b border-gray-300 pb-2">
 												<view class="pen"></view>
 												<picker
@@ -273,7 +267,7 @@
 										</view>
 										
 										<view class="flex flex-col gap-4">
-											<h2 class="font-semibold text-xl">Chân trái/phải</h2>
+											<h2 class="font-semibold text-[20px]">Chân trái/phải</h2>
 											<view class="flex items-center border-b border-gray-300 pb-2">
 												<view class="pen"></view>
 												<picker
@@ -289,7 +283,7 @@
 											</view>
 										</view>
 										<view class="flex flex-col gap-4">
-											<h2 class="font-semibold text-xl">Số lượng B</h2>
+											<h2 class="font-semibold text-[20px]">Số lượng B</h2>
 											<view class="flex items-center border-b border-gray-300 pb-2">
 												<view class="pen"></view>
 												<input
@@ -303,7 +297,7 @@
 										</view>
 										
 										<view class="flex flex-col gap-4">
-											<h2 class="font-semibold text-xl">Nguyên nhân</h2>
+											<h2 class="font-semibold text-[20px]">Nguyên nhân</h2>
 											<view class="flex items-center border-b border-gray-300 pb-2">
 												<view class="pen"></view>
 												<my-select
@@ -320,7 +314,7 @@
 									
 									<view class="grid grid-cols-2 grid-rows-1 gap-4 mt-4">
 										<view class="flex flex-col gap-4">
-											<h2 class="font-semibold text-xl">Size C</h2>
+											<h2 class="font-semibold text-[20px]">Size C</h2>
 											<view class="flex items-center border-b border-gray-300 pb-2">
 												<view class="pen"></view>
 												<picker
@@ -335,7 +329,7 @@
 										</view>
 										
 										<view class="flex flex-col gap-4">
-											<h2 class="font-semibold text-xl">Chân trái/phải</h2>
+											<h2 class="font-semibold text-[20px]">Chân trái/phải</h2>
 											<view class="flex items-center border-b border-gray-300 pb-2">
 												<view class="pen"></view>
 												<picker
@@ -351,7 +345,7 @@
 											</view>
 										</view>
 										<view class="flex flex-col gap-4">
-											<h2 class="font-semibold text-xl">Số lượng C</h2>
+											<h2 class="font-semibold text-[20px]">Số lượng C</h2>
 											<view class="flex items-center border-b border-gray-300 pb-2">
 												<view class="pen"></view>
 												<input
@@ -365,7 +359,7 @@
 										</view>
 										
 										<view class="flex flex-col gap-4">
-											<h2 class="font-semibold text-xl">Nguyên nhân</h2>
+											<h2 class="font-semibold text-[20px]">Nguyên nhân</h2>
 											<view class="flex items-center border-b border-gray-300 pb-2">
 												<view class="pen"></view>
 												<my-select

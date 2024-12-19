@@ -1,15 +1,15 @@
 <template>
 	<view class="h-screen w-full bg-gradient-to-b from-blue-200 via-blue-100 to-white flex flex-col">
-		<view class="flex flex-col bg-[#407bff] rounded-b-3xl gap-4 p-2">
+		<view class="flex flex-col bg-[#407bff] rounded-b-2xl gap-4 p-1">
 			<view class="mx-2 flex justify-between">
 				<view class="return" @click="backMenu()"></view>
 				<span class="font-semibold text-white py-1 border-b-2">Biểu hiệu chỉnh máy rà kim</span>
 				<view class="add" @click="toCreatePage()"></view>
 			</view>
 			<view class="flex flex-col size-full">
-				<view class="flex flex-col p-2">
-					<view class="font-semibold text-sm text-white">Chọn ngày :</view>
-					<view class="grid grid-cols-2 grid-rows-1 gap-4 mt-2">
+				<view class="flex flex-col">
+					<view class="font-semibold text-[20px] text-white">Chọn ngày :</view>
+					<view class="grid grid-cols-2 grid-rows-1 gap-2 mt-1">
 					  <picker
 						class="border border-gray-300 rounded-lg font-semibold"
 					    mode="date"
@@ -28,20 +28,18 @@
 					    <view class="uni-input">{{ endDate || 'Ngày kết thúc' }}</view>
 					  </picker>
 					</view>
-				</view>
-				
-				<view class="flex flex-col gap-2 p-2 w-full">
-					<view class="font-semibold text-sm text-white">
+					<view class="font-semibold text-[20px] text-white mt-1">
 						Tìm kiếm ( Số máy ) :
 					</view>
 					<input 
-					  class="w-full h-full bg-white font-semibold border px-4 py-2 rounded-lg focus:border-blue-500 focus:shadow-outline outline-none" 
+					  class="w-full h-full bg-white font-semibold border px-2 py-1 rounded-lg focus:border-blue-500 focus:shadow-outline outline-none" 
 					  v-model="searchValue"
 					  type="text" 
 					  autofocus 
 					  placeholder="Tìm kiếm..." 
 					/>
 				</view>
+				
 				
 				<view class="flex flex-col gap-2 w-full p-2">
 					<button @click="onSearchChange()" class="w-full rounded-lg font-semibold bg-[#3acdbb] text-white">Tìm kiếm</button>
@@ -59,61 +57,61 @@
 		<scroll-view 
 			@scrolltolower="fetchData"
 			scroll-y="true" 
-			class="scroll-container size-full mx-auto shadow-xl p-4"
+			class="scroll-container size-full mx-auto shadow-xl p-2"
 			style="overflow-y: auto; height: calc(190vh - 300px);"
 		>
-			<view v-for="(item, index) in dataList" :key="item.ID" class="grid grid-cols-3 grid-rows-1 gap-2 bg-white cursor-pointer shadow-lg rounded-xl p-4 mb-4">
+			<view v-for="(item, index) in dataList" :key="item.ID" class="grid grid-cols-3 grid-rows-1 gap-2 bg-white cursor-pointer shadow-lg rounded-xl p-2 mb-2">
 				<p class="font-semibold text-[#214263]">
 					Ngày kiểm : 
-					<span class="text-gray-600 text-sm font-bold">
+					<span class="text-gray-600 text-[15px] font-bold">
 						{{ formatDate(item.DATE_REPORT) }}
 					</span>
 				</p>
 				<p class="font-semibold text-[#214263]">
 					Số máy : 
-					<span class="text-gray-600 text-sm font-bold">
+					<span class="text-gray-600 text-[15px] font-bold">
 						{{ item.METAL_NO }}
 					</span>
 				</p>
 				<p class="font-semibold text-[#214263]">
 					Thời gian : 
-					<span class="text-gray-600 text-sm font-bold">
+					<span class="text-gray-600 text-[15px] font-bold">
 						{{ formatTime(item.TIME) }}
 					</span>
 				</p>
 				<p class="font-semibold text-[#214263]">
 					Trái ( Vị trí / 1,4,7 ) : 
-					<span class="text-gray-600 text-sm font-bold">
+					<span class="text-gray-600 text-[15px] font-bold">
 						{{ item.FAIL_LEFT_POSITION || '0' }}
 					</span>
 				</p>
 				<p class="font-semibold text-[#214263]">
 					Giữa ( Vị trí / 2,5,8 ) : 
-					<span class="text-gray-600 text-sm font-bold">
+					<span class="text-gray-600 text-[15px] font-bold">
 						{{ item.FAIL_MIDDLE_POSITION || '0' }}
 					</span>
 				</p>
 				<p class="font-semibold text-[#214263]">
 					Phải ( Vị trí / 3,6,9 ) : 
-					<span class="text-gray-600 text-sm font-bold">
+					<span class="text-gray-600 text-[15px] font-bold">
 						{{ item.FAIL_RIGHT_POSITION || '0' }}
 					</span>
 				</p>
 				<p class="font-semibold text-[#214263]">
 					Chuyền : 
-					<span class="text-gray-600 text-sm font-bold">
+					<span class="text-gray-600 text-[15px] font-bold">
 						{{ item.DEPARTMENT_CODE }}
 					</span>
 				</p>
 				<p class="font-semibold text-[#214263]">
 					QC : 
-					<span class="text-gray-600 text-sm font-bold">
+					<span class="text-gray-600 text-[15px] font-bold">
 						{{ item.QC }}
 					</span>
 				</p>
 				<p class="font-semibold text-[#214263]">
 				  Kết quả :
-				  <span v-if="item && item.PASS_FAIL" :class="[showStatus(item.PASS_FAIL).color, 'text-sm font-bold']">
+				  <span v-if="item && item.PASS_FAIL" :class="[showStatus(item.PASS_FAIL).color, 'text-[15px] font-bold']">
 				    {{ showStatus(item.PASS_FAIL).text }}
 				  </span>
 				  <span v-else>

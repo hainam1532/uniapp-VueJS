@@ -2,16 +2,13 @@
 	<view class="flex h-screen bg-gray-100 overflow-auto">
 	  <view class="bg-white w-full shadow-lg overflow-hidden">
 	    <!-- Header -->
-	    <view class="bg-[#407bff] text-white text-center py-8 rounded-b-full relative">
-	      <h1 class="text-2xl font-semibold">Tạo báo cáo</h1>
-	      <view class="absolute bg-[#407bff] w-16 h-16 rounded-full flex items-center justify-center border-4 border-white -bottom-8 left-1/2 transform -translate-x-1/2">
-			<view class="circle"></view>
-	      </view>
+	    <view class="bg-[#407bff] text-white text-center rounded-b-full relative">
+	      <h1 class="text-lg font-semibold">Tạo báo cáo</h1>
 	    </view>
 	
 	    <!-- Form -->
 		<scroll-view :scroll-top="scrollTop" scroll-y="true" class="scroll-Y" @scrolltoupper="upper" @scrolltolower="lower" @scroll="scroll">
-			<view class="p-4 pt-16 space-y-6">
+			<view class="p-4 pt-2 space-y-4">
 				<view class="flex items-center">
 					<span class="font-bold text-xl">Thông tin cơ bản :</span>
 				</view>
@@ -186,11 +183,11 @@
 				<view class="flex flex-col gap-2">
 					<span class="font-bold text-sm text-red-500">- Ghi chú</span>
 					<view class="flex flex-col gap-2">
-						<view class="flex text-sm">
+						<view class="flex text-[20px]">
 							<span class="font-bold">1.Tiêu chuẩn độ ẩm/</span>
 							<span class="text-blue-500 font-bold">Humidity Standard :</span>
 						</view>
-						<view class="flex flex-col gap-2 ml-4 text-sm font-bold">
+						<view class="flex flex-col gap-2 ml-4 text-[20px] font-bold">
 							<span>1. Da : ≤ 17.0%</span>
 							<span>2. Bông, tơ tằm và sợi tổng hợp : ≤ 7.0%</span>
 							<span>3. TPU/PVC : ≤ 2.0%</span>
@@ -198,11 +195,11 @@
 						</view>
 					</view>
 					<view class="flex flex-col gap-2">
-						<view class="flex text-sm">
+						<view class="flex text-[20px]">
 							<span class="font-bold">2.Tần suất kiểm tra/</span>
 							<span class="text-blue-500 font-bold">Frequency :</span>
 						</view>
-						<view class="flex flex-col gap-2 ml-4 text-sm font-bold">
+						<view class="flex flex-col gap-2 ml-4 text-[20px] font-bold">
 							<span>- Rút kiểm ngẫu nhiên 3 đôi/chuyền/ngày</span>
 							<span class="text-blue-400">- Randomly inspection 3 pairs/line/day</span>
 							<span>- Lấy giá trị trung bình của 3 lần đo trên mỗi mẫu vật liệu</span>
@@ -214,11 +211,11 @@
 			</view>
 		</scroll-view>
 		
-		<view class="p-4 pt-6">
+		<view class="p-4">
 			<!-- Buttons -->
-			<view class="space-y-4">
-				<button @click="createReport()" class="w-full py-3 text-white bg-[#407bff] rounded-lg font-semibold transition">Tạo</button>
-				<button @click="returnPage()" class="w-full py-3 text-[#407bff] border border-[#407bff] rounded-lg font-semibold hover:[#407bff] transition">Quay về</button>
+			<view class="space-y-2">
+				<button @click="createReport()" class="w-full text-white bg-[#407bff] rounded-lg font-semibold transition">Tạo</button>
+				<button @click="returnPage()" class="w-full text-[#407bff] border border-[#407bff] rounded-lg font-semibold hover:[#407bff] transition">Quay về</button>
 			</view>
 		</view>
 	  </view>
@@ -446,7 +443,7 @@
 
 <style>
 	.scroll-Y {
-		height: calc(100vh - 300px);
+		height: calc(107vh - 300px);
 		overflow-y: auto;
 	}
 	

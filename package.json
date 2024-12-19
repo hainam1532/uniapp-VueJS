@@ -1,6 +1,6 @@
 {
   "name": "uni-app-vue3-tailwind-hbuilder-template",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "",
   "main": "main.js",
   "scripts": {
@@ -29,8 +29,13 @@
     "@vant/weapp": "^1.11.7",
     "axios": "^1.7.9",
     "axios-adapter-uniapp": "^0.1.4",
+    "chart.js": "^4.4.7",
+    "ec-canvas": "^1.0.0",
+    "echarts": "^5.5.1",
+    "echarts-vue": "^1.1.5",
     "element-ui": "^2.15.14",
     "element-ui-2.4.6": "^2.4.6",
+    "ucharts": "^0.0.0",
     "vant": "^4.9.9",
     "vue-router": "^4.0.13"
   }

@@ -7,9 +7,9 @@
 				<view class="add" @click="toCreatePage()"></view>
 			</view>
 			<view class="flex flex-col size-full">
-				<view class="flex flex-col p-2">
-					<view class="font-semibold text-sm text-white">Chọn ngày :</view>
-					<view class="grid grid-cols-2 grid-rows-1 gap-4 mt-2">
+				<view class="flex flex-col gap-1">
+					<view class="font-semibold text-[20px] text-white">Chọn ngày :</view>
+					<view class="grid grid-cols-2 grid-rows-1 gap-2">
 						<picker class="border border-gray-300 rounded-lg font-semibold" mode="date" :value="startDate"
 							@change="onStartDateChange">
 							<view class="uni-input">{{ startDate || 'Ngày bắt đầu' }}</view>
@@ -20,18 +20,15 @@
 							<view class="uni-input">{{ endDate || 'Ngày kết thúc' }}</view>
 						</picker>
 					</view>
-				</view>
-
-				<view class="flex flex-col gap-2 p-2 w-full">
-					<view class="font-semibold text-sm text-white">
+					<view class="font-semibold text-[20px] text-white">
 						Tìm kiếm (số lô) :
 					</view>
 					<input
-						class="w-full h-full bg-white font-semibold border px-4 py-2 rounded focus:border-blue-500 focus:shadow-outline outline-none"
+						class="w-full h-full bg-white font-semibold border py-1 px-1 rounded focus:border-blue-500 focus:shadow-outline outline-none"
 						v-model="searchValue" type="text" autofocus placeholder="Tìm kiếm..." />
 				</view>
 
-				<view class="flex flex-col gap-2 w-full p-2">
+				<view class="flex flex-col gap-1 w-full p-2">
 					<button @click="onSearchChange()"
 						class="w-full rounded-lg font-semibold bg-[#3acdbb] text-white">Tìm kiếm</button>
 					<button @click="resetData()"
@@ -59,25 +56,25 @@
 		<scroll-view @scrolltolower="fetchData" scroll-y="true" class="scroll-container size-full mx-auto shadow-lg p-4"
 			style="overflow-y: auto; height: calc(100vh - 300px);">
 			<view v-for="(item, index) in dataList" :key="item.ID" @click="showDetail(item.ID)"
-				class="grid grid-cols-2 grid-rows-1 bg-white gap-2 cursor-pointer shadow-md rounded-lg p-4 mb-4">
+				class="grid grid-cols-2 grid-rows-1 bg-white gap-2 cursor-pointer shadow-md rounded-lg p-2 mb-2">
 				<p class="font-semibold text-[#214263]">Ngày kiểm: <span
-						class="text-gray-600 text-sm font-bold">{{ formatDate(item.DATE_RECORD) }}</span></p>
+						class="text-gray-600 text-[15px] font-bold">{{ formatDate(item.DATE_RECORD) }}</span></p>
 				<p class="font-semibold text-[#214263]">Ngày nhập kho: <span
-						class="text-gray-600 text-sm font-bold">{{ formatDate(item.DATE_WH) }}</span></p>
+						class="text-gray-600 text-[15px] font-bold">{{ formatDate(item.DATE_WH) }}</span></p>
 				<p class="font-semibold text-[#214263]">Thời gian: <span
-						class="text-gray-600 text-sm font-bold">{{ formatTime(item.TIME_REPORT) }}</span></p>
+						class="text-gray-600 text-[15px] font-bold">{{ formatTime(item.TIME_REPORT) }}</span></p>
 				<p class="font-semibold text-[#214263]">Số lô: <span
-						class="text-gray-600 text-sm font-bold">{{ item.MATERIAL_LOT }}</span></p>
+						class="text-gray-600 text-[15px] font-bold">{{ item.MATERIAL_LOT }}</span></p>
 				<p class="font-semibold text-[#214263]">Khu vực: <span
-						class="text-gray-600 text-sm font-bold">{{ showMaterialName(item.MEASUREMENT_AREA).text }}</span>
+						class="text-gray-600 text-[15px] font-bold">{{ showMaterialName(item.MEASUREMENT_AREA).text }}</span>
 				</p>
 				<p class="font-semibold text-[#214263]">Tên liệu: <span
-						class="text-gray-600 text-sm font-bold">{{ item.NAME_MATERIAL }}</span></p>
+						class="text-gray-600 text-[15px] font-bold">{{ item.NAME_MATERIAL }}</span></p>
 				<p class="font-semibold text-[#214263]">Ghi chú: <span
-						class="text-gray-600 text-sm font-bold">{{ item.REMARK }}</span></p>
+						class="text-gray-600 text-[15px] font-bold">{{ item.REMARK }}</span></p>
 				<p class="font-semibold text-[#214263]">
 					Trung bình:
-					<span v-if="item" :class="[caculateAverage(item).color, 'text-sm']">
+					<span v-if="item" :class="[caculateAverage(item).color, 'text-[15px]']">
 						{{caculateAverage(item).text}}
 					</span>
 					<span v-else>
@@ -408,7 +405,7 @@
 	.loading-text,
 	.end-text {
 		text-align: center;
-		padding: 16px;
+		padding: 4px;
 		color: #999;
 	}
 
