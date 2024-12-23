@@ -60,26 +60,26 @@
 			class="rounded-t-2xl shadow-lg size-full mx-auto shadow-lg p-2"
 			style="overflow-y: auto; height: calc(430vh - 300px);">
 			<view v-for="(item, index) in dataList" :key="item.ID" @click="showDetail(item.ID)"
-				class="grid grid-cols-2 grid-rows-1 bg-white gap-2 cursor-pointer shadow-lg rounded-lg p-2 mb-2">
-				<p class="font-semibold text-[#214263]">
+				class="grid grid-cols-2 grid-rows-1 border-2 border-black bg-white gap-2 cursor-pointer shadow-lg rounded-lg p-2 mb-2">
+				<p class="font-bold text-[#214263]">
 					ID:
 					<span class="text-gray-600 text-[15px]">
 						{{ item.ID }}
 					</span>
 				</p>
-				<p class="font-semibold text-[#214263]">
+				<p class="font-bold text-[#214263]">
 					Ngày:
 					<span class="text-gray-600 text-[15px]">
 						{{ formatDate(item.DATE_REPORT) }}
 					</span>
 				</p>
-				<p class="font-semibold text-[#214263]">
+				<p class="font-bold text-[#214263]">
 					Mã phom:
 					<span class="text-gray-600 text-[15px]">
 						{{ item.CODE_PHOM }}
 					</span>
 				</p>
-				<p class="font-semibold text-[#214263]">
+				<p class="font-bold text-[#214263]">
 					QC:
 					<span class="text-gray-600 text-[15px]">
 						{{ item.QC }}

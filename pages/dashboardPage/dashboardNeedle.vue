@@ -2,8 +2,8 @@
     <view class="flex flex-col items-center gap-4 h-screen bg-blue-200 p-2">
         <!-- Card 1 -->
         <view class="flex flex-col bg-white size-full shadow-lg rounded-xl p-2">
-            <view class="flex text-center font-bold text-[20px] items-center justify-center">
-                <span>Top kim may</span>
+            <view class="flex text-center font-bold text-[25px] items-center justify-center">
+                <span>Top máy rà kim không thông qua nhiều nhất</span>
             </view>
             <view class="grid grid-cols-2 grid-rows-1 gap-2 w-full py-1.5">
                 <picker
@@ -24,198 +24,175 @@
                 <button @click="resetSearch()"
                     class="w-full rounded-lg font-semibold bg-red-400 text-white mt-1">Reset</button>
             </view>
-            <view>
-                <l-echart style="width:100%; height:600px" ref="chartRef"></l-echart>
-            </view>
+           <view class='size-full'>
+				<l-echart style="width:100%; height:90%;" ref="chartRef"></l-echart>
+           </view>
         </view>
-        <button class="w-full rounded-lg bg-blue-400 font-semibold text-white" @click="backHome()">Return</button>
+        <button class="w-full rounded-lg bg-blue-400 font-semibold text-white" @click="backHome()">Quay về</button>
     </view>
 </template>
 
 <script>
-import { ref, onMounted, nextTick } from 'vue';
-import * as echarts from 'echarts';
+	import { ref, onMounted } from 'vue';
+	import * as echarts from 'echarts';
 
-export default {
-  setup() {
-    // Khai báo các biến và references
-    const chartRef = ref(null);
-    const startDate = ref('');
-    const endDate = ref('');
-    const metalNoData = ref([]);
-    const countData = ref([]);
-    const isLoading = ref(false);
-    const colorList = [
-      '#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae',
-      '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570',
-    ];
+	export default {
+		data() {
+			return {
+				dataList: [],
+				isLoading: false, // Trạng thái tải dữ liệu
+				startDate: '', // Thời gian bắt đầu (giá trị mẫu)
+				endDate: '', // Thời gian kết thúc (giá trị mẫu)
+				chartInstance: null, // Tham chiếu đến biểu đồ ECharts
+			};
+		},
+		mounted() {
+			// Gọi hàm fetchData khi component được mount
+			this.fetchData();
+		},
+		methods: {
+			backHome() {
+				uni.navigateTo({
+					url: '/pages/index/indexDashboard'
+				})
+			},
+			onStartDateChange(e) {
+				const selectedDate = e.detail.value;
+				this.startDate = this.formatDate(selectedDate);
+			},
+			onEndDateChange(e) {
+			  const selectedDate = e.detail.value;
+			  this.endDate = this.formatDate(selectedDate);
+			},
+			formatDate(dateString) {
+				const date = new Date(dateString);
+				const day = String(date.getDate()).padStart(2, '0');
+				const month = String(date.getMonth() + 1).padStart(2, '0');
+				const year = date.getFullYear();
+				return `${year}/${month}/${day}`;
+			},
+			onSearchChange() {
+				this.dataList = [];
+				this.fetchData()
+			},
+			resetSearch() {
+				this.dataList = [];
+				this.startDate = '';
+				this.endDate = '';
+				this.fetchData();
+			},
+			async fetchData() {
+				this.isLoading = true;
 
-    // Khởi tạo option cho biểu đồ
-    const option = {
-      tooltip: {
-        trigger: 'axis',
-        axisPointer: {
-          type: 'shadow',
-        },
-      },
-      grid: {
-        left: '3%',
-        right: '4%',
-        bottom: '3%',
-        containLabel: true,
-      },
-      xAxis: {
-        type: 'value',
-      },
-      yAxis: {
-        type: 'category',
-        data: metalNoData.value,
-      },
-      series: [{
-        name: 'Số lượng',
-        type: 'bar',
-        data: countData.value,
-        label: {
-          show: true,
-        },
-        itemStyle: {
-          color: function(params) {
-            return colorList[params.dataIndex % colorList.length];
-          },
-        },
-      }],
-    };
+				try {
+					// Gọi API để lấy dữ liệu
+					const response = await new Promise((resolve, reject) => {
+						uni.request({
+							url: 'http://10.30.3.50:8386/api/dashboard/getDashboardNeedle', // Địa chỉ API
+							method: 'GET',
+							data: {
+								startDate: this.startDate,
+								endDate: this.endDate,
+							},
+							success: (res) => resolve(res),
+							fail: (err) => reject(err),
+						});
+					});
 
-    let myChart = null;
+					console.log('Dữ liệu trả về từ API:', response.data);
 
-    // Khởi tạo biểu đồ khi component được mount
-    onMounted(() => {
-      nextTick(() => {
-        // Đảm bảo chartRef.value là một DOM element hợp lệ
-        if (chartRef.value && chartRef.value.$el) {
-          myChart = echarts.init(chartRef.value.$el);
-          myChart.setOption(option);
-        } else {
-          console.error("chartRef is not a valid DOM element");
-        }
-      });
-    });
+					// Lấy dữ liệu từ API
+					const newData = response.data?.data || [];
+					if (Array.isArray(newData) && newData.length > 0) {
+						// Cập nhật biểu đồ với dữ liệu mới
+						this.updateChart(newData);
+					} else {
+						uni.showToast({
+							title: 'Không có dữ liệu.',
+							icon: 'none',
+						});
+					}
+				} catch (error) {
+					console.error('Lỗi khi gọi API:', error);
+					uni.showToast({
+						title: 'Lỗi khi lấy dữ liệu.',
+						icon: 'none',
+					});
+				} finally {
+					this.isLoading = false;
+				}
+			},
+			updateChart(data) {
+				// Trích xuất DEPARTMENT_CODE và COUNT từ dữ liệu API
+				const metal = data.map(item => item.METAL_NO);
+				const counts = data.map(item => item.COUNT);
 
-    // Hàm gọi API và cập nhật dữ liệu
-    const dashboardMaterialIQC = async () => {
-      isLoading.value = true;
-      try {
-        const response = await uni.request({
-          url: "http://10.30.3.50:8386/api/dashboard/getDashboardNeedle",
-          method: "GET",
-          data: {
-            startDate: startDate.value,
-            endDate: endDate.value,
-          },
-        });
+				// Lấy tham chiếu đến thành phần biểu đồ
+				const chartRef = this.$refs.chartRef;
 
-        const newData = response.data?.data || [];
-        if (Array.isArray(newData) && newData.length > 0) {
-          metalNoData.value = newData.map(item => item.METAL_NO);
-          countData.value = newData.map(item => item.COUNT);
-          
-          // Cập nhật biểu đồ sau khi có dữ liệu mới
-          if (myChart) {
-            myChart.setOption({
-              yAxis: [{
-                data: metalNoData.value,
-              }],
-              series: [{
-                data: countData.value,
-              }],
-            });
-          }
-        } else {
-          uni.showToast({
-            title: "Không có dữ liệu mới.",
-            icon: "none",
-          });
-        }
-      } catch (error) {
-        console.error("Lỗi khi gọi API:", error);
-        uni.showToast({ title: "Lỗi khi tải dữ liệu!", icon: "none" });
-      } finally {
-        isLoading.value = false;
-      }
-    };
+				// Khởi tạo hoặc cập nhật biểu đồ ECharts
+				if (!this.chartInstance) {
+					chartRef.init(echarts, chart => {
+						this.chartInstance = chart;
+						this.setChartOptions(metal, counts);
+					});
+				} else {
+					this.setChartOptions(metal, counts);
+				}
+			},
+			setChartOptions(metal, counts) {
+				// Cấu hình biểu đồ
+				const options = {
+					title: {
+						text: 'Số lượng theo máy kim',
+						textStyle: {
+						    fontSize: 18,      // You can also adjust the font size
+						    fontWeight: 'bold' // Optionally, make the font bold
+						},
+					},
+					tooltip: {
+						trigger: 'axis',
+					},
+					xAxis: {
+						type: 'category',
+						data: metal,
+						axisLabel: {
+							rotate: 45, // Xoay nhãn nếu cần
+							fontWeight: 'bold', // Optionally make the font bold
+							fontFamily: 'Arial' // You can specify a font family
+						},
+					},
+					yAxis: {
+						type: 'value',
+					},
+					series: [
+						{
+							name: 'Số lượng',
+							type: 'bar',
+							data: counts,
+							itemStyle: {
+								color: '#3398DB',
+								fontWeight: 'bold', // Optionally make the font bold
+								fontFamily: 'Arial' // You can specify a font family
+							},
+							label: {
+							  show: true
+							},
+						},
+					],
+				};
 
-    // Hàm thay đổi ngày bắt đầu
-    const onStartDateChange = (e) => {
-      const selectedDate = e.detail.value;
-      startDate.value = formatDate(selectedDate);
-      if (new Date(endDate.value) < new Date(startDate.value)) {
-        endDate.value = startDate.value;
-      }
-    };
-
-    // Hàm thay đổi ngày kết thúc
-    const onEndDateChange = (e) => {
-      const selectedDate = e.detail.value;
-      endDate.value = formatDate(selectedDate);
-    };
-
-    // Hàm format ngày tháng
-    const formatDate = (dateString) => {
-      const date = new Date(dateString);
-      const day = String(date.getDate()).padStart(2, '0');
-      const month = String(date.getMonth() + 1).padStart(2, '0');
-      const year = date.getFullYear();
-      return `${year}/${month}/${day}`;
-    };
-
-    // Hàm tìm kiếm dữ liệu
-    const onSearchChange = () => {
-      metalNoData.value = [];
-      countData.value = [];
-      dashboardMaterialIQC();
-    };
-
-    // Hàm reset tìm kiếm
-    const resetSearch = () => {
-      startDate.value = '';
-      endDate.value = '';
-      metalNoData.value = [];
-      countData.value = [];
-      dashboardMaterialIQC();
-    };
-
-    // Hàm quay lại trang chủ
-    const backHome = () => {
-      uni.navigateTo({
-        url: '/pages/index/indexDashboard',
-      });
-    };
-
-    return {
-      chartRef,
-      startDate,
-      endDate,
-      metalNoData,
-      countData,
-      isLoading,
-      onStartDateChange,
-      onEndDateChange,
-      onSearchChange,
-      resetSearch,
-      backHome,
-      dashboardMaterialIQC,
-    };
-  },
-  mounted() {
-    this.dashboardMaterialIQC();
-    this.intervalId = setInterval(() => {
-      this.dashboardMaterialIQC();
-    }, 300000); // Cập nhật dữ liệu mỗi 5 phút
-  },
-  beforeDestroy() {
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-    }
-  },
-};
+				// Thiết lập option cho biểu đồ
+				this.chartInstance.setOption(options);
+			},
+		},
+	};
 </script>
+
+<style scoped>
+/* Đảm bảo biểu đồ hiển thị đúng kích thước */
+.view {
+	width: 100%;
+	height: 400px;
+}
+</style>

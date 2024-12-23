@@ -46,15 +46,10 @@
 										<h2 class="font-semibold text-[20px]">Chuyền :</h2>
 										<view class="flex items-center border-b border-gray-300">
 											<view class="location"></view>
-											<picker
-												class="w-full ml-2 outline-none font-bold"
-											    @change="bindPickerDepartmentChange"
-											    :value="formData.DEPARTMENT_CODE"
-											    :range="departmentList">
-											    <view class="w-full text-[15px] outline-none font-bold">
-											      {{ formData.DEPARTMENT_CODE || 'Chọn chuyền' }}
-											    </view>
-											</picker>
+											<my-select class="ml-2 outline-none font-bold text-[20px]" :data="dataDepartment"
+												valueField="DEPARTMENT_CODE" displayField="DEPARTMENT_NAME"
+												placeholder="Nhập hoặc chọn dữ liệu..." title="Danh sách lựa chọn chuyền" @select="handleSelectDepartment"
+												@clear="handleClearDepartment" />
 											
 										</view>
 									</view>
@@ -63,13 +58,10 @@
 										<view class="flex items-center border-b border-gray-300">
 											<view class="pen"></view>
 											<view class="flex justify-between items-center" >
-												<input
-												  class="w-full ml-2 text-[18px] outline-none font-bold" 
-												  type="text" 
-												  v-model="formData.PROD"
-												  autofocus
-												  placeholder="Nhập PO" 
-												/>
+												<my-select class="ml-2 outline-none font-bold text-[20px]" :data="dataPO"
+													valueField="MER_PO" displayField="SE_ID"
+													placeholder="Nhập hoặc chọn dữ liệu..." title="Danh sách lựa chọn PO" @select="handleSelect"
+													@clear="handleClear" />
 											</view>
 										</view>
 									</view>
@@ -80,9 +72,11 @@
 											<view class="flex" >
 												<!-- Dropdown MySelect -->
 												<my-select
+													class="ml-2 outline-none font-bold text-[20px]"
 													:data="dataART"
 													v-model="selectedART"
 													valueField="PROD_NO"
+													displayField="PROD_NO"
 													placeholder="Chọn ART"
 													@select="handleARTSelect"
 												/>
@@ -170,10 +164,11 @@
 											<view class="flex items-center border-b border-gray-300 pb-2">
 												<view class="pen"></view>
 												<my-select
-													class="w-full ml-2"
+													class="ml-2 outline-none font-bold text-[5px]"
 													:data="dataIssueBFI"
 													v-model="selectedIssueBFI"
 													valueField="PROBLEM_CODE"
+													displayField="PROBLEM_NAME"
 													placeholder="Chọn nguyên nhân"
 													@select="handleISSUESelectBFI"
 												/>
@@ -235,6 +230,7 @@
 													:data="dataIssueCFI"
 													v-model="selectedIssueCFI"
 													valueField="PROBLEM_CODE"
+													displayField="PROBLEM_NAME"
 													placeholder="Chọn nguyên nhân"
 													@select="handleISSUESelectCFI"
 												/>
@@ -305,6 +301,7 @@
 													:data="dataIssueBProd"
 													v-model="selectedIssueBProd"
 													valueField="PROBLEM_CODE"
+													displayField="PROBLEM_NAME"
 													placeholder="Chọn nguyên nhân"
 													@select="handleISSUESelectBProd"
 												/>
@@ -367,6 +364,7 @@
 													:data="dataIssueCProd"
 													v-model="selectedIssueCProd"
 													valueField="PROBLEM_CODE"
+													displayField="PROBLEM_NAME"
 													placeholder="Chọn nguyên nhân"
 													@select="handleISSUESelectCProd"
 												/>
@@ -391,7 +389,7 @@
 
 <script>
 	import axios from '../../../axios.js';
-	import mySelect from '../../../components/mySelect/mySelect.vue'
+	import mySelect from '../../../components/mySelect2/mySelect2.vue'
 	export default {
 		components: {
 		    mySelect,
@@ -419,7 +417,7 @@
 				selectedISsueCProd: "",
 				formData: {
 					DEPARTMENT_CODE: '',
-					PROD_NO: '',
+					PROD: '',
 					STYLE: '',
 					ISSUE: '',
 					DATE_REPORT: '',
@@ -480,6 +478,7 @@
 			this.getART()
 			this.getISSUE()
 			this.getSIZE()
+			this.getPO()
 		},
 		methods: {
 			backMenu() {
@@ -543,26 +542,74 @@
 				this.formData.DATE_REPORT = this.formatDate(dateRecord);
 			},
 			getDepartment() {
-			    this.isLoading = true;
+				this.isLoading = true;
 			
-			    uni.request({
-			        url: 'http://10.30.3.50:8386/api/configData/getDepartment',
-			        method: 'GET',
-			        success: (res) => {
-			            const newDataDepartment = res.data?.data || [];
-			            if (Array.isArray(newDataDepartment) && newDataDepartment.length > 0) {
-			                this.dataDepartment = [...this.dataDepartment, ...newDataDepartment];
-			            } else {
-			                console.error('No department data or data is empty.');
-			            }
-			        },
-			        fail: (error) => {
-			            console.error("Error fetching department data:", error);
-			        },
-			        complete: () => {
-			            this.isLoading = false;
-			        }
-			    });
+				uni.request({
+					//url: 'http://10.30.3.50:8386/api/configData/getDepartment',
+					url: 'http://10.30.3.50:8386/api/configData/getDepartment',
+					method: 'GET',
+					success: (res) => {
+						const newDataDepartment = res.data?.data || [];
+						if (Array.isArray(newDataDepartment) && newDataDepartment.length > 0) {
+							this.dataDepartment = newDataDepartment.map((item) => ({
+								DEPARTMENT_CODE: item.DEPARTMENT_CODE,
+								DEPARTMENT_NAME: item.DEPARTMENT_NAME,
+							}));
+						} else {
+							console.error('No department data or data is empty.');
+						}
+					},
+					fail: (error) => {
+						console.error("Error fetching department data:", error);
+					},
+					complete: () => {
+						this.isLoading = false;
+					},
+				});
+			},
+			getPO() {
+				this.isLoading = true;
+			
+				uni.request({
+					url: 'http://10.30.3.50:8386/api/configData/getPO',
+					//url: 'http://10.30.3.27:8000/api/configData/getPO',
+					method: 'GET',
+					success: (res) => {
+						const newDataPO = res.data?.data || [];
+						if (Array.isArray(newDataPO) && newDataPO.length > 0) {
+							this.dataPO = newDataPO.map((item) => ({
+								MER_PO: item.MER_PO,
+								SE_ID: item.SE_ID,
+							}));
+						} else {
+							console.error('No PO data or data is empty.');
+						}
+					},
+					fail: (error) => {
+						console.error("Error fetching PO data:", error);
+					},
+					complete: () => {
+						this.isLoading = false;
+					},
+				});
+			},
+			handleSelect(item) {
+				console.log("Đã chọn:", item);
+				this.formData.PROD = item.MER_PO;
+			
+				console.log(this.formData.PROD)
+			},
+			handleClear() {
+				console.log("Đã hủy chọn");
+			},
+			handleSelectDepartment(item) {
+				console.log("Đã chọn:", item);
+				this.formData.DEPARTMENT_CODE = item.DEPARTMENT_CODE;
+			
+				console.log(this.formData.DEPARTMENT_CODE)
+			},
+			handleClearDepartment() {
+				console.log("Đã hủy chọn");
 			},
 			bindPickerDepartmentChange(e){
 				const selectedIndex = e.detail.value;
@@ -735,11 +782,26 @@
 			            method: 'POST',
 			            data: this.formData,
 			            success: (res) => {
-			                uni.showToast({
-			                    title: "Tạo thành công",
-			                    icon: "none",
-			                    duration: 2000,
-			                });
+							if (res.statusCode === 200) {
+								console.log("Create success");
+								uni.showToast({
+									title: "Tạo thành công",
+									icon: "none",
+									duration: 2000,
+								});
+								this.isLoading = false;
+								uni.navigateTo({
+									url: '/pages/prodReport/prodReportBC'
+								});
+							} else {
+								console.error("Server error: ", res.data);
+								uni.showToast({
+									title: `Tạo thất bại: ${res.data.message || "Lỗi không xác định"}`,
+									icon: "none",
+									duration: 2000,
+								});
+								this.isLoading = false;
+							}
 			            },
 			            fail: (error) => {
 			                console.error("Create error: " + error);
@@ -747,12 +809,6 @@
 			                    title: "Tạo thất bại",
 			                    icon: "none",
 			                    duration: 2000,
-			                });
-			            },
-			            complete: () => {
-			                this.isLoading = false;
-			                uni.navigateTo({
-			                    url: '/pages/prodReport/prodReportBC'
 			                });
 			            }
 			        });

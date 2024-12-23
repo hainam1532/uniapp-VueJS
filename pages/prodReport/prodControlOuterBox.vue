@@ -54,63 +54,63 @@
 			style="overflow-y: auto; height: calc(590vh - 300px);"
 		>
 			<view v-for="(item, index) in dataList" :key="item.ID" 
-				class="grid grid-cols-3 grid-rows-1 bg-white gap-2 cursor-pointer shadow-lg rounded-lg p-2 mb-2"
+				class="grid grid-cols-3 grid-rows-1 bg-white gap-1 border-2 border-black cursor-pointer shadow-lg rounded-lg p-2 mb-2"
 			>
-				<p class="flex font-semibold text-[#214263] gap-2">
+				<p class="flex font-bold text-[#214263] gap-2">
 					ID:
 					<span class="text-gray-600 text-[15px]">
 						{{ item.ID }}
 					</span>
 				</p>
-				<p class="flex font-semibold text-[#214263] gap-2">
+				<p class="flex font-bold text-[#214263] gap-2">
 					Nhà máy:
 					<span class="text-gray-600 text-[15px]">
 						{{ item.DEPARTMENT }}
 					</span>
 				</p>
-				<p class="flex font-semibold text-[#214263] gap-2">
+				<p class="flex font-bold text-[#214263] gap-2">
 					Loại tem: 
 					<span class="text-gray-600 text-[15px]">
 						{{ item.STAMP_TYPE }}
 					</span>
 				</p>
-				<p class="flex font-semibold text-[#214263] gap-2">
+				<p class="flex font-bold text-[#214263] gap-2">
 					Ngày kiểm: 
 					<span class="text-gray-600 text-[15px]">
 						{{ formatDate(item.DATE_RECORD) }}
 					</span>
 				</p>
-				<p class="flex font-semibold text-[#214263] gap-2">
+				<p class="flex font-bold text-[#214263] gap-2">
 					Thực lãnh: 
 					<span class="text-gray-600 text-[15px] ">
 						{{ item.QTY_SALARY }}
 					</span>
 				</p>
-				<p class="flex font-semibold text-[#214263] gap-2">
+				<p class="flex font-bold text-[#214263] gap-2">
 					Sử dụng: 
 					<span class="text-gray-600 text-[15px]">
 						{{ item.QTY_USE }}
 					</span>
 				</p>
-				<p class="flex font-semibold text-[#214263] gap-2">
+				<p class="flex font-bold text-[#214263] gap-2">
 					Hư hỏng: 
 					<span class="text-gray-600 text-[15px]">
 						{{ item.QTY_DAME }}
 					</span>
 				</p>
-				<p class="flex font-semibold text-[#214263] gap-2">
+				<p class="flex font-bold text-[#214263] gap-2">
 					Còn lại: 
 					<span class="text-gray-600 text-[15px]">
 						{{ item.QTY_REMAIN }}
 					</span>
 				</p>
-				<p class="flex font-semibold text-[#21 gap-24263] gap-2">
+				<p class="flex font-bold text-[#21 gap-24263] gap-2">
 					QC: 
 					<span class="text-gray-600 text-[15px]">
 						{{ item.QIP_STAFF }}
 					</span>
 				</p>
-				<p class="flex font-semibold text-[#214263] gap-2">
+				<p class="flex font-bold text-[#214263] gap-2">
 					Ghi chú: 
 					<span class="text-gray-600 text-[15px]">
 						{{ item.REMARK }}

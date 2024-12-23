@@ -355,7 +355,7 @@
 
 				uni.request({
 					//url: 'http://10.30.3.50:8386/api/configData/getDepartment',
-					url: 'http://10.30.3.27:8000/api/configData/getDepartment',
+					url: 'http://10.30.3.50:8386/api/configData/getDepartment',
 					method: 'GET',
 					success: (res) => {
 						const newDataDepartment = res.data?.data || [];
@@ -391,7 +391,7 @@
 
 					// Sử dụng uni.request thay vì axios
 					uni.request({
-						url: `http://10.30.3.27:8000/api/iprdReport/createReportPHYLON`,
+						url: `http://10.30.3.50:8386/api/iprdReport/createReportPHYLON`,
 						method: 'POST',
 						data: this.formData,
 						success: (response) => {

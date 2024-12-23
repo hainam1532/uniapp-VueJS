@@ -1,9 +1,9 @@
 <template>
 	<view class="h-screen w-full bg-gradient-to-b from-blue-200 via-blue-100 to-white flex flex-col">
-		<view class="flex flex-col bg-[#407bff] rounded-b-3xl gap-4 p-2">
+		<view class="flex flex-col bg-[#407bff] rounded-b-3xl gap-2 p-2">
 			<view class="mx-2 flex justify-between">
 				<view class="return" @click="backMenu()"></view>
-				<span class="font-semibold text-white py-1">Độ ẩm liệu IQC</span>
+				<span class="font-semibold text-white py-1 text-[20px]">Độ ẩm liệu IQC</span>
 				<view class="add" @click="toCreatePage()"></view>
 			</view>
 			<view class="flex flex-col size-full">
@@ -53,10 +53,10 @@
 		</view>
 
 		<!-- data list -->
-		<scroll-view @scrolltolower="fetchData" scroll-y="true" class="scroll-container size-full mx-auto shadow-lg p-4"
+		<scroll-view @scrolltolower="fetchData" scroll-y="true" class="scroll-container size-full mx-auto shadow-lg p-2"
 			style="overflow-y: auto; height: calc(100vh - 300px);">
 			<view v-for="(item, index) in dataList" :key="item.ID" @click="showDetail(item.ID)"
-				class="grid grid-cols-2 grid-rows-1 bg-white gap-2 cursor-pointer shadow-md rounded-lg p-2 mb-2">
+				class="grid grid-cols-2 grid-rows-1 bg-white border-2 border-black gap-2 cursor-pointer shadow-md rounded-lg p-2 mb-2">
 				<p class="font-semibold text-[#214263]">Ngày kiểm: <span
 						class="text-gray-600 text-[15px] font-bold">{{ formatDate(item.DATE_RECORD) }}</span></p>
 				<p class="font-semibold text-[#214263]">Ngày nhập kho: <span

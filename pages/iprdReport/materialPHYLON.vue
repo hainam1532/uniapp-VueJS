@@ -104,11 +104,12 @@
 				</view>
 				<view class="flex gap-2">
 					<view class="font-bold text-blue-600">Kết quả :</view>
-					<span v-if="item && item.DISPOSE_RESULT" :class="[showStatus(item.DISPOSE_RESULT).color, 'font-bold']">
-					  {{ showStatus(item.DISPOSE_RESULT).text }}
-					</span>
-					<span v-else>
-					  Không có dữ liệu để tính toán
+					<span v-if="item && item.DISPOSE_RESULT" :class="[
+					    showStatus(item.DISPOSE_RESULT).color, 
+					    showStatus(item.DISPOSE_RESULT).bg,
+					    'font-bold text-[15px] px-2 rounded-md shadow-md inline-block'
+					  ]">
+						{{ showStatus(item.DISPOSE_RESULT).text }}
 					</span>
 				</view>
 			</view>
@@ -186,18 +187,26 @@
 				})
 			},
 			showStatus(passFail) {
-			    switch (passFail) {
-			      case "S": // Khi pass_fail = "7"
-			        return { text: "Đạt", color: "text-green-600" };
-			      case "F": // Khi pass_fail = "9"
-			        return { text: "Không đạt", color: "text-red-600" };
-			      case null:
-			      case undefined:
-			      case "":
-			        return { text: "Không xác định", color: "text-gray-500" };
-			      default:
-			        return { text: "Không xác định", color: "text-gray-500" }; // Trường hợp khác
-			    }
+				switch (passFail) {
+					case "S": // Khi pass_fail = "S"
+						return {
+							text: "Đạt", color: "text-green-600", bg: "bg-green-200"
+						};
+					case "F": // Khi pass_fail = "F"
+						return {
+							text: "Không đạt", color: "text-red-600", bg: "bg-red-200"
+						};
+					case null:
+					case undefined:
+					case "":
+						return {
+							text: "Không xác định", color: "text-gray-500", bg: "bg-gray-200"
+						};
+					default:
+						return {
+							text: "Không xác định", color: "text-gray-500", bg: "bg-gray-200"
+						};
+				}
 			},
 			onStartDateChange(e) {
 				const selectedDate = e.detail.value;
@@ -277,7 +286,7 @@
 
 				uni.request({
 					//url: 'http://10.30.3.50:8386/api/configData/getDepartment',
-					url: 'http://10.30.3.27:8000/api/configData/getDepartment',
+					url: 'http://10.30.3.50:8386/api/configData/getDepartment',
 					method: 'GET',
 					success: (res) => {
 						const newDataDepartment = res.data?.data || [];
@@ -308,7 +317,7 @@
 			  this.isLoading = true;
 			
 			  uni.request({
-			    url: 'http://10.30.3.27:8000/api/iprdReport/getDataPHYLON', // Địa chỉ API của bạn
+			    url: 'http://10.30.3.50:8386/api/iprdReport/getDataPHYLON', // Địa chỉ API của bạn
 			    method: 'GET',
 			    data: {
 			      page: this.startPage,

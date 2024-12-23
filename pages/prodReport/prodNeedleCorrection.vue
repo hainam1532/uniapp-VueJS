@@ -60,56 +60,56 @@
 			class="scroll-container size-full mx-auto shadow-xl p-2"
 			style="overflow-y: auto; height: calc(190vh - 300px);"
 		>
-			<view v-for="(item, index) in dataList" :key="item.ID" class="grid grid-cols-3 grid-rows-1 gap-2 bg-white cursor-pointer shadow-lg rounded-xl p-2 mb-2">
-				<p class="font-semibold text-[#214263]">
+			<view v-for="(item, index) in dataList" :key="item.ID" class="grid grid-cols-3 grid-rows-1 border-2 border-black gap-2 bg-white cursor-pointer shadow-lg rounded-xl p-2 mb-2">
+				<p class="font-bold text-[#214263]">
 					Ngày kiểm : 
 					<span class="text-gray-600 text-[15px] font-bold">
 						{{ formatDate(item.DATE_REPORT) }}
 					</span>
 				</p>
-				<p class="font-semibold text-[#214263]">
+				<p class="font-bold text-[#214263]">
 					Số máy : 
 					<span class="text-gray-600 text-[15px] font-bold">
 						{{ item.METAL_NO }}
 					</span>
 				</p>
-				<p class="font-semibold text-[#214263]">
+				<p class="font-bold text-[#214263]">
 					Thời gian : 
 					<span class="text-gray-600 text-[15px] font-bold">
 						{{ formatTime(item.TIME) }}
 					</span>
 				</p>
-				<p class="font-semibold text-[#214263]">
+				<p class="font-bold text-[#214263]">
 					Trái ( Vị trí / 1,4,7 ) : 
 					<span class="text-gray-600 text-[15px] font-bold">
 						{{ item.FAIL_LEFT_POSITION || '0' }}
 					</span>
 				</p>
-				<p class="font-semibold text-[#214263]">
+				<p class="font-bold text-[#214263]">
 					Giữa ( Vị trí / 2,5,8 ) : 
 					<span class="text-gray-600 text-[15px] font-bold">
 						{{ item.FAIL_MIDDLE_POSITION || '0' }}
 					</span>
 				</p>
-				<p class="font-semibold text-[#214263]">
+				<p class="font-bold text-[#214263]">
 					Phải ( Vị trí / 3,6,9 ) : 
 					<span class="text-gray-600 text-[15px] font-bold">
 						{{ item.FAIL_RIGHT_POSITION || '0' }}
 					</span>
 				</p>
-				<p class="font-semibold text-[#214263]">
+				<p class="font-bold text-[#214263]">
 					Chuyền : 
 					<span class="text-gray-600 text-[15px] font-bold">
 						{{ item.DEPARTMENT_CODE }}
 					</span>
 				</p>
-				<p class="font-semibold text-[#214263]">
+				<p class="font-bold text-[#214263]">
 					QC : 
 					<span class="text-gray-600 text-[15px] font-bold">
 						{{ item.QC }}
 					</span>
 				</p>
-				<p class="font-semibold text-[#214263]">
+				<p class="font-bold text-[#214263]">
 				  Kết quả :
 				  <span v-if="item && item.PASS_FAIL" :class="[showStatus(item.PASS_FAIL).color, 'text-[15px] font-bold']">
 				    {{ showStatus(item.PASS_FAIL).text }}

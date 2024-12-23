@@ -54,57 +54,57 @@
 			style="overflow-y: auto; height: calc(590vh - 300px);"
 		>
 			<view v-for="(item, index) in dataList" :key="item.ID" 
-				class="grid grid-cols-3 grid-rows-1 bg-white gap-2 cursor-pointer shadow-lg rounded-lg p-2 mb-2"
+				class="grid grid-cols-3 grid-rows-1 bg-white gap-2 border-2 border-black cursor-pointer shadow-lg rounded-lg p-2 mb-2"
 			>
-				<p class="flex flex-col font-semibold text-[#214263]">
+				<p class="flex flex-col font-bold text-[#214263]">
 					ID:
 					<span class="text-gray-600 text-[15px] px-4">
 						{{ item.ID }}
 					</span>
 				</p>
-				<p class="flex flex-col font-semibold text-[#214263]">
+				<p class="flex flex-col font-bold text-[#214263]">
 					Loại tem: 
 					<span class="text-gray-600 text-[15px] px-4">
 						{{ item.STAMP_TYPE }}
 					</span>
 				</p>
-				<p class="flex flex-col font-semibold text-[#214263]">
+				<p class="flex flex-col font-bold text-[#214263]">
 					Ngày lãnh: 
 					<span class="text-gray-600 text-[15px] px-4">
 						{{ formatDate(item.DATE_DELIVERY) }}
 					</span>
 				</p>
-				<p class="flex flex-col font-semibold text-[#214263]">
+				<p class="flex flex-col font-bold text-[#214263]">
 					Ngày phát: 
 					<span class="text-gray-600 text-[15px]  px-4">
 						{{ formatDate(item.DATE_PAY) }}
 					</span>
 				</p>
-				<p class="flex flex-col font-semibold text-[#214263]">
+				<p class="flex flex-col font-bold text-[#214263]">
 					Số lượng phát: 
 					<span class="text-gray-600 text-[15px] px-4">
 						{{ item.QTY_DELIVERY }}
 					</span>
 				</p>
-				<p class="flex flex-col font-semibold text-[#214263]">
+				<p class="flex flex-col font-bold text-[#214263]">
 					Số lượng còn lại: 
 					<span class="text-gray-600 text-[15px] px-4">
 						{{ item.QTY_PAY }}
 					</span>
 				</p>
-				<p class="flex flex-col font-semibold text-[#214263]">
+				<p class="flex flex-col font-bold text-[#214263]">
 					Người nhận: 
 					<span class="text-gray-600 text-[15px] px-4">
 						{{ item.PAY_PEOPLE }}
 					</span>
 				</p>
-				<p class="flex flex-col font-semibold text-[#214263]">
+				<p class="flex flex-col font-bold text-[#214263]">
 					Người phát: 
 					<span class="text-gray-600 text-[15px] px-4">
 						{{ item.DELIVERY_PEOPLE }}
 					</span>
 				</p>
-				<p class="flex flex-col font-semibold text-[#214263]">
+				<p class="flex flex-col font-bold text-[#214263]">
 					Ghi chú: 
 					<span class="text-gray-600 text-[15px] px-4">
 						{{ item.REMARK }}

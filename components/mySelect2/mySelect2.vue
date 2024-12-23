@@ -167,7 +167,7 @@ export default {
 
 .clear-btn {
   position: absolute;
-  right: 10px;
+  margin-left: 250px;
   background: none;
   border: none;
   color: #aaa;

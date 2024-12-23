@@ -59,7 +59,7 @@
 			class="scroll-container size-full mx-auto shadow-xl p-2"
 			style="overflow-y: auto; height: calc(190vh - 300px);"
 		>
-			<view v-for="(item, index) in dataList" :key="item.ID" @click="showDetail(item.ID)" class="grid grid-cols-3 grid-rows-1 gap-2 bg-white cursor-pointer shadow-lg rounded-xl p-4 mb-4">
+			<view v-for="(item, index) in dataList" :key="item.ID" @click="showDetail(item.ID)" class="grid grid-cols-3 grid-rows-1 gap-2 border-2 border-black bg-white cursor-pointer shadow-lg rounded-xl p-2 mb-2">
 				<p class="font-semibold text-[#214263]">
 					Ngày kiểm : 
 					<span class="text-gray-600 text-[15px] font-bold">

@@ -60,12 +60,12 @@
 			class="scroll-container size-full mx-auto shadow-xl p-2"
 			style="overflow-y: auto; height: calc(190vh - 300px);"
 		>
-			<view v-for="(item, index) in dataList" :key="item.ID" @click="showDetail(item.ID)" class="grid grid-cols-2 grid-rows-1 gap-2 bg-white cursor-pointer shadow-lg rounded-xl p-2 mb-2">
-				<p class="font-semibold text-[#214263]">Ngày kiểm : <span class="text-gray-600 text-[15px] font-bold">{{ formatDate(item.DATE_REPORT) }}</span></p>
-				<p class="font-semibold text-[#214263]">Chuyền : <span class="text-gray-600 text-[15px] font-bold">{{ item.DEPARTMENT_CODE }}</span></p>
-				<p class="font-semibold text-[#214263]">PO# : <span class="text-gray-600 text-[15px] font-bold">{{ item.PROD }}</span></p>
-				<p class="font-semibold text-[#214263]">ART : <span class="text-gray-600 text-[15px] font-bold">{{ item.ART }}</span></p>
-				<p class="font-semibold text-[#214263]">Hình thể : <span class="text-gray-600 text-[15px] font-bold">{{ item.STYLE}}</span></p>
+			<view v-for="(item, index) in dataList" :key="item.ID" @click="showDetail(item.ID)" class="grid grid-cols-2 grid-rows-1 border-2 border-black gap-2 bg-white cursor-pointer shadow-lg rounded-xl p-2 mb-2">
+				<p class="font-bold text-[#214263]">Ngày kiểm : <span class="text-gray-600 text-[15px] font-bold">{{ formatDate(item.DATE_REPORT) }}</span></p>
+				<p class="font-bold text-[#214263]">Chuyền : <span class="text-gray-600 text-[15px] font-bold">{{ item.DEPARTMENT_CODE }}</span></p>
+				<p class="font-bold text-[#214263]">PO# : <span class="text-gray-600 text-[15px] font-bold">{{ item.PROD }}</span></p>
+				<p class="font-bold text-[#214263]">ART : <span class="text-gray-600 text-[15px] font-bold">{{ item.ART }}</span></p>
+				<p class="font-bold text-[#214263]">Hình thể : <span class="text-gray-600 text-[15px] font-bold">{{ item.STYLE}}</span></p>
 			</view>
 			<view v-if="isLoading" class="loading-text">Đang tải...</view>
 			<view v-if="startPage > totalPage" class="end-text">Không còn dữ liệu để tải</view>
@@ -195,6 +195,7 @@
 			
 			  uni.request({
 			    url: 'http://10.30.3.50:8386/api/prodReport/dataReportBC', // Địa chỉ API của bạn
+				// url: 'http://10.30.3.27:8000/api/prodReport/dataReportBC', // Địa chỉ API của bạn
 			    method: 'GET',
 			    data: {
 			      page: this.startPage,

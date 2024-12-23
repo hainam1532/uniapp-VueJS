@@ -48,7 +48,7 @@
 									<h2 class="font-bold">{{ data.ISSUE }}</h2>
 								</view>
 							</view>
-							<view class="border-b border-dashed border-black border-b-2">
+							<view class="border-b border-dashed border-black border-b-2 my-2">
 							</view>
 							<view class="flex justify-center items-center text-center">
 								<span class="font-bold text-[20px] mt-1 text-blue-500">KIỂM TRA Ở FI</span>
@@ -57,46 +57,46 @@
 								<view class="flex col-span-2 justify-between items-center">
 									<view class="flex flex-col gap-2 font-semibold">
 										<span class="text-blue-500">Size B :</span>
-										<h2 class="text-sm">{{ data.FI_SIZE_B }}</h2>
+										<h2 class="text-[15px] font-bold">{{ data.FI_SIZE_B }}</h2>
 									</view>
 									<view class="flex flex-col gap-2 font-semibold">
 										<span class="text-blue-500">Chân trái/phải :</span>
-										<h2 class="text-sm">{{ data.FOOT_B_FI }}</h2>
+										<h2 class="text-[15px] font-bold">{{ data.FOOT_B_FI }}</h2>
 									</view>
 									<view class="flex flex-col gap-2 font-semibold">
 										<span class="text-blue-500">Số lượng B :</span>
-										<h2 class="text-sm">{{ data.FI_QTY_B }}</h2>
+										<h2 class="text-[15px] font-bold">{{ data.FI_QTY_B }}</h2>
 									</view>
 								</view>
 								<view class="flex flex-col gap-2 font-semibold">
 									<span class="text-blue-500">Nguyên nhân :</span>
-									<h2 class="text-sm">{{ data.ISSUE_B_FI_1 }}</h2>
+									<h2 class="text-[15px] font-bold">{{ data.ISSUE_B_FI_1 }}</h2>
 								</view>
 								<view class="flex flex-col gap-2 font-semibold">
 									<span class="text-red-500">Tên nguyên nhân :</span>
-									<h2 class="text-sm">{{ data.ISSUE_1}}</h2>
+									<h2 class="text-[15px] font-bold">{{ data.ISSUE_1}}</h2>
 								</view>
 								<view class="flex col-span-2 justify-between items-center">
 									<view class="flex flex-col gap-2 font-semibold">
 										<span class="text-blue-500">Size C :</span>
-										<h2 class="font-bold">{{ data.FI_SIZE_C }}</h2>
+										<h2 class="font-bold text-[15px]">{{ data.FI_SIZE_C }}</h2>
 									</view>
 									<view class="flex flex-col gap-2 font-semibold">
 										<span class="text-blue-500">Chân trái/phải :</span>
-										<h2 class="font-bold">{{ data.FOOT_C_FI }}</h2>
+										<h2 class="font-bold text-[15px]">{{ data.FOOT_C_FI }}</h2>
 									</view>
 									<view class="flex flex-col gap-2 font-semibold">
 										<span class="text-blue-500">Số lượng C :</span>
-										<h2 class="font-bold">{{ data.FI_QTY_C }}</h2>
+										<h2 class="font-bold text-[15px]">{{ data.FI_QTY_C }}</h2>
 									</view>
 								</view>
 								<view class="flex flex-col gap-2 font-semibold">
 									<span class="text-blue-500">Nguyên nhân :</span>
-									<h2 class="text-sm">{{ data.ISSUE_C_FI_2 }}</h2>
+									<h2 class="text-[15px] font-bold">{{ data.ISSUE_C_FI_2 }}</h2>
 								</view>
 								<view class="flex flex-col gap-2 font-semibold">
 									<span class="text-red-500">Tên nguyên nhân :</span>
-									<h2 class="text-sm">{{ data.ISSUE_2 }}</h2>
+									<h2 class="text-[15px] font-bold">{{ data.ISSUE_2 }}</h2>
 								</view>
 							</view>
 							<view class="border-b border-dashed border-black border-b-2">
@@ -108,46 +108,46 @@
 								<view class="flex col-span-2 justify-between items-center">
 									<view class="flex flex-col gap-2 font-semibold">
 										<span class="text-blue-500">Size B :</span>
-										<h2 class="text-[15px]">{{ data.LINE_SIZE_B }}</h2>
+										<h2 class="text-[15px] font-bold">{{ data.LINE_SIZE_B }}</h2>
 									</view>
 									<view class="flex flex-col gap-2 font-semibold">
 										<span class="text-blue-500">Chân trái/phải :</span>
-										<h2 class="text-[15px]">{{ data.FOOT_B_PROD }}</h2>
+										<h2 class="text-[15px] font-bold">{{ data.FOOT_B_PROD }}</h2>
 									</view>
 									<view class="flex flex-col gap-2 font-semibold">
 										<span class="text-blue-500">Số lượng B :</span>
-										<h2 class="text-[15px]">{{ data.LINE_QTY_B }}</h2>
+										<h2 class="text-[15px] font-bold">{{ data.LINE_QTY_B }}</h2>
 									</view>
 								</view>
 								<view class="flex flex-col gap-2 font-semibold">
 									<span class="text-blue-500">Nguyên nhân :</span>
-									<h2 class="text-[15px]">{{ data.ISSUE_PROD_FI_1 }}</h2>
+									<h2 class="text-[15px] font-bold">{{ data.ISSUE_PROD_FI_1 }}</h2>
 								</view>
 								<view class="flex flex-col gap-2 font-semibold">
 									<span class="text-red-500">Tên nguyên nhân :</span>
-									<h2 class="text-[15px]">{{ data.ISSUE_3}}</h2>
+									<h2 class="text-[15px] font-bold">{{ data.ISSUE_3}}</h2>
 								</view>
 								<view class="flex col-span-2 justify-between items-center">
 									<view class="flex flex-col gap-2 font-semibold">
 										<span class="text-blue-500">Size C :</span>
-										<h2 class="font-bold">{{ data.LINE_SIZE_C }}</h2>
+										<h2 class="font-bold text-[15px]">{{ data.LINE_SIZE_C }}</h2>
 									</view>
 									<view class="flex flex-col gap-2 font-semibold">
 										<span class="text-blue-500">Chân trái/phải :</span>
-										<h2 class="font-bold">{{ data.FOOT_C_PROD }}</h2>
+										<h2 class="font-bold text-[15px]">{{ data.FOOT_C_PROD }}</h2>
 									</view>
 									<view class="flex flex-col gap-2 font-semibold">
 										<span class="text-blue-500">Số lượng C :</span>
-										<h2 class="font-bold">{{ data.LINE_QTY_C }}</h2>
+										<h2 class="font-bold text-[15px]">{{ data.LINE_QTY_C }}</h2>
 									</view>
 								</view>
 								<view class="flex flex-col gap-2 font-semibold">
 									<span class="text-blue-500">Nguyên nhân :</span>
-									<h2 class="text-sm">{{ data.ISSUE_C_FI_2 }}</h2>
+									<h2 class="font-bold text-[15px]">{{ data.ISSUE_C_FI_2 }}</h2>
 								</view>
 								<view class="flex flex-col gap-2 font-semibold">
 									<span class="text-red-500">Tên nguyên nhân :</span>
-									<h2 class="text-sm">{{ data.ISSUE_4 }}</h2>
+									<h2 class="font-bold text-[15px]">{{ data.ISSUE_4 }}</h2>
 								</view>
 							</view>
 							
@@ -222,7 +222,7 @@
 
 <style>
 	.return {
-	  background-image: url('/static/return.png');
+	  background-image: url('/static/left.png');
 	  background-size: contain;
 	  background-repeat: no-repeat;
 	  width: 30px;
